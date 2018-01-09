@@ -15,7 +15,7 @@ import HomePage from 'containers/HomePage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
-//import Footer from 'components/Footer';
+import Footer from 'components/Footer';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 const AppWrapper = styled.div`
@@ -33,13 +33,17 @@ export default function App() {
       </Helmet>
       <MuiThemeProvider>
         <div className="container">
+
           <Header title={"JelpZone"} />
+
           <Switch>
             {/*<Route exact path="/" component={HomePage} />*/}
             <Route path="/login" component={LoginPage} />
             <Route path="" component={NotFoundPage} />
           </Switch>
-          {/*<Footer />*/}
+
+          <Footer />
+
         </div>
       </MuiThemeProvider>
     </AppWrapper>
