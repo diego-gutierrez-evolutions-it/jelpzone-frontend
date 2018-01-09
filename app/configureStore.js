@@ -3,6 +3,7 @@
  */
 
 import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
@@ -17,6 +18,7 @@ export default function configureStore(initialState = {}, history) {
   const middlewares = [
     sagaMiddleware,
     routerMiddleware(history),
+    thunk
   ];
 
   const enhancers = [
