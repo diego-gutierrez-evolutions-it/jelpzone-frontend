@@ -11,14 +11,14 @@
  */
 import { fromJS } from 'immutable';
 
-import { SUBMIT_FORM, SUBMIT_FORM_OK, SUBMIT_FORM_FAILED} from './constants';
+import { SUBMIT_FORM, SUBMIT_FORM_OK, SUBMIT_FORM_FAILED } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
-	submitting: false,
+  submitting: false,
   loggedIn: false,
   shouldRedirect: false,
-  error: false
+  error: false,
 });
 
 function loginReducer(state = initialState, action) {
