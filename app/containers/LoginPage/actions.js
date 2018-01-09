@@ -3,7 +3,7 @@
  *
  */
 
-import { SUBMIT_FORM, SUBMIT_FORM_OK, SUBMIT_FORM_FAILED } from './constants'
+import { SUBMIT_FORM, SUBMIT_FORM_OK, SUBMIT_FORM_FAILED } from './constants';
 
 /**
  * Submit the form

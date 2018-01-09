@@ -23,7 +23,7 @@ const initialState = fromJS({
 
 function loginReducer(state = initialState, action) {
   switch (action.type) {
-  	case SUBMIT_FORM_OK:
+    case SUBMIT_FORM_OK:
   		return state.set('loggedIn', true)
   								.set('shouldRedirect', true)
   								.set('submitting', false);
