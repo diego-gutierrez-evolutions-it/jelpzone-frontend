@@ -7,20 +7,17 @@ import * as LoginFormActions from './actions'
 
 import LoginForm from 'components/LoginForm'
 
+import { createStructuredSelector } from 'reselect'
 import { makeSelectShouldRedirect, makeSelectSubmitting } from './selectors'
 
 let Form = reduxForm({
   form: 'login',
 })(LoginForm)
 
-const selector = formValueSelector('login')
+const mapStateToProps = createStructuredSelector({
+  isSubmitting: makeSelectSubmitting()
+})
 
-Form = connect(state => {
-  return {
-    //email: selector(state, 'email'),
-    //password: selector(state, 'password'),
-    submitting: makeSelectSubmitting()
-  }
-})(Form)
+Form = connect(mapStateToProps)(Form)
 
 export default Form

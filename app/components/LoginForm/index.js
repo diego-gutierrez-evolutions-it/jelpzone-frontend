@@ -30,7 +30,8 @@ class LoginForm extends Component {
   saveRef = ref => (this.ref = ref)
 
   render() {
-    const { handleSubmit, submitting, error } = this.props
+    const { handleSubmit, isSubmitting, error } = this.props
+
     return (
       <form onSubmit={handleSubmit}>
         <div className="field-line">
@@ -58,7 +59,7 @@ class LoginForm extends Component {
         <div className="button-line">
           <RaisedButton
             type="submit"
-            disabled={submitting}
+            disabled={isSubmitting}
             label={<FormattedMessage {...messages.submitButtonText} />}
             primary
           />
@@ -70,7 +71,7 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  submitting: PropTypes.bool
+  isSubmitting: PropTypes.bool
 }
 
 export default LoginForm

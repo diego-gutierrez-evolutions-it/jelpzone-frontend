@@ -21,11 +21,15 @@ export function submitLoginForm(values) {
 
     dispatch(submittingLoginForm())
 
-    if(values.get('email') === 'john@email.com' && values.get('password') === 'doe'){
-      dispatch(submitLoginFormOk())
-    } else{
-      dispatch(submitLoginFormFailed("Incorrect user or password"))
-    }
+    setTimeout(function(){ //emulate api call
+      if(values.get('email') === 'john@email.com' && values.get('password') === 'doe'){
+        dispatch(submitLoginFormOk())
+      } else{
+        dispatch(submitLoginFormFailed("Incorrect user or password"))
+      }
+    }, 2000);
+
+    
   }
 
 }

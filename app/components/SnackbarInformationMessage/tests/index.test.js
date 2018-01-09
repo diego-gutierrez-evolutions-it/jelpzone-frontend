@@ -1,9 +1,9 @@
 // import React from 'react';
 // import { shallow } from 'enzyme';
 
-// import Headers from '../index';
+// import SnackbarInformationMessage from '../index';
 
-describe('<Headers />', () => {
+describe('<SnackbarInformationMessage />', () => {
   it('Expect to have unit tests specified', () => {
     expect(true).toEqual(false);
   });
