@@ -45,7 +45,7 @@ export class LoginPage extends React.Component {
   render() {
     const {error} = this.props;
     return (
-      <Card className="container">
+      <Card>
         <Form onSubmit={this.props.onSubmitForm} />
 
         <SnackbarInformationMessage 
