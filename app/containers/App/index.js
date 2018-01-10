@@ -37,7 +37,7 @@ export default function App() {
           <Header title={"JelpZone"} />
 
           <Switch>
-            {<Route exact path="/sign-up" component={SignupPage} />}
+            <Route exact path="/signup" component={SignupPage} />
             <Route path="/login" component={LoginPage} />
             <Route path="" component={NotFoundPage} />
           </Switch>

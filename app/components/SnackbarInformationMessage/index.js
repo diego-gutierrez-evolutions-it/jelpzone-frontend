@@ -29,6 +29,7 @@ class SnackbarInformationMessage extends React.Component {
   componentDidUpdate(){
   	this.setState({
       open: this.props.open,
+      message: this.props.message
     })
   }
 
@@ -59,7 +60,7 @@ SnackbarInformationMessage.propTypes = {
   duration: PropTypes.number,
   message: PropTypes.oneOfType([
     PropTypes.object,
-    PropTypes.bool,
+    PropTypes.string,
   ]).isRequired,
   open: PropTypes.bool.isRequired
 }

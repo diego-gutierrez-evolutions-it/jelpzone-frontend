@@ -33,7 +33,6 @@ export class LoginPage extends React.Component {
 
   componentDidUpdate(prevProps, prevState){
     if (this.props.shouldRedirect){
-      console.log("TODO: redirigir a / por ejemplo");
       this.props.history.push("/");
     }
   }
@@ -52,7 +51,7 @@ export class LoginPage extends React.Component {
           message={<FormattedMessage {...messages.invalidCredentials} />}
           open={error} />
 
-        <CardText><FormattedMessage {...messages.accountYet} /> <Link to='/sign-up'><FormattedMessage {...messages.signUp}/></Link></CardText>
+        <CardText><FormattedMessage {...messages.accountYet} /> <Link to='/signup'><FormattedMessage {...messages.signUp}/></Link></CardText>
       </Card>
     )
   }

@@ -1,12 +1,18 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form/immutable';
+import { FormattedMessage } from 'react-intl';
+
 import TextField from 'material-ui/TextField';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+
+import messages from './messages'
 import asyncValidate from './asyncValidate';
-import validate from './validate';
+//import validate from './validate';
+import {required, email} from 'utils/validateForm';
 
 const renderTextField = (
   { input, label, meta: { touched, error }, ...custom },
@@ -51,7 +57,7 @@ const renderSelectField = (
 );
 
 const SignupForm = props => {
-  const { handleSubmit, pristine, reset, submitting } = props;
+  const { handleSubmit, pristine, reset, isSubmitting } = props;
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -65,49 +71,46 @@ const SignupForm = props => {
         <Field name="lastName" component={renderTextField} label="Last Name" />
       </div>
       <div>
-        <Field name="email" component={renderTextField} label="Email" />
-      </div>
-      <div>
-        <Field name="sex" component={renderRadioGroup}>
-          <RadioButton value="male" label="male" />
-          <RadioButton value="female" label="female" />
-        </Field>
-      </div>
-      <div>
-        <Field
-          name="favoriteColor"
-          component={renderSelectField}
-          label="Favorite Color"
-        >
-          <MenuItem value="ff0000" primaryText="Red" />
-          <MenuItem value="00ff00" primaryText="Green" />
-          <MenuItem value="0000ff" primaryText="Blue" />
-        </Field>
-      </div>
-      <div>
-        <Field name="employed" component={renderCheckbox} label="Employed" />
-      </div>
-      <div>
-        <Field
-          name="notes"
-          component={renderTextField}
-          label="Notes"
-          multiLine={true}
-          rows={2}
+        <Field 
+          name="username" 
+          component={renderTextField} 
+          label="Username"
+          validate={required} 
         />
       </div>
       <div>
-        <button type="submit" disabled={pristine || submitting}>Submit</button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
-        </button>
+        <Field 
+          name="email" 
+          component={renderTextField} 
+          label="Email"
+          validate={[required, email]}  />
+      </div>
+      <div>
+        <Field name="userType" component={renderRadioGroup} validate={required}>
+          <RadioButton value="0" label="professional" />
+          <RadioButton value="1" label="client" />
+        </Field>
+      </div>
+      <div>
+        <RaisedButton
+            type="submit"
+            disabled={isSubmitting}
+            label={<FormattedMessage {...messages.submitButtonText} />}
+            primary
+          />
+        <RaisedButton
+            disabled={isSubmitting}
+            label={<FormattedMessage {...messages.resetButtonText} />}
+            onClick={reset}
+            secondary
+          />
       </div>
     </form>
   );
 };
 
 export default reduxForm({
-  form: 'SignupForm', // a unique identifier for this form
-  validate,
+  form: 'signup', // a unique identifier for this form
+  //validate,
   asyncValidate,
 })(SignupForm);

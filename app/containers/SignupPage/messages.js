@@ -6,8 +6,12 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  header: {
-    id: 'app.containers.SignupPage.header',
-    defaultMessage: 'This is SignupPage container !',
+  submitButtonText: {
+  	id: 'app.containers.SignupPage.submit_button',
+    defaultMessage: 'Submit',
+  },
+  resetButtonText: {
+  	id: 'app.containers.SignupPage.reset_button',
+    defaultMessage: 'Clear Values',
   },
 });
