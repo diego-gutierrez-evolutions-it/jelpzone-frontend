@@ -7,33 +7,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
-import { Card, CardText } from 'material-ui/Card';
+import { Card } from 'material-ui/Card';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
+
+import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
+import Form from './Form';
 
 import { submitSignupForm } from './actions';
 import { makeSelectError, makeSelectMessageError, makeSelectRegisterOk } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import messages from './messages';
-
-import Form from './Form';
-import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
 
 export class SignupPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidUpdate(prevProps, prevState){
-    if (this.props.shouldRedirect){
-      this.props.history.push("/signup-success");
+  componentDidUpdate() {
+    if (this.props.shouldRedirect) {
+      this.props.history.push('/');
     }
   }
 
@@ -41,12 +35,12 @@ export class SignupPage extends React.PureComponent { // eslint-disable-line rea
     const { onSubmitForm, error, messageError } = this.props;
     return (
       <Card>
-        <Form handleSubmit={onSubmitForm}/>
+        <Form handleSubmit={onSubmitForm} />
 
-        <SnackbarInformationMessage 
-            message={messageError}
-            open={error} />
-        
+        <SnackbarInformationMessage
+          message={messageError}
+          open={error}
+        />
 
       </Card>
     );
@@ -59,22 +53,26 @@ SignupPage.propTypes = {
     PropTypes.object,
     PropTypes.bool,
   ]),
-  messageError: PropTypes.string
+  messageError: PropTypes.string,
+  shouldRedirect: PropTypes.bool.isRequired,
+  history: PropTypes.shape(
+    { push: PropTypes.func }
+  ),
 };
 
 const mapStateToProps = createStructuredSelector({
   error: makeSelectError(),
   messageError: makeSelectMessageError(),
-  shouldRedirect: makeSelectRegisterOk()
+  shouldRedirect: makeSelectRegisterOk(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(submitSignupForm(evt))
-    }
-  }
+      dispatch(submitSignupForm(evt));
+    },
+  };
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

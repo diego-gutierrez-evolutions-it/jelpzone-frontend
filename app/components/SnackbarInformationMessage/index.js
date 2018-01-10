@@ -26,15 +26,14 @@ class SnackbarInformationMessage extends React.Component {
     };
   }
 
-  componentDidUpdate(){
-  	this.setState({
-      open: this.props.open,
-      message: this.props.message
-    })
-  }
-
-  shouldComponentUpdate(nextProps, nextState){
-  	return (this.props.open != nextProps.open)
+  componentWillUpdate(nextProps, nextState){
+    if(!this.state.open && !nextState.open){
+      this.setState({
+        open: this.props.open,
+        message: this.props.message
+      })
+    }
+    
   }
 
   handleRequestClose = () => {

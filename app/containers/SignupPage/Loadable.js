@@ -1,5 +1,5 @@
 /**
- * Asynchronously loads the component for LoginPage
+ * Asynchronously loads the component for SignupPage
  */
 import Loadable from 'react-loadable';
 

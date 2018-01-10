@@ -9,9 +9,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import messages from './messages'
-import asyncValidate from './asyncValidate';
-//import validate from './validate';
+import messages from './messages';
 import {required, email} from 'utils/validateForm';
 
 const renderTextField = (
@@ -111,6 +109,4 @@ const SignupForm = props => {
 
 export default reduxForm({
   form: 'signup', // a unique identifier for this form
-  //validate,
-  asyncValidate,
 })(SignupForm);

@@ -11,16 +11,16 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import SignupPage from 'containers/SignupPage';
+import SignupPage from 'containers/SignupPage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const AppWrapper = styled.div`
   text-align: center;
-`
+`;
 
 export default function App() {
   return (
@@ -34,7 +34,7 @@ export default function App() {
       <MuiThemeProvider>
         <div className="container">
 
-          <Header title={"JelpZone"} />
+          <Header title={'Jelpzone'} />
 
           <Switch>
             <Route exact path="/signup" component={SignupPage} />
