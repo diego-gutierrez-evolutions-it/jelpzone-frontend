@@ -8,15 +8,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { browserHistory , Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
+import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
 import Form from './Form';
 import { submitLoginForm } from './actions';
 import { makeSelectShouldRedirect, makeSelectSubmitting, makeSelectError } from './selectors';
 import reducer from './reducer';
+import saga from './saga';
 
 import { Card, CardText } from 'material-ui/Card';
 
@@ -53,7 +55,7 @@ export class LoginPage extends React.Component {
 
         <CardText><FormattedMessage {...messages.accountYet} /> <Link to='/signup'><FormattedMessage {...messages.signUp}/></Link></CardText>
       </Card>
-    )
+    );
   }
 }
 
@@ -63,28 +65,32 @@ LoginPage.propTypes = {
     PropTypes.bool,
   ]),
   shouldRedirect: PropTypes.bool,
-  onSubmitForm: PropTypes.func.isRequired
+  onSubmitForm: PropTypes.func.isRequired,
 }
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onSubmitForm: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault()
-      dispatch(submitLoginForm(evt))
-    }
-  }
+    onSubmitForm: (evt) => {
+      if (evt !== undefined && evt.preventDefault) {
+        evt.preventDefault();
+      }
+      dispatch(submitLoginForm(evt));
+    },
+  };
 }
 
 const mapStateToProps = createStructuredSelector({
   shouldRedirect: makeSelectShouldRedirect(),
-  error: makeSelectError()
+  error: makeSelectError(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 const withReducer = injectReducer({ key: 'login', reducer });
+const withSaga = injectSaga({ key: 'login', saga });
 
 export default compose(
   withReducer,
+  withSaga,
   withConnect
-)(LoginPage)
+)(LoginPage);
