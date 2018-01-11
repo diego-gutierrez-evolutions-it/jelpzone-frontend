@@ -11,3 +11,4 @@ npm-debug.log
 
 # ignore backups
 app/components/*.bak
+app/containers/*.bak
