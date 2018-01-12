@@ -17,9 +17,9 @@ const cover = {
 class Marker extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
-
+  	//TODO: include icon
     return (
-    	<MarkerLeaflet icon={this.props.icon} position={this.props.coordinate}>
+    	<MarkerLeaflet position={this.props.coordinate}>
         <Popup>
           <span>
             A pretty CSS3 popup. <br /> Easily customizable.

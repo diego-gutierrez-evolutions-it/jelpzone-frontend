@@ -25,6 +25,16 @@ const cover = {
   height: '600px'
 };
 
+const divLeft = {
+	'position': 'relative',
+  'text-align': 'left',
+}
+
+const spanpanel = {
+	'position': 'absolute',
+  'z-index': '500',
+}
+
 class ServicesMap extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
@@ -37,27 +47,30 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 	      : !this.props.isGeolocationEnabled
 	        ? <div><FormattedMessage {...messages.geolocationNotEnabled} /></div>
 	        : this.props.coords
-	          ? <Map center={[this.props.coords.latitude, this.props.coords.longitude]} zoom={20} style={cover}>
-				        <TileLayer
-				          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-				          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-				        />
-				        <Marker coordinate={[this.props.coords.latitude, this.props.coords.longitude]}
-				        				icon={divIcon({ html: `<i class="material-icons">My Position</i>`})}
-				        />
+	          ? <div>
+	          		<span>Left Panel - This must be this.props.leftPanelComponent </span>
+		          	<Map center={[this.props.coords.latitude, this.props.coords.longitude]} zoom={20} style={cover}>
+					        <TileLayer
+					          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+					          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+					        />
+					        <Marker coordinate={[this.props.coords.latitude, this.props.coords.longitude]}
+					        				icon={divIcon({ html: `<i class="material-icons">My Position</i>`})}
+					        />
 
-				        {
-		              map(marks, (mark) => {
-		                const { classNames } = mark;
+					        {
+			              map(marks, (mark) => {
+			                const { classNames } = mark;
 
-		                const icon = divIcon({ className: classNames, html: `<span>This is a mark</span>`});
-		                return (
-		                  <Marker icon={icon} key={mark.id} position={[mark.latitude, mark.longitude]}/>
-		                )
-		              })
-		            }
+			                const icon = divIcon({ className: classNames, html: `<span>This is a mark</span>`});
+			                return (
+			                  <Marker icon={icon} key={mark.id} position={[mark.latitude, mark.longitude]}/>
+			                )
+			              })
+			            }
 
-				      </Map>
+					      </Map>
+				      </div>
 	          : <div>
 	          		<LoadingIndicator />
 	          		<FormattedMessage {...messages.gettingGeolocation} />
