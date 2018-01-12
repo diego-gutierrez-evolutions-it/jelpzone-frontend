@@ -25,21 +25,16 @@ const cover = {
   height: '600px'
 };
 
-const divLeft = {
+const container = {
 	'position': 'relative',
-  'text-align': 'left',
-}
-
-const spanpanel = {
-	'position': 'absolute',
-  'z-index': '500',
+  'textAlign': 'left',
 }
 
 class ServicesMap extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
 
-		const { marks } = this.props;
+		const { marks, children } = this.props;
 
     return (
     	!this.props.isGeolocationAvailable
@@ -47,8 +42,10 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 	      : !this.props.isGeolocationEnabled
 	        ? <div><FormattedMessage {...messages.geolocationNotEnabled} /></div>
 	        : this.props.coords
-	          ? <div>
-	          		<span>Left Panel - This must be this.props.leftPanelComponent </span>
+	          ? <div style={container} >
+	          		
+	          		{ children }
+	          		
 		          	<Map center={[this.props.coords.latitude, this.props.coords.longitude]} zoom={20} style={cover}>
 					        <TileLayer
 					          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

@@ -12,11 +12,14 @@ import { Link} from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import ServicesMap from 'components/ServicesMap';
+import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
-import Form from './Form';
+import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
+import PersonAdd from 'material-ui/svg-icons/social/person-add';
+
 //import { submitLoginForm } from './actions';
 //import { makeSelectShouldRedirect, makeSelectSubmitting, makeSelectError } from './selectors';
 import reducer from './reducer';
@@ -29,28 +32,44 @@ import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-const cover = {
-  height: '400px'
-};
+const leftPanelContainer = {
+  'position': 'absolute',
+  'zIndex': '500',
+  'paddingTop': '8%',
+  'paddingLeft': '1%',
+}
 
 export class HomePage extends React.Component {
 
   render() {
+
+    const menuItems = [
+      {
+        id: 1,
+        icon: <RemoveRedEye />,
+        value: 1,
+      },
+      {
+        id: 2,
+        icon: <PersonAdd />,
+        value: 2,
+      },
+    ]
+
     return (
       <div>
-        <ServicesMap />
+        <ServicesMap >
+          <div style={leftPanelContainer} >
+            <VerticalIconsMenu items={menuItems} onItemClick={(value) => console.log(value)} />
+          </div>
+        </ServicesMap>
       </div>
     )
   }
 }
 
 HomePage.propTypes = {
-  /*error: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.bool,
-  ]),
-  shouldRedirect: PropTypes.bool,
-  onSubmitForm: PropTypes.func.isRequired,*/
+  
 }
 
 export function mapDispatchToProps(dispatch) {

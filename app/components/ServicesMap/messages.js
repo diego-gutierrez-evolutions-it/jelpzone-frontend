@@ -16,6 +16,6 @@ export default defineMessages({
   },
   gettingGeolocation: {
     id: 'jelzpone.components.ServicesMap.geolocation.getting',
-    defaultMessage: 'Getting the location data&hellip;',
+    defaultMessage: 'Getting the location data...',
   },
 });
