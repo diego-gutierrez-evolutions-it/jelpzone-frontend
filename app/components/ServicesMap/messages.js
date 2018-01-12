@@ -6,8 +6,16 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  header: {
-    id: 'app.components.ServicesMap.header',
-    defaultMessage: 'This is the ServicesMap component !',
+  browserNotSupportGeolocation: {
+    id: 'jelzpone.components.ServicesMap.geolocation.not_support',
+    defaultMessage: 'Your browser does not support Geolocation',
+  },
+  geolocationNotEnabled: {
+    id: 'jelzpone.components.ServicesMap.geolocation.not_enabled',
+    defaultMessage: 'Geolocation is not enabled',
+  },
+  gettingGeolocation: {
+    id: 'jelzpone.components.ServicesMap.geolocation.getting',
+    defaultMessage: 'Getting the location data&hellip;',
   },
 });
