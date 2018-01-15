@@ -32,12 +32,7 @@ import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-const leftPanelContainer = {
-  'position': 'absolute',
-  'zIndex': '500',
-  'paddingTop': '8%',
-  'paddingLeft': '1%',
-}
+import './HomePage.css'; // Tell Webpack that HomePage.js uses these styles
 
 export class HomePage extends React.Component {
 
@@ -59,7 +54,7 @@ export class HomePage extends React.Component {
     return (
       <div>
         <ServicesMap >
-          <div style={leftPanelContainer} >
+          <div className="left-container-md left-container-xs"  >
             <VerticalIconsMenu items={menuItems} onItemClick={(value) => console.log(value)} />
           </div>
         </ServicesMap>
