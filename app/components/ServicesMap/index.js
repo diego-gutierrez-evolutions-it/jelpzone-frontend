@@ -46,7 +46,7 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 	          		
 	          		{ children }
 	          		
-		          	<Map center={[this.props.coords.latitude, this.props.coords.longitude]} zoom={20} style={cover}>
+		          	<Map center={[this.props.coords.latitude, this.props.coords.longitude]} zoom={14} style={cover}>
 					        <TileLayer
 					          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
 					          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -61,7 +61,7 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 
 			                const icon = divIcon({ className: classNames, html: `<span>This is a mark</span>`});
 			                return (
-			                  <Marker icon={icon} key={mark.id} position={[mark.latitude, mark.longitude]}/>
+			                  <Marker icon={icon} key={mark.id} coordinate={[mark.latitude, mark.longitude]}/>
 			                )
 			              })
 			            }
