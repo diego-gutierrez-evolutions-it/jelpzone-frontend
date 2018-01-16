@@ -61,7 +61,11 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 
 			                const icon = divIcon({ className: classNames, html: `<span>This is a mark</span>`});
 			                return (
-			                  <Marker icon={icon} key={mark.id} coordinate={[mark.latitude, mark.longitude]}/>
+			                  <Marker icon={icon} 
+			                    key={mark.id} 
+			                    coordinate={[mark.latitude, mark.longitude]}
+			                    popupBody={mark.popupBody}
+			                   />
 			                )
 			              })
 			            }
@@ -84,6 +88,7 @@ ServicesMap.propTypes = {
 	    	latitude: PropTypes.number,
 	    	longitude: PropTypes.number,
 	    	classNames: PropTypes.object,
+	    	popupBody: PropTypes.object,
 	    }
 	  ),
 	),

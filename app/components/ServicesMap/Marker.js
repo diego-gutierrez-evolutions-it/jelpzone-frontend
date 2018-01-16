@@ -10,10 +10,6 @@ import { Marker as MarkerLeaflet, Popup } from 'react-leaflet';
 
 import { FormattedMessage } from 'react-intl';
 
-const cover = {
-  height: '600px'
-};
-
 class Marker extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
@@ -21,9 +17,14 @@ class Marker extends React.Component { // eslint-disable-line react/prefer-state
     return (
     	<MarkerLeaflet position={this.props.coordinate}>
         <Popup>
-          <span>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </span>
+          {
+            (this.props.popupBody != undefined)?
+              this.props.popupBody
+              :
+              <span>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </span>
+          }
         </Popup>
       </MarkerLeaflet>
     );
@@ -32,7 +33,8 @@ class Marker extends React.Component { // eslint-disable-line react/prefer-state
 
 Marker.propTypes = {
 	coordinate: PropTypes.array.isRequired,
-	icon: PropTypes.object
+	icon: PropTypes.object,
+  popupBody: PropTypes.object,
 };
 
 export default Marker;

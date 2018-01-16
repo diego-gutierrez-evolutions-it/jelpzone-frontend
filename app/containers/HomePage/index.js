@@ -12,6 +12,7 @@ import { Link} from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import ServicesMap from 'components/ServicesMap';
+import PopupContent from 'components/ServicesMap/PopupContent';
 import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
 
 import injectSaga from 'utils/injectSaga';
@@ -49,6 +50,7 @@ export class HomePage extends React.Component {
           id: 1,
           latitude: -34.62,
           longitude: -58.42,
+          popupBody: <PopupContent />
         },
         {
           id: 2,
@@ -72,6 +74,7 @@ export class HomePage extends React.Component {
           id: 1,
           latitude: this.state.professionals[0].latitude + 0.0001*binary1*plusOrMinus1,
           longitude: this.state.professionals[0].longitude + 0.0001*binary2*plusOrMinus2,
+          popupBody: <PopupContent />
         },
         {
           id: 2,
