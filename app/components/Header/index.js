@@ -4,21 +4,23 @@
 *
 */
 
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
+import AppBar from 'material-ui/AppBar';
 
-import { FormattedMessage } from 'react-intl'
-import messages from './messages'
+import LocaleToggle from 'containers/LocaleToggle';
 
-import AppBar from 'material-ui/AppBar'
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 class Header extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-  	const { title } = this.props
+  	const { title, rightElement } = this.props
     return (
       <div>
       	<AppBar
           title={title}
+          iconElementRight={<LocaleToggle />}
         />
       </div>
     );
@@ -26,7 +28,8 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
 }
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  rightElement: PropTypes.element,
 };
 
 export default Header
