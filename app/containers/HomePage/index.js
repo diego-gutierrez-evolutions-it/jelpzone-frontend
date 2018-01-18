@@ -119,11 +119,17 @@ export class HomePage extends React.Component {
 
     return (
       <div>
+
         <ServicesMap marks={this.state.professionals} >
           <div className="left-container-md left-container-xs"  >
             <VerticalIconsMenu items={menuItems} onItemClick={(value) => console.log(value)} />
           </div>
         </ServicesMap>
+
+        <div>
+          Contenedor
+        </div>
+
       </div>
     )
   }

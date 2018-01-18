@@ -6,7 +6,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Marker as MarkerLeaflet, Popup } from 'react-leaflet';
+import { Marker as MarkerLeaflet, Tooltip } from 'react-leaflet';
 
 import PopupContent from './PopupContent';
 
@@ -14,11 +14,17 @@ import { FormattedMessage } from 'react-intl';
 
 class Marker extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
+  onMouseOver = (e) => {
+    this.setState({
+      show: true,
+    })
+  };
+
   render() {
   	//TODO: include icon
     return (
-    	<MarkerLeaflet position={this.props.coordinate}>
-        <Popup>
+    	<MarkerLeaflet position={this.props.coordinate} onMouseOver={this.onMouseOver}>
+        <Tooltip>
           {
             (this.props.popupBody != undefined)?
               <PopupContent />
@@ -27,7 +33,7 @@ class Marker extends React.Component { // eslint-disable-line react/prefer-state
                 A pretty CSS3 popup. <br /> Easily customizable.
               </span>
           }
-        </Popup>
+        </Tooltip>
       </MarkerLeaflet>
     );
   }
