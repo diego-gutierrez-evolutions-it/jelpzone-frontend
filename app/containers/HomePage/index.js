@@ -50,7 +50,6 @@ export class HomePage extends React.Component {
           id: 1,
           latitude: -34.62,
           longitude: -58.42,
-          popupBody: <PopupContent />
         },
         {
           id: 2,
