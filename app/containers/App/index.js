@@ -17,7 +17,10 @@ import LoginPage from 'containers/LoginPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'material-ui-next/styles';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -33,20 +36,22 @@ export default function App() {
         <meta name="description" content="Jelpzone application" />
       </Helmet>
       <MuiThemeProvider>
-        <div className="container">
+        <NewMuiThemeProvider>
+          <div className="container">
 
-          <Header title={'Jelpzone'} />
+            <Header title={'Jelpzone'} />
 
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/signup" component={SignupPage} />
-            <Route path="/login" component={LoginPage} />
-            <Route path="" component={NotFoundPage} />
-          </Switch>
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <Route exact path="/signup" component={SignupPage} />
+              <Route path="/login" component={LoginPage} />
+              <Route path="" component={NotFoundPage} />
+            </Switch>
 
-          <Footer />
+            <Footer />
 
-        </div>
+          </div>
+        </NewMuiThemeProvider>
       </MuiThemeProvider>
     </AppWrapper>
   );

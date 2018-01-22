@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import NoItemIcon from 'material-ui/svg-icons/notification/sync-problem';
+import NoItemIcon from 'material-ui-icons/SyncProblem';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';

@@ -13,7 +13,12 @@ import { divIcon } from "leaflet";
 import map from "lodash/map";
 
 import FontIcon from 'material-ui/FontIcon';
-import { blue500, red500, greenA200 } from 'material-ui/styles/colors';
+import blue from 'material-ui-next/colors/blue';
+import red from 'material-ui-next/colors/red';
+import green from 'material-ui-next/colors/green';
+const blue500 = blue['500'];
+const red500 = red['500'];
+const greenA200 = green.A200;
 
 import LoadingIndicator from 'components/LoadingIndicator';
 import Marker from './Marker';

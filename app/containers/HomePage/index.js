@@ -18,15 +18,14 @@ import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
-import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
-import PersonAdd from 'material-ui/svg-icons/social/person-add';
+import RemoveRedEye from 'material-ui-icons/RemoveRedEye';
+import PersonAdd from 'material-ui-icons/PersonAdd';
+import Grid from 'material-ui-next/Grid';
 
 //import { submitLoginForm } from './actions';
 //import { makeSelectShouldRedirect, makeSelectSubmitting, makeSelectError } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-
-import { Card, CardText } from 'material-ui/Card';
 
 import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
 
@@ -34,6 +33,18 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 import './HomePage.css'; // Tell Webpack that HomePage.js uses these styles
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    marginTop: 50,
+  },
+  paper: {
+    padding: 16,
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+});
 
 export class HomePage extends React.Component {
 
@@ -118,18 +129,28 @@ export class HomePage extends React.Component {
     ]
 
     return (
-      <div>
+      <div style={styles.root} >
+        <Grid container spacing={24}>
 
-        <ServicesMap marks={this.state.professionals} >
-          <div className="left-container-md left-container-xs"  >
-            <VerticalIconsMenu items={menuItems} onItemClick={(value) => console.log(value)} />
-          </div>
-        </ServicesMap>
+          <Grid item xs={12}> {/* Container map */}
+            <ServicesMap marks={this.state.professionals} >
+              <div className="left-container-md left-container-xs"  >
+                <VerticalIconsMenu items={menuItems} onItemClick={(value) => console.log(value)} />
+              </div>
+            </ServicesMap>
+          </Grid>
 
-        <div>
-          Contenedor
-        </div>
-
+          <Grid item xs={12}> {/* Container description */}
+            <Grid container spacing={24}>
+              <Grid item xs={12} sm={6}>
+                Photo place
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                Description place
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </div>
     )
   }
