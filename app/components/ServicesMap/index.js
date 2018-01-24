@@ -57,7 +57,8 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 					          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					        />
 					        <Marker coordinate={[this.props.coords.latitude, this.props.coords.longitude]}
-					        				icon={divIcon({ html: `<i class="material-icons">My Position</i>`})}
+					        	icon={divIcon({ html: `<i class="material-icons">This is me!</i>`})}
+					        	id={"mark-me"}
 					        />
 
 					        {
@@ -67,10 +68,12 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 			                const icon = divIcon({ className: classNames, html: `<span>This is a mark</span>`});
 			                return (
 			                  <Marker icon={icon} 
-			                    key={mark.id} 
+			                  	id={mark.id}
+			                    key={"jelpzone-marker-"+mark.id} 
 			                    coordinate={[mark.latitude, mark.longitude]}
 			                    popupBody={mark.popupBody}
-			                   />
+			                    onClick={this.props.onMarkerClick}
+			                  />
 			                )
 			              })
 			            }
@@ -97,6 +100,7 @@ ServicesMap.propTypes = {
 	    }
 	  ),
 	),
+	onMarkerClick: PropTypes.func.isRequired,
 };
 
 export default geolocated({

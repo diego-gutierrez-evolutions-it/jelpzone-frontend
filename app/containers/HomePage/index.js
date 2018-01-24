@@ -14,6 +14,7 @@ import { createStructuredSelector } from 'reselect';
 import ServicesMap from 'components/ServicesMap';
 import PopupContent from 'components/ServicesMap/PopupContent';
 import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
+import ProfessionalInformation from 'components/ProfessionalInformation';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -22,12 +23,10 @@ import RemoveRedEye from 'material-ui-icons/RemoveRedEye';
 import PersonAdd from 'material-ui-icons/PersonAdd';
 import Grid from 'material-ui-next/Grid';
 
-//import { submitLoginForm } from './actions';
-//import { makeSelectShouldRedirect, makeSelectSubmitting, makeSelectError } from './selectors';
+import { toggleProfessionalExtraInformation } from './actions';
+import { makeSelectUserExtraInformation } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-
-import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -38,11 +37,6 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     marginTop: 50,
-  },
-  paper: {
-    padding: 16,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
   },
 });
 
@@ -83,12 +77,12 @@ export class HomePage extends React.Component {
         {
           id: 1,
           latitude: this.state.professionals[0].latitude + 0.0001*binary1*plusOrMinus1,
-          longitude: this.state.professionals[0].longitude + 0.0001*binary2*plusOrMinus2,
+          longitude: this.state.professionals[0].longitude + 0.0001*binary1*plusOrMinus2,
           popupBody: <PopupContent />
         },
         {
           id: 2,
-          latitude: this.state.professionals[1].latitude + 0.0001*binary1*plusOrMinus2,
+          latitude: this.state.professionals[1].latitude + 0.0001*binary2*plusOrMinus2,
           longitude: this.state.professionals[1].longitude + 0.0001*binary2*plusOrMinus1,
         },
       ]
@@ -133,23 +127,19 @@ export class HomePage extends React.Component {
         <Grid container spacing={24}>
 
           <Grid item xs={12}> {/* Container map */}
-            <ServicesMap marks={this.state.professionals} >
+            <ServicesMap marks={this.state.professionals} 
+              onMarkerClick={this.props.toggleExtraInformation}
+            >
               <div className="left-container-md left-container-xs"  >
                 <VerticalIconsMenu items={menuItems} onItemClick={(value) => console.log(value)} />
               </div>
             </ServicesMap>
           </Grid>
 
-          <Grid item xs={12}> {/* Container description */}
-            <Grid container spacing={24}>
-              <Grid item xs={12} sm={6}>
-                Photo place
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                Description place
-              </Grid>
-            </Grid>
+          <Grid item xs={12}> {/* Extra information container */}
+            <ProfessionalInformation professional={this.props.userExtraInformation} />
           </Grid>
+
         </Grid>
       </div>
     )
@@ -157,7 +147,7 @@ export class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
-  
+  userExtraInformation: PropTypes.object,
 }
 
 export function mapDispatchToProps(dispatch) {
@@ -168,11 +158,14 @@ export function mapDispatchToProps(dispatch) {
       }
       dispatch(submitLoginForm(evt));
     },
+    toggleExtraInformation: (evt) => {
+      dispatch(toggleProfessionalExtraInformation(evt.id));
+    }
   };
 }
 
 const mapStateToProps = createStructuredSelector({
-  //shouldRedirect: makeSelectShouldRedirect(),
+  userExtraInformation: makeSelectUserExtraInformation(),
   //error: makeSelectError(),
 });
 

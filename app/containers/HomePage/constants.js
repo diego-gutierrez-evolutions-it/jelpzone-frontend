@@ -9,4 +9,4 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const CHANGE_USERNAME = 'boilerplate/Home/CHANGE_USERNAME';
+export const TOGGLE_EXTRA_INFORMATION = 'jelpzone/Home/TOGGLE_EXTRA_INFORMATION'

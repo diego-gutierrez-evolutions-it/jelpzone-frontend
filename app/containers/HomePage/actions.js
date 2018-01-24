@@ -16,19 +16,19 @@
  */
 
 import {
-  CHANGE_USERNAME,
+  TOGGLE_EXTRA_INFORMATION
 } from './constants';
 
 /**
- * Changes the input field of the form
+ * Changes the professional extra information 
  *
- * @param  {name} name The new text of the input field
+ * @param  {id} The professional id
  *
- * @return {object}    An action object with a type of CHANGE_USERNAME
+ * @return {object}  An action object with a type of TOGGLE_EXTRA_INFORMATION
  */
-export function changeUsername(name) {
-  return {
-    type: CHANGE_USERNAME,
-    name,
+export function toggleProfessionalExtraInformation(id) {
+	return {
+    type: TOGGLE_EXTRA_INFORMATION,
+    payload: id,
   };
 }

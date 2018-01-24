@@ -12,21 +12,34 @@
 import { fromJS } from 'immutable';
 
 import {
-  CHANGE_USERNAME,
+  TOGGLE_EXTRA_INFORMATION
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
-  username: '',
+  professionals: '',
+  userExtraInformation: {}
 });
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {
-    case CHANGE_USERNAME:
+    case TOGGLE_EXTRA_INFORMATION:
 
-      // Delete prefixed '@' from the github username
+      // filter professionals by action id (clicked mark)
+      let selectedProfesional = state.get('professionals').filter(function (professional) { 
+        return professional.id == action.id; 
+      });
+
+      // if is selected => i will deselect it
+      if(selectedProfesional.id == state.get('userExtraInformation').id){
+        return state
+          .set('userExtraInformation',{});
+      }
+
+      // else i will select it
       return state
-        .set('username', action.name.replace(/@/gi, ''));
+        .set('userExtraInformation', selectedProfesional);
+      
     default:
       return state;
   }
