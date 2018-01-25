@@ -11,10 +11,12 @@ import { compose } from 'redux';
 import { Link} from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
+import { isEmpty } from 'lodash';
+
 import ServicesMap from 'components/ServicesMap';
 import PopupContent from 'components/ServicesMap/PopupContent';
 import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
-import ProfessionalInformation from 'components/ProfessionalInformation';
+import ProfessionalInformation from 'components/ProfessionalInformation/Loadable';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -137,7 +139,12 @@ export class HomePage extends React.Component {
           </Grid>
 
           <Grid item xs={12}> {/* Extra information container */}
-            <ProfessionalInformation professional={this.props.userExtraInformation} />
+            {
+              (this.props.userExtraInformation.size>0) ?
+                <ProfessionalInformation professional={this.props.userExtraInformation} />
+                :
+                null
+            }
           </Grid>
 
         </Grid>
@@ -159,7 +166,7 @@ export function mapDispatchToProps(dispatch) {
       dispatch(submitLoginForm(evt));
     },
     toggleExtraInformation: (evt) => {
-      dispatch(toggleProfessionalExtraInformation(evt.id));
+      dispatch(toggleProfessionalExtraInformation(evt.cunstomId));
     }
   };
 }

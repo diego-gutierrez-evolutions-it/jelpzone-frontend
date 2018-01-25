@@ -26,6 +26,11 @@ const AppWrapper = styled.div`
   text-align: center;
 `;
 
+const theme = createMuiTheme({
+  palette: {},
+});
+
+
 export default function App() {
   return (
     <AppWrapper>
@@ -36,7 +41,7 @@ export default function App() {
         <meta name="description" content="Jelpzone application" />
       </Helmet>
       <MuiThemeProvider>
-        <NewMuiThemeProvider>
+        <NewMuiThemeProvider theme={theme}>
           <div className="container">
 
             <Header title={'Jelpzone'} />

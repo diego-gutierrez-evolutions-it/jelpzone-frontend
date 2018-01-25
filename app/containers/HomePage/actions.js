@@ -29,6 +29,6 @@ import {
 export function toggleProfessionalExtraInformation(id) {
 	return {
     type: TOGGLE_EXTRA_INFORMATION,
-    payload: id,
+    payload: {id: id},
   };
 }

@@ -5,7 +5,7 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Grid from 'material-ui-next/Grid';
 import Paper from 'material-ui-next/Paper';
@@ -74,7 +74,7 @@ class ProfessionalInformation extends React.Component { // eslint-disable-line r
 }
 
 ProfessionalInformation.propTypes = {
-
+  professional: PropTypes.object.isRequired
 };
 
 export default ProfessionalInformation;
