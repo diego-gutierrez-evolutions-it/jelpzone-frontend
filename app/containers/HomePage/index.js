@@ -5,10 +5,10 @@
  */
 
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-// import { Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import ServicesMap from 'components/ServicesMap';
@@ -21,17 +21,17 @@ import injectReducer from 'utils/injectReducer';
 import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 
-// import { submitLoginForm } from './actions';
-// import { makeSelectShouldRedirect, makeSelectSubmitting, makeSelectError } from './selectors';
+import { submitLoginForm } from './actions';
+import { makeSelectShouldRedirect, makeSelectSubmitting, makeSelectError } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-// import { Card, CardText } from 'material-ui/Card';
+import { Card, CardText } from 'material-ui/Card';
 
-// import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
+import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
 
-// import { FormattedMessage } from 'react-intl';
-// import messages from './messages';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
 
 import './HomePage.css'; // Tell Webpack that HomePage.js uses these styles
 

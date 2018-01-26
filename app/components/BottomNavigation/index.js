@@ -38,7 +38,7 @@ class BottomNav extends React.Component {
 
     return (
       <Paper zDepth={1}>
-        <BottomNavigation selectedIndex={this.state.selectedIndex}>
+        <BottomNavigation selectedIndex={ this.state.selectedIndex }>
           <BottomNavigationItem
             label="Search"
             icon={searchIcon}

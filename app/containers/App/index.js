@@ -15,8 +15,8 @@ import HomePage from 'containers/HomePage/Loadable';
 import SignupPage from 'containers/SignupPage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-// import Header from 'components/Header';
-// import Footer from 'components/Footer';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
 import BottomNav from 'components/BottomNavigation';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
