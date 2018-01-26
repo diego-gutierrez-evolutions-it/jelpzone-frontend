@@ -4,6 +4,8 @@
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
+import { isNil } from 'lodash';
+
 import request from 'utils/request';
 import { makeSelectSigninValues } from './selectors';
 
@@ -14,17 +16,30 @@ import { submitLoginFormOk, submitLoginFormFailed } from './actions';
  * Sign up request/response handler
  */
 export function* submitForm() {
-  // Select username from store
+  // Select username and password from redux form
   const values = yield select(makeSelectSigninValues());
-  // const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+  //TODO: lift this from configuration file
+  const requestURL = 'http://localhost:4000/api/Users/login';
 
   try {
+
     // Call our request helper (see 'utils/request')
-    // TODO
-    // const repos = yield call(request, requestURL);
-    if ((values.email === 'diego.gutierrez@evolutions-it.net') && (values.password === 'yugo7fuego')) {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: values.email,
+        password: values.password
+      })
+    }
+
+    const user = yield call(request, requestURL, options);
+
+    if (!isNil(user.id)) {
       yield put(submitLoginFormOk());
-    } else {
+    } else { //TODO: add errors handler
       const error = new Error(400);
 
       error.response = {

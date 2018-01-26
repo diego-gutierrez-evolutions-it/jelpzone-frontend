@@ -113,30 +113,14 @@ export class HomePage extends React.Component {
 
   render() {
 
-    const menuItems = [
-      {
-        id: 1,
-        icon: <RemoveRedEye />,
-        value: 1,
-      },
-      {
-        id: 2,
-        icon: <PersonAdd />,
-        value: 2,
-      },
-    ]
-
     return (
       <div style={styles.root} >
         <Grid container spacing={24}>
 
           <Grid item xs={12}> {/* Container map */}
-            <ServicesMap marks={this.state.professionals} 
+            <ServicesMap marks={this.state.professionals}
               onMarkerClick={this.props.toggleExtraInformation}
             >
-              <div className="left-container-md left-container-xs"  >
-                <VerticalIconsMenu items={menuItems} onItemClick={(value) => console.log(value)} />
-              </div>
             </ServicesMap>
           </Grid>
 
