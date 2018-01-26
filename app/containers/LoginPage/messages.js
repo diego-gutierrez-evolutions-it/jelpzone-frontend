@@ -10,10 +10,6 @@ export default defineMessages({
     id: 'app.containers.LoginPage.invalid_credential',
     defaultMessage: 'Incorrect user or password',
   },
-  invalidCredentials: {
-    id: 'app.containers.LoginPage.invalid_credential',
-    defaultMessage: 'Incorrect user or password',
-  },
   accountYet: {
     id: 'app.containers.LoginPage.account_yet',
     defaultMessage: 'Do you have an account yet?',

@@ -27,11 +27,11 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 const cover = {
-  height: '600px'
+  height: '300px'
 };
 
 const container = {
-	'position': 'relative',
+  'position': 'relative',
   'textAlign': 'left',
 }
 
@@ -39,7 +39,7 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 
   render() {
 
-		const { marks, children } = this.props;
+    const { marks, children } = this.props;
 
     return (
     	!this.props.isGeolocationAvailable
@@ -61,9 +61,7 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 					        	id={"mark-me"}
 					        />
 
-					        {
-			              map(marks, (mark) => {
-			                const { classNames } = mark;
+                { children }
 
 			                const icon = divIcon({ className: classNames, html: `<span>This is a mark</span>`});
 			                return (
@@ -78,12 +76,27 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 			              })
 			            }
 
-					      </Map>
-				      </div>
-	          : <div>
-	          		<LoadingIndicator />
-	          		<FormattedMessage {...messages.gettingGeolocation} />
-	          	</div>
+                  {
+                    map(marks, (mark) => {
+                      const { classNames } = mark;
+
+                      const icon = divIcon({ className: classNames, html: `<span>This is a mark</span>`});
+                      return (
+                        <Marker icon={icon}
+                          key={mark.id}
+                          coordinate={[mark.latitude, mark.longitude]}
+                          popupBody={mark.popupBody}
+                         />
+                      )
+                    })
+                  }
+
+                </Map>
+              </div>
+            : <div>
+            <LoadingIndicator />
+            <FormattedMessage {...messages.gettingGeolocation} />
+         </div>
     );
   }
 }

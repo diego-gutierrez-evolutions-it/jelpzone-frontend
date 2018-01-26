@@ -62,13 +62,14 @@ export class HomePage extends React.Component {
           id: 2,
           latitude: -34.63,
           longitude: -58.44,
+          popupBody: <PopupContent />
         },
       ]
     };
   }
 
   updateProfessionals() {
-    
+
     var plusOrMinus1 = Math.random() < 0.5 ? -1 : 1;
     var plusOrMinus2 = Math.random() < 0.5 ? -1 : 1;
     var binary1 = Math.random() < 0.5 ? 0 : 1;
@@ -86,6 +87,7 @@ export class HomePage extends React.Component {
           id: 2,
           latitude: this.state.professionals[1].latitude + 0.0001*binary2*plusOrMinus2,
           longitude: this.state.professionals[1].longitude + 0.0001*binary2*plusOrMinus1,
+          popupBody: <PopupContent />
         },
       ]
     });
