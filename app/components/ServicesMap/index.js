@@ -42,51 +42,38 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
     const { marks, children } = this.props;
 
     return (
-    	!this.props.isGeolocationAvailable
-	      ? <div><FormattedMessage {...messages.browserNotSupportGeolocation} /></div>
-	      : !this.props.isGeolocationEnabled
-	        ? <div><FormattedMessage {...messages.geolocationNotEnabled} /></div>
-	        : this.props.coords
-	          ? <div style={container} >
-	          		
-	          		{ children }
-	          		
-		          	<Map center={[this.props.coords.latitude, this.props.coords.longitude]} zoom={14} style={cover}>
-					        <TileLayer
-					          attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-					          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-					        />
-					        <Marker coordinate={[this.props.coords.latitude, this.props.coords.longitude]}
-					        	icon={divIcon({ html: `<i class="material-icons">This is me!</i>`})}
-					        	id={"mark-me"}
-					        />
+      !this.props.isGeolocationAvailable
+        ? <div><FormattedMessage {...messages.browserNotSupportGeolocation} /></div>
+        : !this.props.isGeolocationEnabled
+          ? <div><FormattedMessage {...messages.geolocationNotEnabled} /></div>
+          : this.props.coords
+            ? <div style={container} >
 
                 { children }
 
-			                const icon = divIcon({ className: classNames, html: `<span>This is a mark</span>`});
-			                return (
-			                  <Marker icon={icon} 
-			                  	id={mark.id}
-			                    key={"jelpzone-marker-"+mark.id} 
-			                    coordinate={[mark.latitude, mark.longitude]}
-			                    popupBody={mark.popupBody}
-			                    onClick={this.props.onMarkerClick}
-			                  />
-			                )
-			              })
-			            }
+                <Map center={[this.props.coords.latitude, this.props.coords.longitude]} zoom={14} style={cover}>
+                  <TileLayer
+                    attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <Marker coordinate={[this.props.coords.latitude, this.props.coords.longitude]}
+                    icon={divIcon({ html: `<i class="material-icons">This is me!</i>`})}
+                    id={"mark-me"}
+                  />
 
                   {
                     map(marks, (mark) => {
                       const { classNames } = mark;
 
-                      const icon = divIcon({ className: classNames, html: `<span>This is a mark</span>`});
+                      const icon = divIcon({ className: classNames, html: `<span>This is a Professional</span>`});
                       return (
                         <Marker icon={icon}
-                          key={mark.id}
+                          id={mark.id}
+                          key={"jelpzone-marker-"+mark.id}
                           coordinate={[mark.latitude, mark.longitude]}
                           popupBody={mark.popupBody}
-                         />
+                          onClick={this.props.onMarkerClick}
+                        />
                       )
                     })
                   }
@@ -94,26 +81,26 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
                 </Map>
               </div>
             : <div>
-            <LoadingIndicator />
-            <FormattedMessage {...messages.gettingGeolocation} />
-         </div>
+                <LoadingIndicator />
+                <FormattedMessage {...messages.gettingGeolocation} />
+              </div>
     );
   }
 }
 
 ServicesMap.propTypes = {
-	marks: PropTypes.arrayOf(
-	  PropTypes.shape(
-	    { 
-	    	id: PropTypes.number,
-	    	latitude: PropTypes.number,
-	    	longitude: PropTypes.number,
-	    	classNames: PropTypes.object,
-	    	popupBody: PropTypes.object,
-	    }
-	  ),
-	),
-	onMarkerClick: PropTypes.func.isRequired,
+  marks: PropTypes.arrayOf(
+    PropTypes.shape(
+      {
+        id: PropTypes.number,
+        latitude: PropTypes.number,
+        longitude: PropTypes.number,
+        classNames: PropTypes.object,
+        popupBody: PropTypes.object,
+      }
+    ),
+  ),
+  onMarkerClick: PropTypes.func.isRequired,
 };
 
 export default geolocated({

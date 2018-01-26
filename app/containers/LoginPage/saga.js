@@ -22,13 +22,13 @@ export function* submitForm() {
     // Call our request helper (see 'utils/request')
     // TODO
     // const repos = yield call(request, requestURL);
-    if ((values.email === 'john@email.com') && (values.password === 'doe')) {
+    if ((values.email === 'diego.gutierrez@evolutions-it.net') && (values.password === 'yugo7fuego')) {
       yield put(submitLoginFormOk());
     } else {
       const error = new Error(400);
 
       error.response = {
-        message: 'Incorrect user or passwor',
+        message: 'Incorrect user or password',
       };
       throw error;
     }

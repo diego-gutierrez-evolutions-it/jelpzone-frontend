@@ -15,8 +15,7 @@ import HomePage from 'containers/HomePage/Loadable';
 import SignupPage from 'containers/SignupPage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import BottomNav from 'components/BottomNavigation';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'material-ui-next/styles';
@@ -44,8 +43,6 @@ export default function App() {
         <NewMuiThemeProvider theme={theme}>
           <div className="container">
 
-            <Header title={'Jelpzone'} />
-
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route exact path="/signup" component={SignupPage} />
@@ -53,7 +50,7 @@ export default function App() {
               <Route path="" component={NotFoundPage} />
             </Switch>
 
-            <Footer />
+            <BottomNav />
 
           </div>
         </NewMuiThemeProvider>
