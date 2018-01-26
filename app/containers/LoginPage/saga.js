@@ -9,17 +9,20 @@ import { isNil } from 'lodash';
 import request from 'utils/request';
 import { makeSelectSigninValues } from './selectors';
 
-import { SUBMIT_FORM } from './constants';
+import { SUBMIT_FORM, URL_USER_LOGIN } from './constants';
 import { submitLoginFormOk, submitLoginFormFailed } from './actions';
+import { FormattedMessage } from 'react-intl';
 
 /**
  * Sign up request/response handler
  */
 export function* submitForm() {
+  
   // Select username and password from redux form
   const values = yield select(makeSelectSigninValues());
-  //TODO: lift this from configuration file
-  const requestURL = 'http://localhost:4000/api/Users/login';
+  
+  //lift this from configuration file
+  const requestURL = process.env.config.jelpzoneApi.url+URL_USER_LOGIN;
 
   try {
 
@@ -43,7 +46,7 @@ export function* submitForm() {
       const error = new Error(400);
 
       error.response = {
-        message: 'Incorrect user or password',
+        message: <FormattedMessage {...messages.invalidCredentials} />,
       };
       throw error;
     }
