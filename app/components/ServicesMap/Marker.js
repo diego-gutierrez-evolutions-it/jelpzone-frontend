@@ -21,16 +21,16 @@ class Marker extends React.Component { // eslint-disable-line react/prefer-state
   };
 
   render() {
-  	//TODO: include icon
+    //TODO: include icon
     return (
-    	<MarkerLeaflet position={this.props.coordinate} onMouseOver={this.onMouseOver}>
+      <MarkerLeaflet position={this.props.coordinate} onMouseOver={this.onMouseOver}>
         <Tooltip>
           {
             (this.props.popupBody != undefined)?
               <PopupContent />
               :
               <span>
-                A pretty CSS3 popup. <br /> Easily customizable.
+                This is Me
               </span>
           }
         </Tooltip>
@@ -40,8 +40,8 @@ class Marker extends React.Component { // eslint-disable-line react/prefer-state
 }
 
 Marker.propTypes = {
-	coordinate: PropTypes.array.isRequired,
-	icon: PropTypes.object,
+  coordinate: PropTypes.array.isRequired,
+  icon: PropTypes.object,
   popupBody: PropTypes.object,
 };
 

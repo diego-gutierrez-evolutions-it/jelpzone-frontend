@@ -5,10 +5,10 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Link} from 'react-router-dom';
+// import { Link} from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import ServicesMap from 'components/ServicesMap';
@@ -21,17 +21,17 @@ import injectReducer from 'utils/injectReducer';
 import RemoveRedEye from 'material-ui/svg-icons/image/remove-red-eye';
 import PersonAdd from 'material-ui/svg-icons/social/person-add';
 
-//import { submitLoginForm } from './actions';
-//import { makeSelectShouldRedirect, makeSelectSubmitting, makeSelectError } from './selectors';
+// import { submitLoginForm } from './actions';
+// import { makeSelectShouldRedirect, makeSelectSubmitting, makeSelectError } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-import { Card, CardText } from 'material-ui/Card';
+// import { Card, CardText } from 'material-ui/Card';
 
-import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
+// import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
 
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+// import { FormattedMessage } from 'react-intl';
+// import messages from './messages';
 
 import './HomePage.css'; // Tell Webpack that HomePage.js uses these styles
 
@@ -42,7 +42,7 @@ export class HomePage extends React.Component {
    * Example of movement
    * Only to show how map updates
    */
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       professionals: [
@@ -55,13 +55,26 @@ export class HomePage extends React.Component {
           id: 2,
           latitude: -34.63,
           longitude: -58.44,
+          popupBody: <PopupContent />,
         },
-      ]
+      ],
     };
   }
 
+  componentWillMount() {
+    this.updateProfessionals();
+  }
+
+  componentDidMount() {
+    this.loadInterval = window.setInterval(function () {
+
+      this.updateProfessionals();
+
+    }.bind(this), 3000);
+  }
+
   updateProfessionals() {
-    
+
     var plusOrMinus1 = Math.random() < 0.5 ? -1 : 1;
     var plusOrMinus2 = Math.random() < 0.5 ? -1 : 1;
     var binary1 = Math.random() < 0.5 ? 0 : 1;
@@ -79,28 +92,16 @@ export class HomePage extends React.Component {
           id: 2,
           latitude: this.state.professionals[1].latitude + 0.0001*binary1*plusOrMinus2,
           longitude: this.state.professionals[1].longitude + 0.0001*binary2*plusOrMinus1,
+          popupBody: <PopupContent />
         },
       ]
     });
 
   }
 
-  componentWillMount(){
-    this.updateProfessionals();
-  }
-
-  componentDidMount(){
-    this.loadInterval = window.setInterval(function () {
-      this.updateProfessionals();
-    }.bind(this), 3000);
-  }
-
   componentWillUnmount () {
     window.clearInterval(this.loadInterval);
   }
-  /*
-   * TO HERE
-   */
 
   render() {
 
@@ -136,7 +137,7 @@ export class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
-  
+
 }
 
 export function mapDispatchToProps(dispatch) {
