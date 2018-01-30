@@ -14,4 +14,8 @@ export default defineMessages({
   	id: 'app.containers.SignupPage.reset_button',
     defaultMessage: 'Clear Values',
   },
+  noHandledErrorResponse: {
+  	id: 'app.containers.SignupPage.internal_server_error',
+    defaultMessage: 'The user could not be created',
+  }
 });

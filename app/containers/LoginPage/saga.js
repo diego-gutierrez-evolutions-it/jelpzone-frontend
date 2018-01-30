@@ -21,7 +21,7 @@ export function* submitForm() {
   // Select username and password from redux form
   const values = yield select(makeSelectSigninValues());
   
-  //lift this from configuration file
+  // lift this from configuration file
   const requestURL = process.env.config.jelpzoneApi.url+URL_USER_LOGIN;
 
   try {

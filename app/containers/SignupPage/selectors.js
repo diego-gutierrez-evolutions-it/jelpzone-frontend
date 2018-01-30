@@ -8,7 +8,7 @@ export const selectSignup = (state) => state.get('signup');
 
 const formSelector = formValueSelector('signup');
 const valuesSelector = (state) => {
-	return formSelector(state, 'firstName', 'lastName', 'username', 'email', 'userType');
+	return formSelector(state, 'firstName', 'lastName', 'username', 'email', 'userType', 'password');
 }
 
 /**
