@@ -22,6 +22,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'material-ui-next/styles';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
+import { userIsAuthenticated, userIsNotAuthenticated } from 'utils/authWrapper';
+
 const AppWrapper = styled.div`
   text-align: center;
 `;
@@ -47,9 +49,9 @@ export default function App() {
             <Header title={'Jelpzone'} />
 
             <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route exact path="/signup" component={SignupPage} />
-              <Route path="/login" component={LoginPage} />
+              <Route exact path="/" component={ userIsAuthenticated(HomePage) } />
+              <Route exact path="/signup" component={ userIsNotAuthenticated(SignupPage) } />
+              <Route path="/login" component={ userIsNotAuthenticated(LoginPage) } />
               <Route path="" component={NotFoundPage} />
             </Switch>
 
