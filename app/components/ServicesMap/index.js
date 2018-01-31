@@ -22,6 +22,7 @@ const greenA200 = green.A200;
 
 import LoadingIndicator from 'components/LoadingIndicator';
 import Marker from './Marker';
+import myPositionIcon from './MyPositionIcon';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -57,7 +58,7 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 					          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 					        />
 					        <Marker coordinate={[this.props.coords.latitude, this.props.coords.longitude]}
-					        	icon={divIcon({ html: `<i class="material-icons">This is me!</i>`})}
+					        	icon={ myPositionIcon }
 					        	id={"mark-me"}
 					        />
 
@@ -65,9 +66,8 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 			              map(marks, (mark) => {
 			                const { classNames } = mark;
 
-			                const icon = divIcon({ className: classNames, html: `<span>This is a mark</span>`});
 			                return (
-			                  <Marker icon={icon} 
+			                  <Marker
 			                  	id={mark.id}
 			                    key={"jelpzone-marker-"+mark.id} 
 			                    coordinate={[mark.latitude, mark.longitude]}

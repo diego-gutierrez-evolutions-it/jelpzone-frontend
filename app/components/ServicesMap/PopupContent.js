@@ -26,12 +26,15 @@ class PopupContent extends React.Component { // eslint-disable-line react/prefer
   }
 
   render() {
+
+    const avatar = require('assets/images/jsa-128.jpg');
+
     return (
     	<Card>
         <CardHeader
           title="Vandeep Phillipe"
           subtitle="Plumber"
-          avatar="./jsa-128.jpg"
+          avatar={avatar}
         />
         <RatingStars numberStars={5} rating={1}/>
       </Card>
