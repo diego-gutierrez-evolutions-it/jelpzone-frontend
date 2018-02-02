@@ -6,12 +6,14 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import { isNil } from 'lodash';
 
+import { FormattedMessage } from 'react-intl';
+
 import request from 'utils/request';
 import { makeSelectSigninValues } from './selectors';
 
-import { SUBMIT_FORM, URL_USER_LOGIN } from './constants';
-import { submitLoginFormOk, submitLoginFormFailed } from './actions';
-import { FormattedMessage } from 'react-intl';
+import { AUTH_USER } from 'containers/App/constants';
+import { URL_USER_LOGIN } from './constants';
+import { submitLoginFormOk, submitLoginFormFailed } from 'containers/App/actions';
 
 /**
  * Sign up request/response handler
@@ -20,7 +22,7 @@ export function* submitForm() {
   
   // Select username and password from redux form
   const values = yield select(makeSelectSigninValues());
-  
+
   // lift this from configuration file
   const requestURL = process.env.config.jelpzoneApi.url+URL_USER_LOGIN;
 
@@ -41,7 +43,7 @@ export function* submitForm() {
     const user = yield call(request, requestURL, options);
 
     if (!isNil(user.id)) {
-      yield put(submitLoginFormOk());
+      yield put(submitLoginFormOk(user));
     } else { //TODO: add errors handler
       const error = new Error(400);
 
@@ -59,5 +61,5 @@ export function* submitForm() {
  * Root saga manages watcher lifecycle
  */
 export default function* submitLoginForm() {
-  yield takeLatest(SUBMIT_FORM, submitForm);
+  yield takeLatest(AUTH_USER, submitForm);
 }

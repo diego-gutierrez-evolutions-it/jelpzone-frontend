@@ -9,7 +9,13 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
-export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
-export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
+export const LOAD_CURRENT_USER = 'jelpzone/App/LOAD_CURRENT_USER';
+export const LOAD_CURRENT_USER_SUCCESS = 'jelpzone/App/LOAD_CURRENT_USER_SUCCESS';
+export const LOAD_CURRENT_USER_ERROR = 'jelpzone/App/LOAD_CURRENT_USER_ERROR';
+export const AUTH_USER = 'jelpzone/App/AUTH_USER';
+export const AUTH_USER_SUCCESS = 'jelpzone/App/AUTH_USER_SUCCESS';
+export const AUTH_USER_ERROR = 'jelpzone/App/AUTH_USER_ERROR';
+export const LOGOUT_USER_SUCCESS = 'jelpzone/App/LOGOUT_USER_SUCCESS';
+export const LOGOUT_USER_ERROR = 'jelpzone/App/LOGOUT_USER_ERROR';
+
 export const DEFAULT_LOCALE = 'en';

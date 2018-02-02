@@ -16,48 +16,112 @@
  */
 
 import {
-  LOAD_REPOS,
-  LOAD_REPOS_SUCCESS,
-  LOAD_REPOS_ERROR,
+  LOAD_CURRENT_USER,
+  LOAD_CURRENT_USER_SUCCESS,
+  LOAD_CURRENT_USER_ERROR,
+  AUTH_USER,
+  AUTH_USER_SUCCESS,
+  AUTH_USER_ERROR,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_ERROR,
 } from './constants';
 
 /**
- * Load the repositories, this action starts the request saga
+ * Submitting the form
  *
- * @return {object} An action object with a type of LOAD_REPOS
+ * @return {object} An action object with a type of AUTH_USER
  */
-export function loadRepos() {
+export function submitLoginForm() {
   return {
-    type: LOAD_REPOS,
+    type: AUTH_USER,
   };
 }
 
 /**
- * Dispatched when the repositories are loaded by the request saga
+ * Submit the form ok
  *
- * @param  {array} repos The repository data
- * @param  {string} username The current username
- *
- * @return {object}      An action object with a type of LOAD_REPOS_SUCCESS passing the repos
+ * @return {object} An action object with a type of AUTH_USER_SUCCESS
  */
-export function reposLoaded(repos, username) {
+export function submitLoginFormOk(user) {
   return {
-    type: LOAD_REPOS_SUCCESS,
-    repos,
-    username,
+    type: AUTH_USER_SUCCESS,
+    payload: {
+      user: user
+    },
   };
 }
 
 /**
- * Dispatched when loading the repositories fails
+ * Submit the form failed
  *
- * @param  {object} error The error
- *
- * @return {object}       An action object with a type of LOAD_REPOS_ERROR passing the error
+ * @return {object} An action object with a type of AUTH_USER_ERROR
  */
-export function repoLoadingError(error) {
+export function submitLoginFormFailed(err) {
   return {
-    type: LOAD_REPOS_ERROR,
-    error,
+    type: AUTH_USER_ERROR,
+    payload: {
+      error: err,
+    },
+  };
+}
+
+/**
+ * Logout user ok
+ *
+ * @return {object} An action object with a type of LOGOUT_USER_SUCCESS
+ */
+export function logoutUserOk() {
+  return {
+    type: LOGOUT_USER_SUCCESS,
+  };
+}
+
+/**
+ * Logout user failed
+ *
+ * @return {object} An action object with a type of LOGOUT_USER_ERROR
+ */
+export function logoutUserFailed() {
+  return {
+    type: LOGOUT_USER_ERROR,
+  };
+}
+
+/**
+ * Loading user
+ *
+ * @return {object} An action object with a type of LOAD_CURRENT_USER
+ */
+export function loadingUser() {
+  return {
+    type: LOAD_CURRENT_USER,
+  };
+}
+
+/**
+ * Loading user ok
+ *
+ * @return {object} An action object with a type of LOAD_CURRENT_USER_SUCCESS
+ */
+export function loadingUserOk(user) {
+  return {
+    type: LOAD_CURRENT_USER_SUCCESS,
+    payload: {
+      user: user,
+    },
+  };
+}
+
+/**
+ * Loading user failed
+ *
+ * @return {object} An action object with a type of LOAD_CURRENT_USER_ERROR
+ */
+export function loadingUserFailed(err) {
+  return {
+    type: LOAD_CURRENT_USER_ERROR,
+    payload: {
+      error: err,
+    },
   };
 }

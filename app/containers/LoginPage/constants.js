@@ -12,10 +12,6 @@
 export const CHANGE_USERNAME = 'jelpzone/Login/CHANGE_USERNAME';
 export const CHANGE_PASSWORD = 'jelpzone/Login/CHANGE_PASSWORD';
 
-export const SUBMIT_FORM = 'jelpzone/Login/SUBMIT_FORM';
-export const SUBMIT_FORM_OK = 'jelpzone/Login/SUBMIT_FORM_OK';
-export const SUBMIT_FORM_FAILED = 'jelpzone/Login/SUBMIT_FORM_FAILED';
-
 /*
  * Relative url configuration
  * We define only one relative path for each metod
