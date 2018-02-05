@@ -7,6 +7,10 @@
  */
 
 import React from 'react';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import PropTypes from 'prop-types';
+
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
@@ -23,6 +27,10 @@ import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'materia
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import { userIsAuthenticated, userIsNotAuthenticated } from 'utils/authWrapper';
+import injectSaga from 'utils/injectSaga';
+
+import { loadingUser } from './actions';
+import saga from './saga';
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -33,33 +41,61 @@ const theme = createMuiTheme({
 });
 
 
-export default function App() {
-  return (
-    <AppWrapper>
-      <Helmet
-        titleTemplate="%s - Jelpzone"
-        defaultTitle="Jelpzone"
-      >
-        <meta name="description" content="Jelpzone application" />
-      </Helmet>
-      <MuiThemeProvider>
-        <NewMuiThemeProvider theme={theme}>
-          <div className="container">
+export class App extends React.Component {
 
-            <Header title={'Jelpzone'} />
+  constructor(props){
+    super(props);
+  }
 
-            <Switch>
-              <Route exact path="/" component={ userIsAuthenticated(HomePage) } />
-              <Route exact path="/signup" component={ userIsNotAuthenticated(SignupPage) } />
-              <Route path="/login" component={ userIsNotAuthenticated(LoginPage) } />
-              <Route path="" component={NotFoundPage} />
-            </Switch>
+  componentWillMount() {
+    this.props.loadCurrentUser();
+  }
 
-            <BottomNav />
+  render() {
+    return (
+      <AppWrapper>
+        <Helmet
+          titleTemplate="%s - Jelpzone"
+          defaultTitle="Jelpzone"
+        >
+          <meta name="description" content="Jelpzone application" />
+        </Helmet>
+        <MuiThemeProvider>
+          <NewMuiThemeProvider theme={theme}>
+            <div className="container">
 
-          </div>
-        </NewMuiThemeProvider>
-      </MuiThemeProvider>
-    </AppWrapper>
-  );
+              <Header title={'Jelpzone'} />
+
+              <Switch>
+                <Route exact path="/" component={ userIsAuthenticated(HomePage) } />
+                <Route exact path="/signup" component={ userIsNotAuthenticated(SignupPage) } />
+                <Route path="/login" component={ userIsNotAuthenticated(LoginPage) } />
+                <Route path="" component={NotFoundPage} />
+              </Switch>
+
+              <BottomNav />
+
+            </div>
+          </NewMuiThemeProvider>
+        </MuiThemeProvider>
+      </AppWrapper>
+    );
+  }
 }
+
+HomePage.propTypes = {
+  loadCurrentUser: PropTypes.func,
+}
+
+const mapDispatchToProps = {
+  loadCurrentUser: loadingUser,
+};
+
+const withConnect = connect(null, mapDispatchToProps);
+
+const withSaga = injectSaga({ key: 'app', saga });
+
+export default compose(
+  withConnect,
+  withSaga,
+)(App);

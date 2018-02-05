@@ -9,6 +9,8 @@ import { isNil } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 
 import request from 'utils/request';
+import { setUser, getUser } from 'utils/navigatorStore';
+
 import { makeSelectSigninValues } from './selectors';
 
 import { AUTH_USER } from 'containers/App/constants';
@@ -43,7 +45,14 @@ export function* submitForm() {
     const user = yield call(request, requestURL, options);
 
     if (!isNil(user.id)) {
+
+      // save token into session storage
+      // TODO: modify with the real value from api rest
+      setUser(user);
+
+      // let other components know that we got user and things are fine
       yield put(submitLoginFormOk(user));
+
     } else { //TODO: add errors handler
       const error = new Error(400);
 

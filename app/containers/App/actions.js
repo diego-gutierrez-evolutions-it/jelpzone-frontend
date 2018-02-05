@@ -22,6 +22,7 @@ import {
   AUTH_USER,
   AUTH_USER_SUCCESS,
   AUTH_USER_ERROR,
+  LOGOUT_USER,
   LOGOUT_USER_SUCCESS,
   LOGOUT_USER_ERROR,
 } from './constants';
@@ -62,6 +63,17 @@ export function submitLoginFormFailed(err) {
     payload: {
       error: err,
     },
+  };
+}
+
+/**
+ * Logout user
+ *
+ * @return {object} An action object with a type of LOGOUT_USER
+ */
+export function logoutUser() {
+  return {
+    type: LOGOUT_USER,
   };
 }
 

@@ -51,7 +51,9 @@ function authReducer(state = initialState, action) {
         .set('error', action.payload.error);
     case LOGOUT_USER_ERROR:
     case LOAD_CURRENT_USER_ERROR:
-      return state.set('loading', false); // No error passed because I don't really care, for me it is just information that the user is not logged in - in other cases this should be solved differently
+      return state
+        .set('currentUser', null) // TODO: Setted with null to redirect to login form
+        .set('loading', false); // No error passed because I don't really care, for me it is just information that the user is not logged in - in other cases this should be solved differently
     case LOGOUT_USER_SUCCESS:
       return state
         .set('currentUser', null)

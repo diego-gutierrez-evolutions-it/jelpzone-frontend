@@ -32,6 +32,36 @@ function checkStatus(response) {
 }
 
 /**
+ * Catch an error if cannot fetch url
+ *
+ * @param  {object} error  A error from fetch
+ *
+ * @return {object} Throws an error
+ */
+function catchError(err) {
+
+  // Treat network errors without responses as 500s.
+  const status = err.response ? err.response.status : 500,
+        error = new Error(status);
+
+  if (status === 404) {
+
+    error.response = err.response;
+    throw error;
+
+  } else {
+    /*
+     * Error objects sent to the catch handler without a response property signal a network failure that was 
+     * never able to receive a response from the server.
+     */
+    error.response = err.message;
+    throw error;
+
+  }
+
+}
+
+/**
  * Requests a URL, returning a promise
  *
  * @param  {string} url       The URL we want to request
@@ -42,5 +72,6 @@ function checkStatus(response) {
 export default function request(url, options) {
   return fetch(url, options)
     .then(checkStatus)
-    .then(parseJSON);
+    .then(parseJSON)
+    .catch(catchError);
 }
