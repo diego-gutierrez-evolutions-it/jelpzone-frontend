@@ -28,7 +28,22 @@ const initialState = fromJS({
       id: 2,
       latitude: -34.63,
       longitude: -58.44,
-    }
+    },
+    {
+      id: 3,
+      latitude: -34.61,
+      longitude: -58.45,
+    },
+    {
+      id: 4,
+      latitude: -34.62,
+      longitude: -58.41,
+    },
+    {
+      id: 5,
+      latitude: -34.61,
+      longitude: -58.40,
+    },
   ],
   userExtraInformation: {}
 });

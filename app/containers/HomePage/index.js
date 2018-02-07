@@ -17,6 +17,7 @@ import ServicesMap from 'components/ServicesMap';
 import PopupContent from 'components/ServicesMap/PopupContent';
 import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
 import ProfessionalInformation from 'components/ProfessionalInformation/Loadable';
+import ProfessionalInformationList from 'components/ProfessionalInformationList/Loadable';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -63,6 +64,21 @@ export class HomePage extends React.Component {
           latitude: -34.63,
           longitude: -58.44,
         },
+        {
+          id: 3,
+          latitude: -34.61,
+          longitude: -58.45,
+        },
+        {
+          id: 4,
+          latitude: -34.62,
+          longitude: -58.41,
+        },
+        {
+          id: 5,
+          latitude: -34.61,
+          longitude: -58.40,
+        },
       ]
     };
   }
@@ -86,6 +102,21 @@ export class HomePage extends React.Component {
           id: 2,
           latitude: this.state.professionals[1].latitude + 0.0001*binary2*plusOrMinus2,
           longitude: this.state.professionals[1].longitude + 0.0001*binary2*plusOrMinus1,
+        },
+        {
+          id: 3,
+          latitude: this.state.professionals[2].latitude + 0.0001*binary2*plusOrMinus2,
+          longitude: this.state.professionals[2].longitude + 0.0001*plusOrMinus1*plusOrMinus1,
+        },
+        {
+          id: 4,
+          latitude: this.state.professionals[3].latitude + 0.0001*binary2*plusOrMinus2,
+          longitude: this.state.professionals[3].longitude + 0.0001*plusOrMinus1*plusOrMinus1,
+        },
+        {
+          id: 5,
+          latitude: this.state.professionals[4].latitude + 0.0001*binary2*plusOrMinus2,
+          longitude: this.state.professionals[4].longitude + 0.0001*plusOrMinus1*plusOrMinus1,
         },
       ]
     });
@@ -128,7 +159,7 @@ export class HomePage extends React.Component {
       <div style={styles.root} >
         <Grid container spacing={24}>
 
-          <Grid item xs={12}> {/* Container map */}
+          <Grid item xs={8}> {/* Container map */}
             <ServicesMap marks={this.state.professionals} 
               onMarkerClick={this.props.toggleExtraInformation}
             >
@@ -136,6 +167,9 @@ export class HomePage extends React.Component {
                 <VerticalIconsMenu items={menuItems} onItemClick={(value) => console.log(value)} />
               </div>
             </ServicesMap>
+          </Grid>
+          <Grid item xs={4}> {/* Container professionals list */}
+            <ProfessionalInformationList professionals={this.state.professionals} />
           </Grid>
 
           <Grid item xs={12}> {/* Extra information container */}

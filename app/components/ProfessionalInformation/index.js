@@ -28,11 +28,14 @@ const styles = theme => ({
 
 class ProfessionalInformation extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
+
+    const image = require('assets/images/jsa-128.jpg');
+
     return (
       <Paper style={styles.paper}>
         <Grid container spacing={24}> {/* Container inside description container */}
           <Grid item xs={12} sm={6} > {/* Photo container */}
-            <Img src={'./jsa-128.jpg'} alt="profile picture" />
+            <Img src={image} alt="profile picture" />
           </Grid>
           <Grid item xs={12} sm={6}> {/* Relevant description container */}
             <Table >
