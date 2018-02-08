@@ -32,6 +32,7 @@ class ProfessionalInformationList extends React.Component { // eslint-disable-li
 		      {this.props.professionals.map((professional) => (
 		        <GridTile
 		          key={professional.id}
+		          rows={2}
 		        >
 		          <ProfessionalInformation professional={professional} />
 		        </GridTile>

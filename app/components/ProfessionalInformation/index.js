@@ -18,11 +18,12 @@ import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 const styles = theme => ({
-  paper: {
+  container: {
     padding: 16,
     textAlign: 'center',
     marginRight: '1%',
-    marginLeft: '1%'
+    marginLeft: '1%',
+    flexGrow: 1,
   },
 });
 
@@ -32,46 +33,43 @@ class ProfessionalInformation extends React.Component { // eslint-disable-line r
     const image = require('assets/images/jsa-128.jpg');
 
     return (
-      <Paper style={styles.paper}>
-        <Grid container spacing={24}> {/* Container inside description container */}
-          <Grid item xs={12} sm={6} > {/* Photo container */}
-            <Img src={image} alt="profile picture" />
+      <Grid 
+        container 
+        spacing={0} 
+        style={styles.container}
+      > {/* Container inside description container */}
+        <Grid item xs={12} sm={6} > {/* Photo container */}
+          <Img src={image} alt="profile picture" />
+        </Grid>
+        <Grid item container xs={12} sm={6}> {/* Relevant description container */}
+          <Grid item xs={6} sm={6}>
+            <b>Nombre</b>
           </Grid>
-          <Grid item xs={12} sm={6}> {/* Relevant description container */}
-            <Table >
-              <TableBody>
-                <TableRow >
-                  <TableCell>Nombre</TableCell>
-                  <TableCell>Alberto Perez</TableCell>
-                </TableRow>
-                
-                <TableRow >
-                  <TableCell>Servicios</TableCell>
-                  <TableCell>
-                    <List>
-                      <ListItem >
-                        <ListItemText primary={`Plomeria`} />
-                      </ListItem>
-                      <ListItem >
-                        <ListItemText primary={`Carpinteria`} />
-                      </ListItem>
-                      <ListItem >
-                        <ListItemText primary={`Jardineria`} />
-                      </ListItem>
-                    </List>
-                  </TableCell>
-                </TableRow>
-                
-                <TableRow >
-                  <TableCell>Zona</TableCell>
-                  <TableCell>Balvanera, Congreso, San Nicolás</TableCell>
-                </TableRow>
-
-              </TableBody>
-            </Table>
+          <Grid item xs={6} sm={6}>
+            Alberto Perez
+          </Grid>
+          <Grid item xs={6} sm={6}>
+            <b>Servicios</b>
+          </Grid>
+          <Grid item container xs={6} sm={6}>
+            <Grid item xs={12}>
+              Plomeria
+            </Grid>
+            <Grid item xs={12}>
+              Carpinteria
+            </Grid>
+            <Grid item xs={12}>
+              Jardineria
+            </Grid>
+          </Grid>
+          <Grid item xs={6} sm={6}>
+            <b>Zona</b>
+          </Grid>
+          <Grid item xs={6} sm={6}>
+            Balvanera, Congreso, San Nicolás
           </Grid>
         </Grid>
-      </Paper>
+      </Grid>
     );
   }
 }

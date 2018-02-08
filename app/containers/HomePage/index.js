@@ -159,7 +159,7 @@ export class HomePage extends React.Component {
       <div style={styles.root} >
         <Grid container spacing={24}>
 
-          <Grid item xs={8}> {/* Container map */}
+          <Grid item xs={12} sm={7}> {/* Container map */}
             <ServicesMap marks={this.state.professionals} 
               onMarkerClick={this.props.toggleExtraInformation}
             >
@@ -168,7 +168,7 @@ export class HomePage extends React.Component {
               </div>
             </ServicesMap>
           </Grid>
-          <Grid item xs={4}> {/* Container professionals list */}
+          <Grid item xs={12} sm={5}> {/* Container professionals list */}
             <ProfessionalInformationList professionals={this.state.professionals} />
           </Grid>
 
