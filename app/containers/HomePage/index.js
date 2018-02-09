@@ -18,6 +18,8 @@ import PopupContent from 'components/ServicesMap/PopupContent';
 import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
 import ProfessionalInformation from 'components/ProfessionalInformation/Loadable';
 import ProfessionalInformationList from 'components/ProfessionalInformationList/Loadable';
+import ProfessionalInformationPanel from 'components/ProfessionalInformationPanel/Loadable';
+import RatingStars from 'components/RatingStars';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -25,6 +27,8 @@ import injectReducer from 'utils/injectReducer';
 import RemoveRedEye from 'material-ui-icons/RemoveRedEye';
 import PersonAdd from 'material-ui-icons/PersonAdd';
 import Grid from 'material-ui-next/Grid';
+import Typography from 'material-ui-next/Typography';
+import { withStyles } from 'material-ui-next/styles';
 
 import { toggleProfessionalExtraInformation } from './actions';
 import { makeSelectUserExtraInformation } from './selectors';
@@ -40,6 +44,10 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     marginTop: 50,
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
   },
 });
 
@@ -153,11 +161,12 @@ export class HomePage extends React.Component {
         icon: <PersonAdd />,
         value: 2,
       },
-    ]
+    ],
+          { classes } = this.props;
 
     return (
-      <div style={styles.root} >
-        <Grid container spacing={24}>
+      <div className={classes.root} >
+        <Grid container spacing={24} justify={'center'}>
 
           <Grid item xs={12} sm={7}> {/* Container map */}
             <ServicesMap marks={this.state.professionals} 
@@ -172,14 +181,32 @@ export class HomePage extends React.Component {
             <ProfessionalInformationList professionals={this.state.professionals} />
           </Grid>
 
-          <Grid item xs={12}> {/* Extra information container */}
-            {
-              (this.props.userExtraInformation.size>0) ?
-                <ProfessionalInformation professional={this.props.userExtraInformation} />
-                :
-                null
-            }
-          </Grid>
+          {
+            (this.props.userExtraInformation.size>0) ?
+              <Grid item> {/* Extra information container */}
+                <Grid container justify={'center'} direction={'column'} >
+                  <Grid item > {/* Personal information */}
+                    <ProfessionalInformation professional={this.props.userExtraInformation} />
+                  </Grid>
+                  <Grid item > {/* Reputation Panel */}
+                    <ProfessionalInformationPanel 
+                      heading={<FormattedMessage {...messages.reputationHeader} />}
+                      secondaryHeading={<RatingStars numberStars={5} rating={1}/>}
+                    >
+                      Reputation Content
+                    </ProfessionalInformationPanel>
+                    <ProfessionalInformationPanel 
+                      heading={<FormattedMessage {...messages.usersQualificationHeader} />}
+                      secondaryHeading={<Typography className={classes.secondaryHeading}><FormattedMessage {...messages.usersQualificationSubheading} /></Typography>}
+                    >
+                      Users Qualification Content
+                    </ProfessionalInformationPanel>
+                  </Grid>
+                </Grid>
+              </Grid>
+              :
+              null
+          }          
 
         </Grid>
       </div>
@@ -190,6 +217,8 @@ export class HomePage extends React.Component {
 HomePage.propTypes = {
   userExtraInformation: PropTypes.object,
 }
+
+HomePage = withStyles(styles)(HomePage);
 
 export function mapDispatchToProps(dispatch) {
   return {

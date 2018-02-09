@@ -116,7 +116,8 @@ class ProfessionalInformation extends React.Component { // eslint-disable-line r
 }
 
 ProfessionalInformation.propTypes = {
-  professional: PropTypes.object.isRequired
+  professional: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(ProfessionalInformation);
