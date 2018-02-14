@@ -24,11 +24,25 @@ import RatingStars from 'components/RatingStars';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
-import RemoveRedEye from 'material-ui-icons/RemoveRedEye';
-import PersonAdd from 'material-ui-icons/PersonAdd';
 import Grid from 'material-ui-next/Grid';
 import Typography from 'material-ui-next/Typography';
 import { withStyles } from 'material-ui-next/styles';
+import List, {
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  ListItemSecondaryAction,
+} from 'material-ui-next/List';
+import Avatar from 'material-ui-next/Avatar';
+import IconButton from 'material-ui-next/IconButton';
+
+import RemoveRedEye from 'material-ui-icons/RemoveRedEye';
+import PersonAdd from 'material-ui-icons/PersonAdd';
+import ThumbUpIcon from 'material-ui-icons/ThumbUp';
+import ThumbDownIcon from 'material-ui-icons/ThumbDown';
+import PersonIcon from 'material-ui-icons/Person';
+
+import green from 'material-ui-next/colors/green';
 
 import { toggleProfessionalExtraInformation } from './actions';
 import { makeSelectUserExtraInformation } from './selectors';
@@ -48,6 +62,19 @@ const styles = theme => ({
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
+  },
+  flexContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    padding: 0,
+  },
+  ratingStar: {
+    display: 'inline',
+  },
+  greenAvatar: {
+    margin: 10,
+    color: '#fff',
+    backgroundColor: green[500],
   },
 });
 
@@ -193,13 +220,96 @@ export class HomePage extends React.Component {
                       heading={<FormattedMessage {...messages.reputationHeader} />}
                       secondaryHeading={<RatingStars numberStars={5} rating={1}/>}
                     >
-                      Reputation Content
+                      {/* Reputation Content */}
+                      <List className={classes.flexContainer}>
+                        <ListItem>
+                          <ListItemText
+                            primary="65"
+                            secondary="Requests"
+                          />
+                        </ListItem>
+                        <ListItem>
+                          <ListItemText
+                            primary="12"
+                            secondary="Trabajos realizados"
+                          />
+                        </ListItem>
+                        <ListItem>
+                          <ListItemText
+                            primary="89%"
+                            secondary="de sus clientes lo recomiendan"
+                          />
+                        </ListItem>
+                        <ListItem>
+                          <ListItemText
+                            primary="11 min"
+                            secondary="Tiempo promedio de respuesta"
+                          />
+                        </ListItem>
+                      </List>
+
+                      <List>
+                        <ListItem>
+                          <ListItemText
+                            primary="Punctuallity:"
+                            secondary={<RatingStars numberStars={5} rating={5} className={classes.ratingStar} />}
+                            disableTypography
+                          />
+                        </ListItem>
+                        <ListItem>
+                          <ListItemText
+                            primary="Prolixity:"
+                            secondary={<RatingStars numberStars={5} rating={4} className={classes.ratingStar} />}
+                            disableTypography
+                          />
+                        </ListItem>
+                        <ListItem>
+                          <ListItemText
+                            primary="Knowledge:"
+                            secondary={<RatingStars numberStars={5} rating={3} className={classes.ratingStar} />}
+                            disableTypography
+                          />
+                        </ListItem>
+                        <ListItem>
+                          <ListItemText
+                            primary="Tools:"
+                            secondary={<RatingStars numberStars={5} rating={2} className={classes.ratingStar} />}
+                            disableTypography
+                          />
+                        </ListItem>
+                        <ListItem>
+                          <ListItemText
+                            primary="Reply:"
+                            secondary={<RatingStars numberStars={5} rating={1} className={classes.ratingStar} />}
+                            disableTypography
+                          />
+                        </ListItem>
+                      </List>
                     </ProfessionalInformationPanel>
                     <ProfessionalInformationPanel 
                       heading={<FormattedMessage {...messages.usersQualificationHeader} />}
                       secondaryHeading={<Typography className={classes.secondaryHeading}><FormattedMessage {...messages.usersQualificationSubheading} /></Typography>}
                     >
-                      Users Qualification Content
+                      <List >
+                        {generate(
+                          <ListItem>
+                            <ListItemAvatar>
+                              <Avatar className={classes.greenAvatar}>
+                                <ThumbUpIcon />
+                              </Avatar>
+                            </ListItemAvatar>
+                            <ListItemText
+                              primary="Lorem ipsum dolor sit amet, "
+                              secondary="27 de Enero de 2018 a las 18:34 hs"
+                            />
+                            <ListItemSecondaryAction>
+                              <IconButton aria-label="Delete">
+                                <PersonIcon />
+                              </IconButton>
+                            </ListItemSecondaryAction>
+                          </ListItem>
+                        )}
+                      </List>
                     </ProfessionalInformationPanel>
                   </Grid>
                 </Grid>
@@ -213,6 +323,15 @@ export class HomePage extends React.Component {
     )
   }
 }
+
+function generate(element) {
+  return [0, 1, 2].map(value =>
+    React.cloneElement(element, {
+      key: value,
+    }),
+  );
+}
+
 
 HomePage.propTypes = {
   userExtraInformation: PropTypes.object,

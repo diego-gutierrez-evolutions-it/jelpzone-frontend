@@ -39,8 +39,11 @@ const styles = theme => ({
   details: {
     alignItems: 'center',
   },
-  column: {
+  columnLeft: {
     flexBasis: '25%',
+  },
+  column: {
+    flexBasis: '100%',
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
@@ -72,7 +75,7 @@ class ProfessionalInformationPanel extends React.Component { // eslint-disable-l
 	          </div>
 	        </ExpansionPanelSummary>
 	        <ExpansionPanelDetails className={classes.details}>
-	          <div className={classes.column} />
+	          <div className={classes.columnLeft} />
 	          <div className={classNames(classes.column, classes.helper)}>
 	            { children }
 	          </div>
