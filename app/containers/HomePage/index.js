@@ -57,7 +57,7 @@ import './HomePage.css'; // Tell Webpack that HomePage.js uses these styles
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    marginTop: 50,
+    marginTop: 30,
   },
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
@@ -163,9 +163,9 @@ export class HomePage extends React.Component {
   }
 
   componentDidMount(){
-    this.loadInterval = window.setInterval(function () {
+    /*this.loadInterval = window.setInterval(function () {
       this.updateProfessionals();
-    }.bind(this), 3000);
+    }.bind(this), 3000);*/
   }
 
   componentWillUnmount () {
@@ -193,7 +193,7 @@ export class HomePage extends React.Component {
 
     return (
       <div className={classes.root} >
-        <Grid container spacing={24} justify={'center'}>
+        <Grid container justify={'center'}>
 
           <Grid item xs={12} sm={7}> {/* Container map */}
             <ServicesMap marks={this.state.professionals} 
@@ -210,7 +210,7 @@ export class HomePage extends React.Component {
 
           {
             (this.props.userExtraInformation.size>0) ?
-              <Grid item> {/* Extra information container */}
+              <Grid item xs={12} sm={12} > {/* Extra information container */}
                 <Grid container justify={'center'} direction={'column'} >
                   <Grid item > {/* Personal information */}
                     <ProfessionalInformation professional={this.props.userExtraInformation} />
@@ -221,32 +221,64 @@ export class HomePage extends React.Component {
                       secondaryHeading={<RatingStars numberStars={5} rating={1}/>}
                     >
                       {/* Reputation Content */}
-                      <List className={classes.flexContainer}>
-                        <ListItem>
-                          <ListItemText
-                            primary="65"
-                            secondary="Requests"
-                          />
-                        </ListItem>
-                        <ListItem>
-                          <ListItemText
-                            primary="12"
-                            secondary="Trabajos realizados"
-                          />
-                        </ListItem>
-                        <ListItem>
-                          <ListItemText
-                            primary="89%"
-                            secondary="de sus clientes lo recomiendan"
-                          />
-                        </ListItem>
-                        <ListItem>
-                          <ListItemText
-                            primary="11 min"
-                            secondary="Tiempo promedio de respuesta"
-                          />
-                        </ListItem>
-                      </List>
+                      <Grid container >
+                        <Grid item xs={6} sm={3}> 
+                          <Grid container  direction={'column'} >
+                            <Grid item xs={6}> 
+                              <Typography variant="title" gutterBottom>
+                                65
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={6}> 
+                              <Typography variant="caption" gutterBottom>
+                                Requests
+                              </Typography>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                        <Grid item xs={6} sm={3}> 
+                          <Grid container  direction={'column'} >
+                            <Grid item xs={6}>
+                              <Typography variant="title" gutterBottom>
+                                12
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={6}> 
+                              <Typography variant="caption" gutterBottom>
+                                Trabajos realizados
+                              </Typography>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                        <Grid item xs={6} sm={3}> 
+                          <Grid container  direction={'column'} >
+                            <Grid item xs={6}> 
+                              <Typography variant="title" gutterBottom>
+                                89%
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={6}> 
+                              <Typography variant="caption" gutterBottom>
+                                de sus clientes lo recomiendan
+                              </Typography>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                        <Grid item xs={6} sm={3}> 
+                          <Grid container  direction={'column'} >
+                            <Grid item xs={6}> 
+                              <Typography variant="title" gutterBottom>
+                                11 min
+                              </Typography>
+                            </Grid>
+                            <Grid item xs={6}> 
+                              <Typography variant="caption" gutterBottom>
+                                Tiempo promedio de respuesta
+                              </Typography>                              
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      </Grid>
 
                       <List>
                         <ListItem>

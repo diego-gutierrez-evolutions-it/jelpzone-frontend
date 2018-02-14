@@ -11,12 +11,10 @@ import ActionGrade from 'material-ui-icons/Grade';
 import amber from 'material-ui-next/colors/amber';
 import { withStyles } from 'material-ui-next/styles';
 
+import './RatingStars.css'; // Tell Webpack that HomePage.js uses these styles
+
 const amberA700 = amber.A700,
-      styles = {
-        button: {
-          width: '30px',
-        },        
-      };
+      styles = {};
 
 class RatingStars extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -29,7 +27,7 @@ class RatingStars extends React.Component { // eslint-disable-line react/prefer-
   			content.push(
   				<IconButton 
             key={i} 
-            classes={{root: classes.button}}
+            className="start-button-xs start-button-md"
           >
   					<ActionGrade color={amberA700} />
   				</IconButton>
@@ -39,7 +37,7 @@ class RatingStars extends React.Component { // eslint-disable-line react/prefer-
   				<IconButton 
             key={i} 
             disabled={true}
-            classes={{root: classes.button}}
+            className="start-button-xs start-button-md"
           >
   					<ActionGrade />
   				</IconButton>

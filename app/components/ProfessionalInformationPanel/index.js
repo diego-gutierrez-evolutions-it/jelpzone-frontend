@@ -21,7 +21,7 @@ import Divider from 'material-ui-next/Divider';
 
 const styles = theme => ({
 	root: {
-    width: '100%',
+    //width: '100%',
     paddingTop: '20px'
   },
   heading: {
@@ -39,22 +39,15 @@ const styles = theme => ({
   details: {
     alignItems: 'center',
   },
-  columnLeft: {
-    flexBasis: '25%',
-  },
   column: {
-    flexBasis: '100%',
+    flexBasis: '33.3%',
+  },
+  columnRight: {
+    flexBasis: '76.7%',
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
     padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
-  },
-  link: {
-    color: theme.palette.primary.main,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
   },
 });
 
@@ -75,8 +68,8 @@ class ProfessionalInformationPanel extends React.Component { // eslint-disable-l
 	          </div>
 	        </ExpansionPanelSummary>
 	        <ExpansionPanelDetails className={classes.details}>
-	          <div className={classes.columnLeft} />
-	          <div className={classNames(classes.column, classes.helper)}>
+	          <div className={classes.column} />
+	          <div className={classNames(classes.columnRight, classes.helper)}>
 	            { children }
 	          </div>
 	        </ExpansionPanelDetails>

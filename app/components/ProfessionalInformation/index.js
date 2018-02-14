@@ -33,10 +33,10 @@ const styles = theme => ({
     flexGrow: 1,
   },
   rightContainer: {
-    textAlign: 'right',
+    //textAlign: 'right',
   },
   leftContainer: {
-    textAlign: 'left',
+    //textAlign: 'left',
   },
   button: {
     margin: theme.spacing.unit,
@@ -56,10 +56,10 @@ class ProfessionalInformation extends React.Component { // eslint-disable-line r
         justify="center"
         className={classes.container}
       > {/* Container inside description container */}
-        <Grid item xs={12} sm={6} className={classes.rightContainer}> {/* Photo container */}
+        <Grid item xs={12} sm={4} className={classes.rightContainer}> {/* Photo container */}
           <Img src={image} alt="profile picture" />
         </Grid>
-        <Grid item xs={12} sm={6}> {/* Relevant description container */}
+        <Grid item xs={12} sm={8}> {/* Relevant description container */}
           <Grid  container>
 
             {/* Interaction buttons */}
@@ -82,32 +82,37 @@ class ProfessionalInformation extends React.Component { // eslint-disable-line r
             </Grid>
 
             {/* Description services */}
-            <Grid item xs={6} sm={6} className={classes.rightContainer}> 
-              <Typography variant="title">Nombre</Typography>
-            </Grid>
-            <Grid item xs={6} sm={6} className={classes.leftContainer}>
-              Alberto Perez
-            </Grid>
-            <Grid item xs={6} sm={6} className={classes.rightContainer}>
-              <Typography variant="title">Servicios</Typography>
-            </Grid>
-            <Grid item xs={6} sm={6} className={classes.leftContainer}>
-              <Grid item xs={12}>
-                Plomeria
+            <Grid item xs={12}> 
+              <Grid  container>
+                <Grid item xs={6} sm={6} className={classes.rightContainer}> 
+                  <Typography variant="title">Nombre</Typography>
+                </Grid>
+                <Grid item xs={6} sm={6} className={classes.leftContainer}>
+                  Alberto Perez
+                </Grid>
+                <Grid item xs={6} sm={6} className={classes.rightContainer}>
+                  <Typography variant="title">Servicios</Typography>
+                </Grid>
+                <Grid item xs={6} sm={6} className={classes.leftContainer}>
+                  <Grid item xs={12}>
+                    Plomeria
+                  </Grid>
+                  <Grid item xs={12}>
+                    Carpinteria
+                  </Grid>
+                  <Grid item xs={12}>
+                    Jardineria
+                  </Grid>
+                </Grid>
+                <Grid item xs={6} sm={6} className={classes.rightContainer}>
+                  <Typography variant="title">Zona</Typography>
+                </Grid>
+                <Grid item xs={6} sm={6} className={classes.leftContainer}>
+                  Balvanera, Congreso, San Nicolás
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                Carpinteria
-              </Grid>
-              <Grid item xs={12}>
-                Jardineria
-              </Grid>
             </Grid>
-            <Grid item xs={6} sm={6} className={classes.rightContainer}>
-              <Typography variant="title">Zona</Typography>
-            </Grid>
-            <Grid item xs={6} sm={6} className={classes.leftContainer}>
-              Balvanera, Congreso, San Nicolás
-            </Grid>
+            
           </Grid>
         </Grid>
       </Grid>
