@@ -24,6 +24,7 @@ import RatingStars from 'components/RatingStars';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
+import Paper from 'material-ui/Paper';
 import Grid from 'material-ui-next/Grid';
 import Typography from 'material-ui-next/Typography';
 import { withStyles } from 'material-ui-next/styles';
@@ -59,6 +60,11 @@ const styles = theme => ({
     flexGrow: 1,
     marginTop: 30,
   },
+  personalInformation: theme.mixins.gutters({
+    paddingTop: 16,
+    paddingBottom: 16,
+    marginTop: theme.spacing.unit * 3,
+  }),
   secondaryHeading: {
     fontSize: theme.typography.pxToRem(15),
     color: theme.palette.text.secondary,
@@ -213,7 +219,9 @@ export class HomePage extends React.Component {
               <Grid item xs={12} sm={12} > {/* Extra information container */}
                 <Grid container justify={'center'} direction={'column'} >
                   <Grid item > {/* Personal information */}
-                    <ProfessionalInformation professional={this.props.userExtraInformation} />
+                    <Paper className={classes.personalInformation} elevation={4}>
+                      <ProfessionalInformation professional={this.props.userExtraInformation} />
+                    </Paper>
                   </Grid>
                   <Grid item > {/* Reputation Panel */}
                     <ProfessionalInformationPanel 
