@@ -264,38 +264,61 @@ export class HomePage extends React.Component {
                         </Typography>
                       </DescriptionList>
 
+
+                      {/*<DescriptionList 
+                        direction={'row'}
+                        itemXs={12} 
+                        itemSm={12} 
+                        fieldXs={6}
+                      >
+                        <span>Punctuallity </span>
+                        <RatingStars numberStars={5} rating={5} className={classes.ratingStar} />
+
+                        <span>Prolixity </span>
+                        <RatingStars numberStars={5} rating={4} className={classes.ratingStar} />
+
+                        <span>Knowledge </span>
+                        <RatingStars numberStars={5} rating={3} className={classes.ratingStar} />
+
+                        <span>Tools </span>
+                        <RatingStars numberStars={5} rating={2} className={classes.ratingStar} />
+
+                        <span>Reply </span>
+                        <RatingStars numberStars={5} rating={1} className={classes.ratingStar} />
+                      </DescriptionList>*/}
+
                       <List>
                         <ListItem>
                           <ListItemText
-                            primary="Punctuallity:"
+                            primary="Punctuallity "
                             secondary={<RatingStars numberStars={5} rating={5} className={classes.ratingStar} />}
                             disableTypography
                           />
                         </ListItem>
                         <ListItem>
                           <ListItemText
-                            primary="Prolixity:"
+                            primary="Prolixity "
                             secondary={<RatingStars numberStars={5} rating={4} className={classes.ratingStar} />}
                             disableTypography
                           />
                         </ListItem>
                         <ListItem>
                           <ListItemText
-                            primary="Knowledge:"
+                            primary="Knowledge "
                             secondary={<RatingStars numberStars={5} rating={3} className={classes.ratingStar} />}
                             disableTypography
                           />
                         </ListItem>
                         <ListItem>
                           <ListItemText
-                            primary="Tools:"
+                            primary="Tools "
                             secondary={<RatingStars numberStars={5} rating={2} className={classes.ratingStar} />}
                             disableTypography
                           />
                         </ListItem>
                         <ListItem>
                           <ListItemText
-                            primary="Reply:"
+                            primary="Reply "
                             secondary={<RatingStars numberStars={5} rating={1} className={classes.ratingStar} />}
                             disableTypography
                           />

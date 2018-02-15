@@ -20,6 +20,7 @@ import FavoriteIcon from 'material-ui-icons/FavoriteBorder';
 import ContractCategoryIcon from 'material-ui-icons/DoNotDisturbOff';
 
 import Img from 'components/Img';
+import DescriptionList from 'components/DescriptionList';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -83,17 +84,17 @@ class ProfessionalInformation extends React.Component { // eslint-disable-line r
 
             {/* Description services */}
             <Grid item xs={12}> 
-              <Grid  container>
-                <Grid item xs={6} sm={6} className={classes.rightContainer}> 
-                  <Typography variant="title">Nombre</Typography>
-                </Grid>
-                <Grid item xs={6} sm={6} className={classes.leftContainer}>
-                  Alberto Perez
-                </Grid>
-                <Grid item xs={6} sm={6} className={classes.rightContainer}>
-                  <Typography variant="title">Servicios</Typography>
-                </Grid>
-                <Grid item xs={6} sm={6} className={classes.leftContainer}>
+              <DescriptionList 
+                direction={'row'}
+                itemXs={12} 
+                itemSm={12} 
+                fieldXs={6}
+              >
+                <Typography variant="title">Nombre</Typography>
+                <span>Alberto Perez</span>
+
+                <Typography variant="title">Servicios</Typography>
+                <span>
                   <Grid item xs={12}>
                     Plomeria
                   </Grid>
@@ -103,14 +104,11 @@ class ProfessionalInformation extends React.Component { // eslint-disable-line r
                   <Grid item xs={12}>
                     Jardineria
                   </Grid>
-                </Grid>
-                <Grid item xs={6} sm={6} className={classes.rightContainer}>
-                  <Typography variant="title">Zona</Typography>
-                </Grid>
-                <Grid item xs={6} sm={6} className={classes.leftContainer}>
-                  Balvanera, Congreso, San Nicolás
-                </Grid>
-              </Grid>
+                </span>
+
+                <Typography variant="title">Zona</Typography>
+                <span>Balvanera, Congreso, San Nicolás</span>
+              </DescriptionList>
             </Grid>
             
           </Grid>
