@@ -20,6 +20,7 @@ import ProfessionalInformation from 'components/ProfessionalInformation/Loadable
 import ProfessionalInformationList from 'components/ProfessionalInformationList/Loadable';
 import ProfessionalInformationPanel from 'components/ProfessionalInformationPanel/Loadable';
 import RatingStars from 'components/RatingStars';
+import DescriptionList from 'components/DescriptionList';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -200,7 +201,6 @@ export class HomePage extends React.Component {
     return (
       <div className={classes.root} >
         <Grid container justify={'center'}>
-
           <Grid item xs={12} sm={7}> {/* Container map */}
             <ServicesMap marks={this.state.professionals} 
               onMarkerClick={this.props.toggleExtraInformation}
@@ -229,64 +229,40 @@ export class HomePage extends React.Component {
                       secondaryHeading={<RatingStars numberStars={5} rating={1}/>}
                     >
                       {/* Reputation Content */}
-                      <Grid container >
-                        <Grid item xs={6} sm={3}> 
-                          <Grid container  direction={'column'} >
-                            <Grid item xs={6}> 
-                              <Typography variant="title" gutterBottom>
-                                65
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={6}> 
-                              <Typography variant="caption" gutterBottom>
-                                Requests
-                              </Typography>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={6} sm={3}> 
-                          <Grid container  direction={'column'} >
-                            <Grid item xs={6}>
-                              <Typography variant="title" gutterBottom>
-                                12
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={6}> 
-                              <Typography variant="caption" gutterBottom>
-                                Trabajos realizados
-                              </Typography>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={6} sm={3}> 
-                          <Grid container  direction={'column'} >
-                            <Grid item xs={6}> 
-                              <Typography variant="title" gutterBottom>
-                                89%
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={6}> 
-                              <Typography variant="caption" gutterBottom>
-                                de sus clientes lo recomiendan
-                              </Typography>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item xs={6} sm={3}> 
-                          <Grid container  direction={'column'} >
-                            <Grid item xs={6}> 
-                              <Typography variant="title" gutterBottom>
-                                11 min
-                              </Typography>
-                            </Grid>
-                            <Grid item xs={6}> 
-                              <Typography variant="caption" gutterBottom>
-                                Tiempo promedio de respuesta
-                              </Typography>                              
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Grid>
+                      <DescriptionList 
+                        direction={'column'}
+                        itemXs={6} 
+                        itemSm={3} 
+                        fieldXs={6}
+                      >
+                        <Typography variant="title" gutterBottom>
+                          65
+                        </Typography>
+                        <Typography variant="caption" gutterBottom>
+                          Requests
+                        </Typography>
+
+                        <Typography variant="title" gutterBottom>
+                          12
+                        </Typography>
+                        <Typography variant="caption" gutterBottom>
+                          Trabajos realizados
+                        </Typography>
+
+                        <Typography variant="title" gutterBottom>
+                          89%
+                        </Typography>
+                        <Typography variant="caption" gutterBottom>
+                          de sus clientes lo recomiendan
+                        </Typography>
+
+                        <Typography variant="title" gutterBottom>
+                          11 min
+                        </Typography>
+                        <Typography variant="caption" gutterBottom>
+                          Tiempo promedio de respuesta
+                        </Typography>
+                      </DescriptionList>
 
                       <List>
                         <ListItem>
