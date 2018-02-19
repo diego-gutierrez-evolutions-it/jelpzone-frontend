@@ -59,7 +59,6 @@ import './HomePage.css'; // Tell Webpack that HomePage.js uses these styles
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    marginTop: 30,
   },
   personalInformation: theme.mixins.gutters({
     paddingTop: 16,
@@ -126,7 +125,7 @@ export class HomePage extends React.Component {
   }
 
   updateProfessionals() {
-    
+
     var plusOrMinus1 = Math.random() < 0.5 ? -1 : 1;
     var plusOrMinus2 = Math.random() < 0.5 ? -1 : 1;
     var binary1 = Math.random() < 0.5 ? 0 : 1;
@@ -202,7 +201,7 @@ export class HomePage extends React.Component {
       <div className={classes.root} >
         <Grid container justify={'center'}>
           <Grid item xs={12} sm={7}> {/* Container map */}
-            <ServicesMap marks={this.state.professionals} 
+            <ServicesMap marks={this.state.professionals}
               onMarkerClick={this.props.toggleExtraInformation}
             >
               <div className="left-container-md left-container-xs"  >
@@ -224,15 +223,15 @@ export class HomePage extends React.Component {
                     </Paper>
                   </Grid>
                   <Grid item > {/* Reputation Panel */}
-                    <ProfessionalInformationPanel 
+                    <ProfessionalInformationPanel
                       heading={<FormattedMessage {...messages.reputationHeader} />}
                       secondaryHeading={<RatingStars numberStars={5} rating={1}/>}
                     >
                       {/* Reputation Content */}
-                      <DescriptionList 
+                      <DescriptionList
                         direction={'column'}
-                        itemXs={6} 
-                        itemSm={3} 
+                        itemXs={6}
+                        itemSm={3}
                         fieldXs={6}
                       >
                         <Typography variant="title" gutterBottom>
@@ -265,10 +264,10 @@ export class HomePage extends React.Component {
                       </DescriptionList>
 
 
-                      {/*<DescriptionList 
+                      {/*<DescriptionList
                         direction={'row'}
-                        itemXs={12} 
-                        itemSm={12} 
+                        itemXs={12}
+                        itemSm={12}
                         fieldXs={6}
                       >
                         <span>Punctuallity </span>
@@ -325,7 +324,7 @@ export class HomePage extends React.Component {
                         </ListItem>
                       </List>
                     </ProfessionalInformationPanel>
-                    <ProfessionalInformationPanel 
+                    <ProfessionalInformationPanel
                       heading={<FormattedMessage {...messages.usersQualificationHeader} />}
                       secondaryHeading={<Typography className={classes.secondaryHeading}><FormattedMessage {...messages.usersQualificationSubheading} /></Typography>}
                     >
@@ -355,7 +354,7 @@ export class HomePage extends React.Component {
               </Grid>
               :
               null
-          }          
+          }
 
         </Grid>
       </div>
