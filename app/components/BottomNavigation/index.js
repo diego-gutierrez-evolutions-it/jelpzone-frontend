@@ -12,18 +12,14 @@ import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
-import EmailIcon from 'material-ui/svg-icons/communication/email';
 import SearchIcon from 'material-ui/svg-icons/action/search';
 import AccountIcon from 'material-ui/svg-icons/action/account-circle';
 import ChatIcon from 'material-ui/svg-icons/communication/chat';
-import PromotionsIcon from 'material-ui/svg-icons/action/label';
 
 const nearbyIcon = <IconLocationOn />;
 const chatIcon = <ChatIcon />;
 const accountIcon = <AccountIcon />;
 const searchIcon = <SearchIcon />;
-const emailIcon = <EmailIcon />;
-const promotionsIcon = <PromotionsIcon />;
 
 import LocaleToggle from 'containers/LocaleToggle';
 
@@ -54,19 +50,9 @@ class BottomNav extends React.Component {
             onClick={() => this.select(1)}
           />
           <BottomNavigationItem
-            label="Notifications"
-            icon={emailIcon}
-            onClick={() => this.select(2)}
-          />
-          <BottomNavigationItem
-            label="Promotions"
-            icon={promotionsIcon}
-            onClick={() => this.select(3)}
-          />
-          <BottomNavigationItem
             label="Chats"
             icon={chatIcon}
-            onClick={() => this.select(4)}
+            onClick={() => this.select(2)}
           />
           <LocaleToggle />
         </BottomNavigation>

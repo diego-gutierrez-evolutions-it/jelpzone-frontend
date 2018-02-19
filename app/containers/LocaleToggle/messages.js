@@ -14,4 +14,8 @@ export default defineMessages({
     id: 'boilerplate.containers.LocaleToggle.es',
     defaultMessage: 'es',
   },
+  es: {
+    id: 'boilerplate.containers.LocaleToggle.es',
+    defaultMessage: 'es',
+  },
 });

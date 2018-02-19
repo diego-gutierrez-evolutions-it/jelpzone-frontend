@@ -1,9 +1,9 @@
 export default function (values) {
   const errors = {};
   const requiredFields = [
-    'username',
+    'firstName',
+    'lastName',
     'email',
-    'password'
     'favoriteColor',
     'notes',
   ];
