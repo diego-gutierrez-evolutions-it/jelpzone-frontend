@@ -4,7 +4,9 @@
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 
-import { SIGN_UP } from './constants';
+import { isNil, includes } from 'lodash';
+
+import { SIGN_UP, URL_SIGN_UP } from './constants';
 import { submitSignupFormOk, submitSignupFormFailed } from './actions';
 
 import request from 'utils/request';
@@ -16,31 +18,44 @@ import { makeSelectSignupValues } from './selectors';
 export function* submitForm() {
   // Select username from store
   const values = yield select(makeSelectSignupValues());
-  //const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+  
+  // lift this from configuration file
+  const requestURL = process.env.config.jelpzoneApi.url+URL_SIGN_UP;
 
   try {
 
     // Call our request helper (see 'utils/request')
-    //TODO
-    //const repos = yield call(request, requestURL);
-    const error = new Error(400);
-    if(values.username == 'john'){
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: values.firstName+' '+values.lastName,
+        username: values.username,
+        professional: (values.userType == 0)? false:true,
+        email: values.email,
+        password: values.password
+      })
+    };
 
+    const user = yield call(request, requestURL, options);
+
+    if(!isNil(user.id)){
+
+      yield put(submitSignupFormOk());
+
+    } else{
+
+      const error = new Error(500);
       error.response = {
-        "message": "The username already exists, select another one"
-      }
-      throw error;
-
-    } else if(values.email == 'john@email.com'){
-
-      error.response = {
-        "message": "The email is already registered"
+        message: <FormattedMessage {...messages.noHandledErrorResponse} />
       }
       throw error;
 
     }
 
-    yield put(submitSignupFormOk());
+    //yield put(submitSignupFormOk());
   } catch (err) {
     yield put(submitSignupFormFailed(err));
   }

@@ -24,12 +24,19 @@
   "boilerplate.containers.HomePage.start_project.message": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
   "boilerplate.containers.HomePage.tryme.atPrefix": "@",
   "boilerplate.containers.HomePage.tryme.header": "Try me!",
-  "boilerplate.containers.HomePage.tryme.message": "Show Github repositories by",
   "boilerplate.containers.LocaleToggle.en": "en",
   "boilerplate.containers.LocaleToggle.es": "es",
   "boilerplate.containers.NotFoundPage.header": "No se encuentra la página.",
   "app.containers.SignupPage.reset_button":"Resetear",
   "app.containers.SignupPage.submit_button":"Registrar",
   "jelpzone.utils.LoginForm.error.required_field":"Campo Requerido",
-  "jelzpone.components.ServicesMap.geolocation.getting":"Obteniendo Geolocalización"
+  "jelzpone.components.ServicesMap.geolocation.getting":"Obteniendo Geolocalización",
+
+  "jelzpone.components.ServicesMap.geolocation.getting":"Obteniendo Geolocalización",
+  "app.containers.SignupPage.userNameFieldText":"Nombre de Usuario",
+  "app.containers.SignupPage.emailFieldText":"Correo Electrónico",
+  "app.containers.SignupPage.passwordFieldText":"Contraseña",
+  "app.containers.SignupPage.userTypeProText":"Quiero ofrecer mis Servicios",
+  "app.containers.SignupPage.userTypeCliText":"Necesito ayuda!"
+
 }

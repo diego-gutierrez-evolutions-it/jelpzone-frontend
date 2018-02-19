@@ -10,7 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import messages from './messages';
-import {required, email} from 'utils/validateForm';
+import {required, email, confirmPassword} from 'utils/validateForm';
 
 const renderTextField = (
   { input, label, meta: { touched, error }, ...custom },
@@ -66,7 +66,11 @@ const SignupForm = props => {
         />
       </div>
       <div>
-        <Field name="lastName" component={renderTextField} label="Last Name" />
+        <Field 
+          name="lastName" 
+          component={renderTextField} 
+          label="Last Name" 
+        />
       </div>
       <div>
         <Field 
@@ -85,9 +89,27 @@ const SignupForm = props => {
       </div>
       <div>
         <Field name="userType" component={renderRadioGroup} validate={required}>
-          <RadioButton value="0" label="professional" />
-          <RadioButton value="1" label="client" />
+          <RadioButton value="0" label="client" />
+          <RadioButton value="1" label="professional" />
         </Field>
+      </div>
+      <div>
+        <Field 
+          name="password" 
+          component={renderTextField} 
+          label="Password"
+          validate={required} 
+          type="password"
+        />
+      </div>
+      <div>
+        <Field 
+          name="confirmPassword" 
+          component={renderTextField} 
+          label="Confirm Password"
+          validate={[required,confirmPassword]} 
+          type="password"
+        />
       </div>
       <div>
         <RaisedButton

@@ -25,7 +25,17 @@
   "boilerplate.containers.HomePage.tryme.atPrefix": "@",
   "boilerplate.containers.HomePage.tryme.header": "Try me!",
   "boilerplate.containers.HomePage.tryme.message": "Show Github repositories by",
-  "boilerplate.containers.LocaleToggle.de": "de",
+  "boilerplate.containers.LocaleToggle.es": "es",
   "boilerplate.containers.LocaleToggle.en": "en",
-  "boilerplate.containers.NotFoundPage.header": "Page not found."
+  "boilerplate.containers.NotFoundPage.header": "Page not found.",
+
+  "app.containers.SignupPage.reset_button":"Reset",
+  "app.containers.SignupPage.submit_button":"Signup",
+  "jelpzone.utils.LoginForm.error.required_field":"Required Field",
+  "jelzpone.components.ServicesMap.geolocation.getting":"Getting GeoLocation",
+  "app.containers.SignupPage.userNameFieldText":"Username",
+  "app.containers.SignupPage.emailFieldText":"Email",
+  "app.containers.SignupPage.passwordFieldText":"Password",
+  "app.containers.SignupPage.userTypeProText":"I want to offer my services",
+  "app.containers.SignupPage.userTypeCliText":"I need Help!"
 }

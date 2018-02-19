@@ -3,19 +3,19 @@ import { connect } from 'react-redux'
 import { formValueSelector, reduxForm } from 'redux-form/immutable'
 import { bindActionCreators } from 'redux'
 
-import * as LoginFormActions from './actions'
+//import * as LoginFormActions from './actions'
 
 import LoginForm from 'components/LoginForm'
 
-import { createStructuredSelector } from 'reselect'
-import { makeSelectShouldRedirect, makeSelectSubmitting } from './selectors'
+import { createStructuredSelector } from 'reselect';
+import { makeSelectLoading } from 'containers/App/selectors';
 
 let Form = reduxForm({
   form: 'login',
 })(LoginForm)
 
 const mapStateToProps = createStructuredSelector({
-  isSubmitting: makeSelectSubmitting()
+  isSubmitting: makeSelectLoading()
 })
 
 Form = connect(mapStateToProps)(Form)

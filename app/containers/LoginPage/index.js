@@ -14,11 +14,14 @@ import { createStructuredSelector } from 'reselect';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
-import Form from './Form';
-import { submitLoginForm } from './actions';
-import { makeSelectShouldRedirect, makeSelectSubmitting, makeSelectError } from './selectors';
-import reducer from './reducer';
+import { makeSelectError } from 'containers/App/selectors';
+
+import { submitLoginForm } from 'containers/App/actions';
+
+//import reducer from './reducer';
 import saga from './saga';
+
+import Form from './Form';
 
 import { Card, CardText } from 'material-ui/Card';
 
@@ -34,9 +37,12 @@ export class LoginPage extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-    if (this.props.shouldRedirect){
+    /*
+     * TODO: delete
+     *
+     if (this.props.shouldRedirect){
       this.props.history.push("/");
-    }
+    }*/
   }
 
   onSubmitForm(values) {
@@ -51,7 +57,7 @@ export class LoginPage extends React.Component {
 
         <SnackbarInformationMessage 
           message={<FormattedMessage {...messages.invalidCredentials} />}
-          open={error} />
+          open={error != false} />
 
         <CardText><FormattedMessage {...messages.accountYet} /> <Link to='/signup'><FormattedMessage {...messages.signUp}/></Link></CardText>
       </Card>
@@ -64,7 +70,7 @@ LoginPage.propTypes = {
     PropTypes.object,
     PropTypes.bool,
   ]),
-  shouldRedirect: PropTypes.bool,
+  //shouldRedirect: PropTypes.bool,
   onSubmitForm: PropTypes.func.isRequired,
 }
 
@@ -80,17 +86,17 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  shouldRedirect: makeSelectShouldRedirect(),
+  //shouldRedirect: makeSelectShouldRedirect(),
   error: makeSelectError(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: 'login', reducer });
+// const withReducer = injectReducer({ key: 'login', reducer });
 const withSaga = injectSaga({ key: 'login', saga });
 
 export default compose(
-  withReducer,
+  // withReducer,
   withSaga,
   withConnect
 )(LoginPage);

@@ -6,20 +6,27 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import { isNil } from 'lodash';
 
+import { FormattedMessage } from 'react-intl';
+
 import request from 'utils/request';
+import { setUser, getUser } from 'utils/navigatorStore';
+
 import { makeSelectSigninValues } from './selectors';
 
-import { SUBMIT_FORM } from './constants';
-import { submitLoginFormOk, submitLoginFormFailed } from './actions';
+import { AUTH_USER } from 'containers/App/constants';
+import { URL_USER_LOGIN } from './constants';
+import { submitLoginFormOk, submitLoginFormFailed } from 'containers/App/actions';
 
 /**
  * Sign up request/response handler
  */
 export function* submitForm() {
+  
   // Select username and password from redux form
   const values = yield select(makeSelectSigninValues());
-  //TODO: lift this from configuration file
-  const requestURL = 'http://localhost:4000/api/Users/login';
+
+  // lift this from configuration file
+  const requestURL = process.env.config.jelpzoneApi.url+URL_USER_LOGIN;
 
   try {
 
@@ -38,12 +45,19 @@ export function* submitForm() {
     const user = yield call(request, requestURL, options);
 
     if (!isNil(user.id)) {
-      yield put(submitLoginFormOk());
+
+      // save token into session storage
+      // TODO: modify with the real value from api rest
+      setUser(user);
+
+      // let other components know that we got user and things are fine
+      yield put(submitLoginFormOk(user));
+
     } else { //TODO: add errors handler
       const error = new Error(400);
 
       error.response = {
-        message: 'Incorrect user or password',
+        message: <FormattedMessage {...messages.invalidCredentials} />,
       };
       throw error;
     }
@@ -56,5 +70,5 @@ export function* submitForm() {
  * Root saga manages watcher lifecycle
  */
 export default function* submitLoginForm() {
-  yield takeLatest(SUBMIT_FORM, submitForm);
+  yield takeLatest(AUTH_USER, submitForm);
 }

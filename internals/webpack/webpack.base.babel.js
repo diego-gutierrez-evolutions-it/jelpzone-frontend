@@ -94,6 +94,7 @@ module.exports = (options) => ({
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        config: JSON.stringify(require('../../config/config.json'))
       },
     }),
     new webpack.NamedModulesPlugin(),

@@ -11,70 +11,116 @@ import Grid from 'material-ui-next/Grid';
 import Paper from 'material-ui-next/Paper';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui-next/Table';
 import List, { ListItem, ListItemText } from 'material-ui-next/List';
+import { withStyles } from 'material-ui-next/styles';
+import Typography from 'material-ui-next/Typography';
+
+import Button from 'material-ui-next/Button';
+import IconButton from 'material-ui-next/IconButton';
+import FavoriteIcon from 'material-ui-icons/FavoriteBorder';
+import ContractCategoryIcon from 'material-ui-icons/DoNotDisturbOff';
 
 import Img from 'components/Img';
+import DescriptionList from 'components/DescriptionList';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 const styles = theme => ({
-  paper: {
+  container: {
     padding: 16,
     textAlign: 'center',
     marginRight: '1%',
-    marginLeft: '1%'
+    marginLeft: '1%',
+    flexGrow: 1,
+  },
+  rightContainer: {
+    //textAlign: 'right',
+  },
+  leftContainer: {
+    //textAlign: 'left',
+  },
+  button: {
+    margin: theme.spacing.unit,
   },
 });
 
 class ProfessionalInformation extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-    return (
-      <Paper style={styles.paper}>
-        <Grid container spacing={24}> {/* Container inside description container */}
-          <Grid item xs={12} sm={6} > {/* Photo container */}
-            <Img src={'./jsa-128.jpg'} alt="profile picture" />
-          </Grid>
-          <Grid item xs={12} sm={6}> {/* Relevant description container */}
-            <Table >
-              <TableBody>
-                <TableRow >
-                  <TableCell>Nombre</TableCell>
-                  <TableCell>Alberto Perez</TableCell>
-                </TableRow>
-                
-                <TableRow >
-                  <TableCell>Servicios</TableCell>
-                  <TableCell>
-                    <List>
-                      <ListItem >
-                        <ListItemText primary={`Plomeria`} />
-                      </ListItem>
-                      <ListItem >
-                        <ListItemText primary={`Carpinteria`} />
-                      </ListItem>
-                      <ListItem >
-                        <ListItemText primary={`Jardineria`} />
-                      </ListItem>
-                    </List>
-                  </TableCell>
-                </TableRow>
-                
-                <TableRow >
-                  <TableCell>Zona</TableCell>
-                  <TableCell>Balvanera, Congreso, San Nicolás</TableCell>
-                </TableRow>
 
-              </TableBody>
-            </Table>
+    const image = require('assets/images/jsa-128.jpg'),
+          { classes } = this.props;
+
+    return (
+      <Grid
+        container
+        spacing={8}
+        justify="center"
+        className={classes.container}
+      > {/* Container inside description container */}
+        <Grid item xs={12} sm={4} className={classes.rightContainer}> {/* Photo container */}
+          <Img src={image} alt="profile picture" />
+        </Grid>
+        <Grid item xs={12} sm={8}> {/* Relevant description container */}
+          <Grid  container>
+
+            {/* Interaction buttons */}
+            <Grid item xs={12}>
+              <Grid  container>
+                <Grid item xs={6} sm={6}>
+                  <IconButton aria-label="Favorite" className={classes.button}> {/* Favorite button */}
+                    <FavoriteIcon />
+                  </IconButton>
+                  <IconButton aria-label="ContractCategory" className={classes.button}> {/* TODO button */}
+                    <ContractCategoryIcon color="red"/>
+                  </IconButton>
+                </Grid>
+                <Grid item xs={6} sm={6}> {/* Contact button */}
+                  <Button variant="raised" color="secondary">
+                    Contact Now!
+                  </Button>
+                </Grid>
+              </Grid>
+            </Grid>
+
+            {/* Description services */}
+            <Grid item xs={12}>
+              <DescriptionList
+                direction={'row'}
+                itemXs={12}
+                itemSm={12}
+                fieldXs={6}
+              >
+                <Typography variant="title">Nombre</Typography>
+                <span>Alberto Perez</span>
+
+                <Typography variant="title">Servicios</Typography>
+                <span>
+                  <Grid item xs={12}>
+                    Plomeria
+                  </Grid>
+                  <Grid item xs={12}>
+                    Carpinteria
+                  </Grid>
+                  <Grid item xs={12}>
+                    Jardineria
+                  </Grid>
+                </span>
+
+                <Typography variant="title">Zona</Typography>
+                <span>Balvanera, Congreso, San Nicolás</span>
+              </DescriptionList>
+            </Grid>
+
           </Grid>
         </Grid>
-      </Paper>
+      </Grid>
     );
   }
 }
 
 ProfessionalInformation.propTypes = {
-  professional: PropTypes.object.isRequired
+  professional: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
-export default ProfessionalInformation;
+export default withStyles(styles)(ProfessionalInformation);
