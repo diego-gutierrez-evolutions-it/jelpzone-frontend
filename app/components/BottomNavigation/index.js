@@ -42,27 +42,27 @@ class BottomNav extends React.Component {
       <Paper zDepth={1}>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
           <BottomNavigationItem
-            label="Search"
+            label={<FormattedMessage {...messages.searchIconText} />}
             icon={searchIcon}
             onClick={() => this.select(0)}
           />
           <BottomNavigationItem
-            label="Account"
+            label={<FormattedMessage {...messages.accountIconText} />}
             icon={accountIcon}
             onClick={() => this.select(1)}
           />
           <BottomNavigationItem
-            label="Notifications"
+            label={<FormattedMessage {...messages.notificationIconText} />}
             icon={emailIcon}
             onClick={() => this.select(2)}
           />
           <BottomNavigationItem
-            label="Promotions"
+            label={<FormattedMessage {...messages.promotionIconText} />}
             icon={promotionsIcon}
             onClick={() => this.select(3)}
           />
           <BottomNavigationItem
-            label="Chats"
+            label={<FormattedMessage {...messages.chatIconText} />}
             icon={chatIcon}
             onClick={() => this.select(4)}
           />

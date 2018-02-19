@@ -68,9 +68,15 @@ export class App extends React.Component {
               <Header title={'Jelpzone'} />
 
               <Switch>
-                <Route exact path="/" component={ HomePage } /> {/* TODO: unncomment on prod userIsAuthenticated(HomePage)  */}
-                <Route exact path="/signup" component={ SignupPage } /> {/* TODO: unncomment on prod userIsNotAuthenticated(SignupPage)  */}
-                <Route path="/login" component={ LoginPage } /> {/* TODO: unncomment on prod userIsNotAuthenticated(LoginPage)  */}
+                <Route exact path="/" component={ HomePage } /> {/* TODO: unncomment on prod   */
+                  userIsAuthenticated(HomePage)
+                }
+                <Route exact path="/signup" component={ SignupPage } /> {/* TODO: uncomment on prod */
+                  userIsNotAuthenticated(SignupPage)
+                  }
+                <Route path="/login" component={ LoginPage } /> {/* TODO: unncomment on prod */
+                  userIsNotAuthenticated(LoginPage)
+                }
                 <Route path="" component={NotFoundPage} />
               </Switch>
 

@@ -37,6 +37,12 @@
   "app.containers.SignupPage.emailFieldText":"Correo Electrónico",
   "app.containers.SignupPage.passwordFieldText":"Contraseña",
   "app.containers.SignupPage.userTypeProText":"Quiero ofrecer mis Servicios",
-  "app.containers.SignupPage.userTypeCliText":"Necesito ayuda!"
+  "app.containers.SignupPage.userTypeCliText":"Necesito ayuda!",
+
+  "app.components.BottomNavigation.searchIconText": "Buscar",
+  "app.components.BottomNavigation.accountIconText": "Mi Cuenta",
+  "app.components.BottomNavigation.notificationIconText": "Notificaciones",
+  "app.components.BottomNavigation.promotionIconText":"Promociones",
+  "app.components.BottomNavigation.chatIconText": "Chats"
 
 }
