@@ -9,10 +9,10 @@ import React from 'react';
 
 import BottomNavigation, { BottomNavigationAction } from 'material-ui-next/BottomNavigation';
 
-import RestoreIcon from 'material-ui-icons/Restore';
-import FavoriteIcon from 'material-ui-icons/Favorite';
-import LocationOnIcon from 'material-ui-icons/LocationOn';
-import FolderIcon from 'material-ui-icons/Folder';
+// import RestoreIcon from 'material-ui-icons/Restore';
+// import FavoriteIcon from 'material-ui-icons/Favorite';
+// import LocationOnIcon from 'material-ui-icons/LocationOn';
+// import FolderIcon from 'material-ui-icons/Folder';
 
 import SearchIcon from 'material-ui-icons/Search';
 import AccountIcon from 'material-ui-icons/AccountCircle';
@@ -35,7 +35,6 @@ class BottomNav extends React.Component { // eslint-disable-line react/prefer-st
   };
 
   render() {
-
     const { classes } = this.props;
     const { value } = this.state;
 
@@ -51,7 +50,7 @@ class BottomNav extends React.Component { // eslint-disable-line react/prefer-st
   }
 }
 
-//<FormattedMessage {...messages.header} />
+// <FormattedMessage {...messages.header} />
 
 BottomNav.propTypes = {
 
