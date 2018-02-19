@@ -11,14 +11,14 @@ import deLocaleData from 'react-intl/locale-data/de';
 import { DEFAULT_LOCALE } from '../app/containers/App/constants';
 
 import enTranslationMessages from './translations/en.json';
-import esTranslationMessages from './translations/es.json';
+import deTranslationMessages from './translations/de.json';
 
 addLocaleData(enLocaleData);
-addLocaleData(esLocaleData);
+addLocaleData(deLocaleData);
 
 export const appLocales = [
   'en',
-  'es',
+  'de',
 ];
 
 export const formatTranslationMessages = (locale, messages) => {
@@ -35,5 +35,5 @@ export const formatTranslationMessages = (locale, messages) => {
 
 export const translationMessages = {
   en: formatTranslationMessages('en', enTranslationMessages),
-  es: formatTranslationMessages('es', esTranslationMessages),
+  de: formatTranslationMessages('de', deTranslationMessages),
 };
