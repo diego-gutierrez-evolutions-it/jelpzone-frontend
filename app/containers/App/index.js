@@ -16,6 +16,7 @@ import SignupPage from 'containers/SignupPage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import BottomNav from 'components/BottomNavigation';
+import Header from 'components/Header';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'material-ui-next/styles';
@@ -37,11 +38,13 @@ export default function App() {
         titleTemplate="%s - Jelpzone"
         defaultTitle="Jelpzone"
       >
-        <meta name="description" content="Jelpzone application" />
+        <meta name="description" content="JelpZone" />
       </Helmet>
       <MuiThemeProvider>
         <NewMuiThemeProvider theme={theme}>
           <div className="container">
+
+            <Header />
 
             <Switch>
               <Route exact path="/" component={HomePage} />

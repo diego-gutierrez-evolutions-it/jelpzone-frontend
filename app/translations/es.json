@@ -31,5 +31,12 @@
   "app.containers.SignupPage.reset_button":"Resetear",
   "app.containers.SignupPage.submit_button":"Registrar",
   "jelpzone.utils.LoginForm.error.required_field":"Campo Requerido",
-  "jelzpone.components.ServicesMap.geolocation.getting":"Obteniendo Geolocalización"
+  "jelzpone.components.ServicesMap.geolocation.getting":"Obteniendo Geolocalización",
+  "app.containers.SignupPage.userNameFieldText":"Nombre de Usuario",
+  "app.containers.SignupPage.emailFieldText":"Correo Electrónico",
+  "app.containers.SignupPage.passwordFieldText":"Contraseña",
+  "app.containers.SignupPage.userTypeProText":"Quiero ofrecer mis Servicios",
+  "app.containers.SignupPage.userTypeCliText":"Necesito ayuda!"
+
+
 }

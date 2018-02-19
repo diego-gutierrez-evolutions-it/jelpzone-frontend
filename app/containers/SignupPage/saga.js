@@ -13,36 +13,47 @@ import { makeSelectSignupValues } from './selectors';
 /**
  * Sign up request/response handler
  */
+
 export function* submitForm() {
-  // Select username from store
-  const values = yield select(makeSelectSignupValues());
-  //const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
+  // Select username and password from redux form
+  const values = yield select(makeSelectSigninValues());
+  //TODO: lift this from configuration file
+  const requestURL = 'http://localhost:4000/api/Users';
 
   try {
 
     // Call our request helper (see 'utils/request')
-    //TODO
-    //const repos = yield call(request, requestURL);
-    const error = new Error(400);
-    if(values.username == 'john'){
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: values.username,
+        email: values.email,
+        password: values.password
+      })
+    }
+
+    const user = yield call(request, requestURL, options);
+
+    if (!isNil(user.id)) {
+      yield put(submitLoginFormOk());
+    } else { //TODO: add errors handler
+      const error = new Error(400);
 
       error.response = {
-        "message": "The username already exists, select another one"
-      }
+        message: 'Incorrect user or password',
+      };
       throw error;
-
-    } else if(values.email == 'john@email.com'){
-
-      error.response = {
-        "message": "The email is already registered"
-      }
-      throw error;
-
     }
 
     yield put(submitSignupFormOk());
+
   } catch (err) {
+
     yield put(submitSignupFormFailed(err));
+
   }
 }
 

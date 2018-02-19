@@ -60,33 +60,30 @@ const SignupForm = props => {
     <form onSubmit={handleSubmit}>
       <div>
         <Field
-          name="firstName"
+          name="username"
           component={renderTextField}
-          label="First Name"
+          label={<FormattedMessage {...messages.userNameFieldText} />}
+          validate={required}
         />
       </div>
       <div>
-        <Field name="lastName" component={renderTextField} label="Last Name" />
-      </div>
-      <div>
-        <Field 
-          name="username" 
-          component={renderTextField} 
-          label="Username"
-          validate={required} 
-        />
-      </div>
-      <div>
-        <Field 
-          name="email" 
-          component={renderTextField} 
-          label="Email"
+        <Field
+          name="email"
+          component={renderTextField}
+          label={<FormattedMessage {...messages.emailFieldText} />}
           validate={[required, email]}  />
       </div>
       <div>
+        <Field
+          name="password"
+          component={renderTextField}
+          label={<FormattedMessage {...messages.passwordFieldText} />}
+          validate={required}  />
+      </div>
+      <div>
         <Field name="userType" component={renderRadioGroup} validate={required}>
-          <RadioButton value="0" label="professional" />
-          <RadioButton value="1" label="client" />
+          <RadioButton value="0" label={<FormattedMessage {...messages.userTypeProText} />} />
+          <RadioButton value="1" label={<FormattedMessage {...messages.userTypeCliText} />} />
         </Field>
       </div>
       <div>
@@ -95,12 +92,6 @@ const SignupForm = props => {
             disabled={isSubmitting}
             label={<FormattedMessage {...messages.submitButtonText} />}
             primary
-          />
-        <RaisedButton
-            disabled={isSubmitting}
-            label={<FormattedMessage {...messages.resetButtonText} />}
-            onClick={reset}
-            secondary
           />
       </div>
     </form>
