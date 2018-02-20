@@ -14,6 +14,7 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 
 import HomePage from 'containers/HomePage/Loadable';
 import SignupPage from 'containers/SignupPage/Loadable';
@@ -49,6 +50,7 @@ export class App extends React.Component {
 
   componentWillMount() {
     {/* TODO: unncomment on prod this.props.loadCurrentUser();  */}
+    this.props.loadCurrentUser();
   }
 
   render() {
@@ -66,12 +68,15 @@ export class App extends React.Component {
 
               <Header title={'Jelpzone'} />
 
-              <Switch>
-                <Route exact path="/" component={ HomePage } /> {/* TODO: unncomment on prod userIsAuthenticated(HomePage)  */}
-                <Route exact path="/signup" component={ SignupPage } /> {/* TODO: unncomment on prod userIsNotAuthenticated(SignupPage)  */}
-                <Route path="/login" component={ LoginPage } /> {/* TODO: unncomment on prod userIsNotAuthenticated(LoginPage)  */}
-                <Route path="" component={NotFoundPage} />
-              </Switch>
+              {/* Fix - We put ConnectedRouter inside App for redirection works */}
+              <ConnectedRouter history={this.props.history}>
+                <Switch>
+                  <Route exact path="/" component={ userIsAuthenticated(HomePage) } /> {/* TODO: unncomment on prod userIsAuthenticated(HomePage)  */}
+                  <Route exact path="/signup" component={ userIsNotAuthenticated(SignupPage) } /> {/* TODO: unncomment on prod userIsNotAuthenticated(SignupPage)  */}
+                  <Route path="/login" component={ userIsNotAuthenticated(LoginPage) } /> {/* TODO: unncomment on prod userIsNotAuthenticated(LoginPage)  */}
+                  <Route path="" component={NotFoundPage} />
+                </Switch>
+              </ConnectedRouter>
 
               <BottomNav />
 
@@ -84,6 +89,7 @@ export class App extends React.Component {
 }
 
 HomePage.propTypes = {
+  history: PropTypes.object.isRequired,
   loadCurrentUser: PropTypes.func,
 }
 
