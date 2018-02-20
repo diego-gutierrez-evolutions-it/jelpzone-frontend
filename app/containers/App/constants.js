@@ -28,4 +28,4 @@ export const DEFAULT_LOCALE = 'en';
  * Follow this format:
  * export const URL_RELATIVE_PATH_RESOURCE = 'relative/path/resource';
  */
-export const URL_USER_FROM_TOKEN = 'ExtUsers/login';
+export const URL_USER_FROM_TOKEN = 'ExtUsers/';

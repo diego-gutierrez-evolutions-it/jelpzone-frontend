@@ -9,13 +9,13 @@ import { isNil } from 'lodash';
 import { FormattedMessage } from 'react-intl';
 
 import request from 'utils/request';
-import { setUser, getUser } from 'utils/navigatorStore';
+import { setUser } from 'utils/navigatorStore';
 
 import { makeSelectSigninValues } from './selectors';
 
 import { AUTH_USER } from 'containers/App/constants';
 import { URL_USER_LOGIN } from './constants';
-import { submitLoginFormOk, submitLoginFormFailed } from 'containers/App/actions';
+import { submitLoginFormOk, submitLoginFormFailed, loadingUser } from 'containers/App/actions';
 
 /**
  * Sign up request/response handler
@@ -26,7 +26,7 @@ export function* submitForm() {
   const values = yield select(makeSelectSigninValues());
 
   // lift this from configuration file
-  const requestURL = process.env.config.jelpzoneApi.url+URL_USER_LOGIN;
+  const requestURL = process.env.config.jelpzoneApi.url + URL_USER_LOGIN;
 
   try {
 
@@ -47,11 +47,10 @@ export function* submitForm() {
     if (!isNil(user.id)) {
 
       // save token into session storage
-      // TODO: modify with the real value from api rest
       setUser(user);
 
-      // let other components know that we got user and things are fine
-      yield put(submitLoginFormOk(user));
+      // loading user information from global component App
+      yield put(loadingUser());
 
     } else { //TODO: add errors handler
       const error = new Error(400);

@@ -29,34 +29,32 @@ import { makeSelectSigninValues } from './selectors';
 export function* loadCurrentUserWatcher() {
 
   let user = getUser(),
-      token = user.id;
+      token = user.id,
+      userId = user.userId;
 
   if(!token || token === '') {//if there is no token, dont bother
     return;
   }
 
   // lift this from configuration file
-  const requestURL = process.env.config.jelpzoneApi.url+URL_USER_FROM_TOKEN;
+  const requestURL = process.env.config.jelpzoneApi.url + URL_USER_FROM_TOKEN + userId;
 
   try {
 
     // Call our request helper (see 'utils/request')
     const options = {
-      method: 'POST',
+      method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': token
       },
-      body: JSON.stringify({
-        token: token
-      })
     }
 
     const user = yield call(request, requestURL, options);
 
     if (!isNil(user.id)) {
 
-      //store token 
-      setUser(user);
+      // let other components know that we got user and things are fine
       yield put(loadingUserOk(user));
 
     }

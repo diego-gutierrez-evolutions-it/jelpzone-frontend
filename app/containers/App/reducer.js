@@ -11,6 +11,7 @@
  */
 
 import { fromJS } from 'immutable';
+import { getUser } from 'utils/navigatorStore';
 
 import {
   LOAD_CURRENT_USER,
@@ -25,7 +26,7 @@ import {
 
 // The initial state of the App
 const initialState = fromJS({
-  currentUser: null,
+  currentUser: getUser(),
   loading: false,
   error: false,
   authToken: null,
