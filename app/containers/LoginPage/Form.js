@@ -9,7 +9,7 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectLoading } from 'containers/App/selectors';
 
 let Form = reduxForm({
-  form: 'login',
+  form: 'loginForm',
 })(LoginForm)
 
 const mapStateToProps = createStructuredSelector({

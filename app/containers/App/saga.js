@@ -29,8 +29,8 @@ import { makeSelectSigninValues } from './selectors';
 export function* loadCurrentUserWatcher() {
 
   let user = getUser(),
-      token = user.id,
-      userId = user.userId;
+      token = (user !== null)? user.id:false,
+      userId = (user !== null)? user.userId:false;
 
   if(!token || token === '') {//if there is no token, dont bother
     return;

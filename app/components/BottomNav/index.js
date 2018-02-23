@@ -5,7 +5,7 @@
 */
 
 import React from 'react';
-// import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import BottomNavigation, { BottomNavigationAction } from 'material-ui-next/BottomNavigation';
 
@@ -30,8 +30,14 @@ class BottomNav extends React.Component { // eslint-disable-line react/prefer-st
     value: 'search',
   };
 
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  };
+
   handleChange = (event, value) => {
     this.setState({ value });
+    this.props.history.push(value);
   };
 
   render() {
@@ -50,10 +56,8 @@ class BottomNav extends React.Component { // eslint-disable-line react/prefer-st
   }
 }
 
-// <FormattedMessage {...messages.header} />
-
 BottomNav.propTypes = {
-
+  history: PropTypes.object.isRequired,
 };
 
 export default BottomNav;

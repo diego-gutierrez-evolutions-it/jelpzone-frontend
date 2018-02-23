@@ -35,6 +35,9 @@ const initialState = fromJS({
 function authReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_CURRENT_USER:
+      return state // Fix to unblock LOG IN button on Login Form
+        .set('loading', false)
+        .set('error', false);
     case AUTH_USER:
       return state
         .set('loading', true)

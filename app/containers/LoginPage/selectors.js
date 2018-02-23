@@ -5,7 +5,7 @@
 import { createSelector } from 'reselect';
 import { formValueSelector } from 'redux-form/immutable';
 
-const formSelector = formValueSelector('login');
+const formSelector = formValueSelector('loginForm');
 const valuesSelector = (state) => formSelector(state, 'email', 'password');
 
 /**

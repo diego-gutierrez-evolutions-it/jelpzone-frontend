@@ -26,9 +26,9 @@ import saga from './saga';
 export class SignupPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
 
   componentDidUpdate() {
-    /*if (this.props.shouldRedirect) {
+    if (this.props.shouldRedirect) {
       this.props.history.push('/');
-    }*/
+    }
   }
 
   render() {

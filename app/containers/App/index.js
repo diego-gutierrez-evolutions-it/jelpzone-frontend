@@ -16,6 +16,7 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 
+import AccountPage from 'containers/AccountPage/Loadable';
 import HomePage from 'containers/HomePage/Loadable';
 import SignupPage from 'containers/SignupPage/Loadable';
 import LoginPage from 'containers/LoginPage/Loadable';
@@ -49,7 +50,6 @@ export class App extends React.Component {
   }
 
   componentWillMount() {
-    {/* TODO: unncomment on prod this.props.loadCurrentUser();  */}
     this.props.loadCurrentUser();
   }
 
@@ -71,14 +71,15 @@ export class App extends React.Component {
               {/* Fix - We put ConnectedRouter inside App for redirection works */}
               <ConnectedRouter history={this.props.history}>
                 <Switch>
-                  <Route exact path="/" component={ userIsAuthenticated(HomePage) } /> {/* TODO: unncomment on prod userIsAuthenticated(HomePage)  */}
-                  <Route exact path="/signup" component={ userIsNotAuthenticated(SignupPage) } /> {/* TODO: unncomment on prod userIsNotAuthenticated(SignupPage)  */}
-                  <Route path="/login" component={ userIsNotAuthenticated(LoginPage) } /> {/* TODO: unncomment on prod userIsNotAuthenticated(LoginPage)  */}
+                  <Route exact path="/" component={ userIsAuthenticated(HomePage) } />
+                  <Route exact path="/account" component={ userIsAuthenticated(AccountPage) } />
+                  <Route exact path="/signup" component={ userIsNotAuthenticated(SignupPage) } />
+                  <Route path="/login" component={ userIsNotAuthenticated(LoginPage) } />
                   <Route path="" component={NotFoundPage} />
                 </Switch>
               </ConnectedRouter>
 
-              <BottomNav />
+              <BottomNav history={this.props.history}/>
 
             </div>
           </NewMuiThemeProvider>

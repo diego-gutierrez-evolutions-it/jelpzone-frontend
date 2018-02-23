@@ -19,4 +19,4 @@ export const CHANGE_PASSWORD = 'jelpzone/Login/CHANGE_PASSWORD';
  * Follow this format:
  * export const URL_RELATIVE_PATH_RESOURCE = 'relative/path/resource';
  */
-export const URL_USER_LOGIN = 'ExtUsers/login';
+export const URL_USER_LOGIN = 'Users/login';
