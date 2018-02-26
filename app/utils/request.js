@@ -70,8 +70,20 @@ function catchError(err) {
  * @return {object}           The response data
  */
 export default function request(url, options) {
+
+  if(options && options.queryParams) {
+    url += (url.indexOf('?') === -1 ? '?' : '&') + queryParams(options.queryParams);
+    delete options.queryParams;
+  }
+
   return fetch(url, options)
     .then(checkStatus)
     .then(parseJSON)
     .catch(catchError);
+}
+
+function queryParams(params) {
+  return Object.keys(params)
+    .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+    .join('&');
 }

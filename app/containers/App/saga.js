@@ -48,6 +48,9 @@ export function* loadCurrentUserWatcher() {
         'Content-Type': 'application/json',
         'Authorization': token
       },
+      queryParams:{
+        filter: "{\"include\": \"professions\"}"
+      }
     }
 
     const user = yield call(request, requestURL, options);

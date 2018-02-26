@@ -16,8 +16,10 @@ import Card from 'material-ui-next/Card';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
+
+import { makeSelectCurrentUser } from 'containers/App/selectors';
+import { makeSelectProfessionsList} from './selectors';
 import { loadProfessionalsList } from './actions';
-import { makeSelectAccountValues, makeSelectProfessionsList} from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -40,7 +42,7 @@ export class AccountPage extends React.Component { // eslint-disable-line react/
       <Card>
         <Form 
           handleSubmit={onSubmitForm} 
-          values={values}
+          accountValues={values}
           professions={professions}
         />
 
@@ -63,7 +65,7 @@ AccountPage.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   professions: makeSelectProfessionsList(),
-  values: makeSelectAccountValues(),
+  values: makeSelectCurrentUser(),
 });
 
 function mapDispatchToProps(dispatch) {

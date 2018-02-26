@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
+import { map } from 'lodash';
 
 import { withStyles } from 'material-ui-next/styles';
 import TextField from 'material-ui-next/TextField';
@@ -99,6 +100,10 @@ export class AccountForm extends React.Component {
     professions: [],
   };
 
+  componentDidMount() {
+    this.setState({ professions: map(this.props.accountValues.professions,'name') });
+  }
+
   handleChange = (event) => {
     this.setState({ professions: event.target.value });
   };
@@ -112,6 +117,7 @@ export class AccountForm extends React.Component {
       classes,
       theme,
       professions,
+      accountValues,
     } = this.props;
 
     return (
@@ -121,7 +127,7 @@ export class AccountForm extends React.Component {
             name="firstName"
             component={renderTextField}
             label="First Name"
-            defaultValue="hola"
+            defaultValue={accountValues.firstName}
           />
         </div>
         <div>
@@ -129,6 +135,7 @@ export class AccountForm extends React.Component {
             name="lastName" 
             component={renderTextField} 
             label="Last Name" 
+            defaultValue={accountValues.lastName}
           />
         </div>
         <div>
@@ -136,6 +143,7 @@ export class AccountForm extends React.Component {
             name="address" 
             component={renderTextField} 
             label="Address"
+            defaultValue={accountValues.address}
           />
         </div>
         <div>
@@ -143,7 +151,8 @@ export class AccountForm extends React.Component {
             name="email" 
             component={renderTextField} 
             label="Email"
-            disabled  />
+            disabled
+            defaultValue={accountValues.email}  />
         </div>
         <div>
           <SelectField
@@ -205,8 +214,8 @@ AccountForm.propTypes = {
   handleSubmit: PropTypes.func, 
   reset: PropTypes.func, 
   isSubmitting: PropTypes.bool,
-  professions: PropTypes.array.isRequired,
-  values: PropTypes.shape(
+  professions: PropTypes.any.isRequired,
+  accountValues: PropTypes.shape(
     { firstName: PropTypes.string },
     { lastName: PropTypes.string },
     { address: PropTypes.string },
