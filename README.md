@@ -1,3 +1,13 @@
+How to Create Application Server Keys
+
+You can create a public and private set of application server keys by visiting web-push-codelab.glitch.me or you can use the web-push command line to generate keys by doing the following:
+
+$ npm install -g web-push
+$ web-push generate-vapid-keys
+
+
+
+
 <img src="https://raw.githubusercontent.com/react-boilerplate/react-boilerplate-brand/master/assets/banner-metal-optimized.jpg" alt="react boilerplate banner" align="center" />
 
 <br />
