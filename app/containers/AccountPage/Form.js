@@ -51,15 +51,16 @@ const renderRadioGroup = ({ input, children, meta }) => {
   );
 }
 
-const renderSelectChipField = ({ input, label, meta: { touched, error }, children, defaultValue, ...custom }) => {
+const renderSelectChipField = ({ input, label, meta: { touched, error }, children, defaultValue, inputField,...custom }) => {
   return (
     <SelectField
       label={label}
       error={touched && error}
       {...input}
+      input={inputField}
       value={defaultValue}
-      onChange={(event, index, value) => input.onChange(value)}
       children={children}
+      {...custom}
     />
   );
 }
@@ -155,19 +156,20 @@ export class AccountForm extends React.Component {
             defaultValue={accountValues.email}  />
         </div>
         <div>
-          <SelectField
+          <Field 
+            component={renderSelectChipField}
             name="professions" 
             label="professions"
             multiple
-            value={this.state.professions}
-            onChange={this.handleChange}
-            input={<Input id="select-multiple-chip" />}
+            defaultValue={this.state.professions}
+            onChange={this.handleChange.bind(this)}
+            inputField={<Input id="select-multiple-chip" />}
             MenuProps={MenuProps}
             renderValue={selected => (
               <div className={classes.chips}>
                 {selected.map(value => <Chip key={value} label={value} className={classes.chip} />)}
               </div>
-            )}
+            )} 
           >
             {professions.map(profession => (
               <MenuItem
@@ -183,7 +185,7 @@ export class AccountForm extends React.Component {
                 {profession.name}
               </MenuItem>
             ))}
-          </SelectField>
+          </Field>
         </div>
         <div>
           <Button

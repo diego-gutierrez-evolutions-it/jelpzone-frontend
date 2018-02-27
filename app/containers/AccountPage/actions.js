@@ -18,7 +18,10 @@
 import {
   LOAD_ALL_PROFESSIONS,
   LOAD_ALL_PROFESSIONS_SUCCESS,
-  LOAD_ALL_PROFESSIONS_ERROR
+  LOAD_ALL_PROFESSIONS_ERROR,
+  ACCOUNT_UPDATE,
+  ACCOUNT_UPDATE_OK,
+  ACCOUNT_UPDATE_FAILED
 } from './constants';
 
 /**
@@ -52,6 +55,40 @@ export function professionalsLoaded(data) {
 export function professionalsLoadingError(err) {
   return {
     type: LOAD_ALL_PROFESSIONS_ERROR,
+    payload: err
+  }
+}
+
+/**
+ * Submit de account update form, this action starts the request saga
+ *
+ * @return {object} An action object with a type of ACCOUNT_UPDATE
+ */
+export function submitUpdateAccountForm() {
+  return {
+    type: ACCOUNT_UPDATE,
+  };
+}
+
+/**
+ * Submit the form ok
+ *
+ * @return {object}    An action object with a type of ACCOUNT_UPDATE_OK
+ */
+export function submitUpdateAccountFormOk() {
+  return {
+    type: ACCOUNT_UPDATE_OK,
+  }
+}
+
+/**
+ * Submit the form failed
+ *
+ * @return {object}    An action object with a type of ACCOUNT_UPDATE_FAILED
+ */
+export function submitUpdateAccountFormFailed(err) {
+  return {
+    type: ACCOUNT_UPDATE_FAILED,
     payload: err
   }
 }

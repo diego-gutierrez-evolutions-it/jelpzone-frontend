@@ -16,10 +16,10 @@ import Card from 'material-ui-next/Card';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
-
+import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
 import { makeSelectCurrentUser } from 'containers/App/selectors';
-import { makeSelectProfessionsList} from './selectors';
-import { loadProfessionalsList } from './actions';
+import { makeSelectProfessionsList, makeSelectSuccessfullUpdate } from './selectors';
+import { loadProfessionalsList, submitUpdateAccountForm } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -36,7 +36,8 @@ export class AccountPage extends React.Component { // eslint-disable-line react/
     const { 
       onSubmitForm,
       values,
-      professions
+      professions,
+      updatedOk
     } = this.props;
     return (
       <Card>
@@ -46,10 +47,10 @@ export class AccountPage extends React.Component { // eslint-disable-line react/
           professions={professions}
         />
 
-        {/*<SnackbarInformationMessage
-          message={messageError}
-          open={error}
-        />*/}
+        <SnackbarInformationMessage
+          message={<FormattedMessage {...messages.successUpdate} />}
+          open={updatedOk}
+        />
 
       </Card>
     );
@@ -61,11 +62,13 @@ AccountPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
+  updatedOk: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   professions: makeSelectProfessionsList(),
   values: makeSelectCurrentUser(),
+  updatedOk: makeSelectSuccessfullUpdate(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -73,7 +76,7 @@ function mapDispatchToProps(dispatch) {
     dispatch,
     onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      //dispatch(submitSignupForm(evt));
+      dispatch(submitUpdateAccountForm(evt));
     },
     beforeInit: () => {
       dispatch(loadProfessionalsList());

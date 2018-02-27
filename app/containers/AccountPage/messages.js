@@ -14,4 +14,8 @@ export default defineMessages({
   	id: 'app.containers.AccountPage.reset_button',
     defaultMessage: 'Undo',
   },
+  successUpdate: {
+    id: 'app.containers.AccountPage.success_update',
+    defaultMessage: 'Your account has been successfully updated',
+  },
 });
