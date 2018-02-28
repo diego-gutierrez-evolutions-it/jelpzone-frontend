@@ -11,7 +11,7 @@ import PropTypes from 'prop-types'
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-import Snackbar from 'material-ui/Snackbar';
+import Snackbar from 'material-ui-next/Snackbar';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -27,7 +27,7 @@ class SnackbarInformationMessage extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState){
-    if(!this.state.open && !nextState.open){
+    if(this.state.open != nextProps.open){
       this.setState({
         open: this.props.open,
         message: this.props.message
@@ -48,7 +48,7 @@ class SnackbarInformationMessage extends React.Component {
           open={this.state.open}
           message={this.state.message}
           autoHideDuration={this.state.autoHideDuration}
-          onRequestClose={this.handleRequestClose} />
+          onClose={this.handleRequestClose} />
       
 
     );
