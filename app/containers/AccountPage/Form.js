@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
-import { map, filter, indexOf, first } from 'lodash';
+import { map, filter, indexOf, first, isUndefined } from 'lodash';
 
 import { withStyles } from 'material-ui-next/styles';
 import TextField from 'material-ui-next/TextField';
@@ -168,10 +168,12 @@ export class AccountForm extends React.Component {
             renderValue={selected => (
               <div className={classes.chips}>
                 {selected.map(value => {
-                  const filtered = first(filter(this.props.professions, (v) => value == v.id));
-                  return (
-                    <Chip key={value} label={filtered.name} className={classes.chip} />
-                  )
+                  if(this.props.professions.length){
+                    const filtered = first(filter(this.props.professions, (v) => (!isUndefined(v) && value == v.id)));
+                    return (
+                      <Chip key={value} label={filtered.name} className={classes.chip} />
+                    )
+                  }
                 })}
               </div>
             )} 
