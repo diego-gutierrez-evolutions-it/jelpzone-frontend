@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { FormattedMessage } from 'react-intl';
-import { map } from 'lodash';
+import { map, filter, indexOf, first } from 'lodash';
 
 import { withStyles } from 'material-ui-next/styles';
 import TextField from 'material-ui-next/TextField';
@@ -102,11 +102,11 @@ export class AccountForm extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ professions: map(this.props.accountValues.professions,'name') });
+    this.setState({ professions: this.props.accountValues.professions });
   }
 
   handleChange = (event) => {
-    this.setState({ professions: event.target.value });
+    this.setState({ professions: filter(this.props.professions, (v) => indexOf(event.target.value, v.id) >= 0) });
   };
 
   render(){
@@ -161,20 +161,25 @@ export class AccountForm extends React.Component {
             name="professions" 
             label="professions"
             multiple
-            defaultValue={this.state.professions}
+            defaultValue={map(this.state.professions,'id')}
             onChange={this.handleChange.bind(this)}
             inputField={<Input id="select-multiple-chip" />}
             MenuProps={MenuProps}
             renderValue={selected => (
               <div className={classes.chips}>
-                {selected.map(value => <Chip key={value} label={value} className={classes.chip} />)}
+                {selected.map(value => {
+                  const filtered = first(filter(this.props.professions, (v) => value == v.id));
+                  return (
+                    <Chip key={value} label={filtered.name} className={classes.chip} />
+                  )
+                })}
               </div>
             )} 
           >
             {professions.map(profession => (
               <MenuItem
                 key={profession.id}
-                value={profession.name}
+                value={profession.id}
                 style={{
                   fontWeight:
                     this.state.professions.indexOf(profession) === -1

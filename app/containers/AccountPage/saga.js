@@ -1,6 +1,6 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 
-import { isNil } from 'lodash';
+import { isNil, isUndefined } from 'lodash';
 
 import { 
   LOAD_ALL_PROFESSIONS, 
