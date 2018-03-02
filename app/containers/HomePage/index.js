@@ -195,7 +195,7 @@ export class HomePage extends React.Component {
         value: 2,
       },
     ],
-          { classes } = this.props;
+    { classes } = this.props;
 
     return (
       <div className={classes.root} >
@@ -204,9 +204,6 @@ export class HomePage extends React.Component {
             <ServicesMap marks={this.state.professionals}
               onMarkerClick={this.props.toggleExtraInformation}
             >
-              <div className="left-container-md left-container-xs"  >
-                <VerticalIconsMenu items={menuItems} onItemClick={(value) => console.log(value)} />
-              </div>
             </ServicesMap>
           </Grid>
           <Grid item xs={12} sm={5}> {/* Container professionals list */}
