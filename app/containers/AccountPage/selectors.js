@@ -36,6 +36,11 @@ export const makeSelectAccountValues = () => createSelector(
 	}
 );
 
+export const makeSelectUploadFiles = () => createSelector(
+  selectAccountPageDomain,
+  (accountState) => accountState.get('uploadFiles')
+);
+
 /**
  * Default selector used by AccountPage
  */

@@ -18,7 +18,7 @@ import {
 import request from 'utils/request';
 import { getUser } from 'utils/navigatorStore';
 
-import { makeSelectAccountValues } from './selectors';
+import { makeSelectAccountValues, makeSelectUploadFiles } from './selectors';
 
 /**
  * Professionals list request/response handler
@@ -42,12 +42,22 @@ export function* getProfessionalsList() {
  */
 export function* submitForm() {
   // Select username from store
-  const values = yield select(makeSelectAccountValues());
+  const values = yield select(makeSelectAccountValues()),
+        pictures = yield select(makeSelectUploadFiles());
 
   // lift this from configuration file
   const requestURL = process.env.config.jelpzoneApi.url + URL_PUT_ACCOUNT_UPDATE + '/' + getUser().userId;
 
   try {
+
+    // TODO**: handle errors of a better way
+    if(pictures.size >= 4){
+      const error = new Error(400);
+      error.response = {
+        message: "You can\'t load more than 4 pictures"
+      }
+      throw error;
+    }
 
     // Call our request helper (see 'utils/request')
     const options = {
@@ -71,6 +81,7 @@ export function* submitForm() {
 
     } else{
 
+      // TODO**: handle errors of a better way
       const error = new Error(500);
       error.response = {
         message: "Esto es un error no personalizado"
@@ -80,6 +91,7 @@ export function* submitForm() {
     }
 
   } catch (err) {
+    console.log(err)
     yield put(submitUpdateAccountFormFailed(err));
   }
 }

@@ -14,6 +14,8 @@ export const ACCOUNT_UPDATE = 'jelpzone/Account/ACCOUNT_UPDATE';
 export const ACCOUNT_UPDATE_OK = 'jelpzone/Account/ACCOUNT_UPDATE_OK';
 export const ACCOUNT_UPDATE_FAILED = 'jelpzone/Account/ACCOUNT_UPDATE_FAILED';
 
+export const LOAD_DROPPED_FILES = 'jelpzone/Account/LOAD_DROPPED_FILES';
+
 /*
  * Relative url configuration
  * We define only one relative path for each metod

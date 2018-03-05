@@ -21,7 +21,8 @@ import {
   LOAD_ALL_PROFESSIONS_ERROR,
   ACCOUNT_UPDATE,
   ACCOUNT_UPDATE_OK,
-  ACCOUNT_UPDATE_FAILED
+  ACCOUNT_UPDATE_FAILED,
+  LOAD_DROPPED_FILES,
 } from './constants';
 
 /**
@@ -90,5 +91,17 @@ export function submitUpdateAccountFormFailed(err) {
   return {
     type: ACCOUNT_UPDATE_FAILED,
     payload: err
+  }
+}
+
+/**
+ * On drop files, load them on store
+ *
+ * @return {object}    An action object with a type of LOAD_DROPPED_FILES
+ */
+export function loadDroppedFiles(files) {
+  return {
+    type: LOAD_DROPPED_FILES,
+    payload: files
   }
 }

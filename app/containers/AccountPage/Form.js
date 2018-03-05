@@ -195,6 +195,9 @@ export class AccountForm extends React.Component {
           </Field>
         </div>
         <div>
+          {this.props.children}
+        </div>
+        <div>
           <Button
             variant="raised"
             disabled={isSubmitting}

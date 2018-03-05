@@ -11,20 +11,38 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 
+import Avatar from 'material-ui-next/Avatar';
 import Card from 'material-ui-next/Card';
+import { withStyles } from 'material-ui-next/styles';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 
+import ImageUpload from 'components/ImageUpload';
 import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
 import { makeSelectCurrentUser } from 'containers/App/selectors';
-import { makeSelectProfessionsList, makeSelectSuccessfullUpdate } from './selectors';
-import { loadProfessionalsList, submitUpdateAccountForm } from './actions';
+import { makeSelectProfessionsList, makeSelectSuccessfullUpdate, makeSelectUploadFiles } from './selectors';
+import { loadProfessionalsList, submitUpdateAccountForm, loadDroppedFiles } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
 
 import Form from './Form';
+
+const styles = {
+  row: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  avatar: {
+    margin: 10,
+  },
+  bigAvatar: {
+    margin: 10,
+    width: 45,
+    height: 45,
+  },
+};
 
 export class AccountPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -32,12 +50,18 @@ export class AccountPage extends React.Component { // eslint-disable-line react/
     this.props.beforeInit();
   }
 
+  onDrop(files){
+    this.props.onDropFiles(files);
+  }
+
   render() {
     const { 
       onSubmitForm,
       values,
       professions,
-      updatedOk
+      updatedOk,
+      previewUploadedFiles,
+      classes
     } = this.props;
     return (
       <Card>
@@ -45,7 +69,22 @@ export class AccountPage extends React.Component { // eslint-disable-line react/
           handleSubmit={onSubmitForm} 
           accountValues={values}
           professions={professions}
-        />
+        >
+          <ImageUpload 
+            onDrop={this.onDrop.bind(this)}
+            errorMessage={(previewUploadedFiles.size > 4)? 'You can\'t load more than 4 pictures':null}
+          >
+            <div className={classes.row}>
+              {previewUploadedFiles.map((previewUploadedFile, index) => (
+                <Avatar
+                  key={index}
+                  src={previewUploadedFile.preview}
+                  className={classes.bigAvatar}
+                />
+              ))}
+            </div>
+          </ImageUpload>
+        </Form>
 
         <SnackbarInformationMessage
           message={<FormattedMessage {...messages.successUpdate} />}
@@ -58,14 +97,20 @@ export class AccountPage extends React.Component { // eslint-disable-line react/
 }
 
 AccountPage.propTypes = {
+  previewUploadedFiles: PropTypes.object.isRequired,
   beforeInit: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
+  onDropFiles: PropTypes.func.isRequired,
   values: PropTypes.object.isRequired,
   updatedOk: PropTypes.bool.isRequired,
+  classes: PropTypes.object.isRequired,
 };
 
+AccountPage = withStyles(styles)(AccountPage);
+
 const mapStateToProps = createStructuredSelector({
+  previewUploadedFiles: makeSelectUploadFiles(),
   professions: makeSelectProfessionsList(),
   values: makeSelectCurrentUser(),
   updatedOk: makeSelectSuccessfullUpdate(),
@@ -81,6 +126,9 @@ function mapDispatchToProps(dispatch) {
     beforeInit: () => {
       dispatch(loadProfessionalsList());
     },
+    onDropFiles: (files) => {
+      dispatch(loadDroppedFiles(files));
+    }
   };
 }
 
