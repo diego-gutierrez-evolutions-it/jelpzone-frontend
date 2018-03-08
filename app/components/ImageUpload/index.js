@@ -31,7 +31,11 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
     return (
       <Card className={classes.card}>
         <CardContent>
-          <Dropzone onDrop={this.onDrop.bind(this)} disabled={this.props.disabled? this.props.disabled:false}>
+          <Dropzone 
+            accept="image/jpeg, image/png"
+            onDrop={this.onDrop.bind(this)} 
+            disabled={this.props.disabled? this.props.disabled:false}
+          >
             <p>Try dropping some files here, or click to select files to upload.</p>
           </Dropzone>
           {this.props.warningMessage}

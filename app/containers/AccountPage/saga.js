@@ -43,7 +43,7 @@ export function* getProfessionalsList() {
 export function* submitForm() {
   // Select username from store
   const values = yield select(makeSelectAccountValues()),
-        pictures = yield select(makeSelectUploadFiles());
+        files = yield select(makeSelectUploadFiles());
 
   // lift this from configuration file
   const requestURL = process.env.config.jelpzoneApi.url + URL_PUT_ACCOUNT_UPDATE + '/' + getUser().userId;
@@ -51,7 +51,7 @@ export function* submitForm() {
   try {
 
     // TODO**: handle errors of a better way
-    if(pictures.size >= 4){
+    if(files.size >= 4){
       const error = new Error(400);
       error.response = {
         message: "You can\'t load more than 4 pictures"
@@ -76,6 +76,18 @@ export function* submitForm() {
     const user = yield call(request, requestURL, options);
 
     if(!isNil(user.id)){
+
+      let data = new FormData();
+      files.forEach(file => {
+        data.append('file', file);
+      })
+
+      const options = {
+        method: 'POST',
+        body: data
+      };
+
+      let filesResponse = yield call(request, process.env.config.jelpzoneApi.url + 'Users/upload', options);
 
       yield put(submitUpdateAccountFormOk());
 
