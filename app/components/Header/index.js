@@ -10,15 +10,12 @@ import { withStyles } from 'material-ui-next/styles';
 import AppBar from 'material-ui-next/AppBar';
 import Toolbar from 'material-ui-next/Toolbar';
 import Typography from 'material-ui-next/Typography';
-import Button from 'material-ui-next/Button';
 import IconButton from 'material-ui-next/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import Menu, { MenuItem } from 'material-ui-next/Menu';
 
 import AccountCircle from 'material-ui-icons/AccountCircle';
 import LocaleToggle from 'containers/LocaleToggle';
-
-import grey from 'material-ui-next/colors/grey';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
@@ -55,14 +52,13 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
     // const { title, rightElement } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
-    const white = grey[50];
 
     return (
       <div className={classes.root} >
-        <AppBar position="fixed">
+        <AppBar position="static">
           <Toolbar>
             <IconButton aria-label="Menu" className={classes.menuButton} >
-              <MenuIcon color="white"/>
+              <MenuIcon color="white" />
             </IconButton>
             <Typography type="title" color="inherit" style={styles.flex}>
               JelpZone

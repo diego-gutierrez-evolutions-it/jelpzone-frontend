@@ -8,11 +8,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Map, TileLayer } from 'react-leaflet';
 import { geolocated } from 'react-geolocated';
+
 import { divIcon } from 'leaflet';
 
 import map from 'lodash/map';
 
-import FontIcon from 'material-ui/FontIcon';
 import blue from 'material-ui-next/colors/blue';
 import red from 'material-ui-next/colors/red';
 import green from 'material-ui-next/colors/green';
@@ -62,7 +62,7 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
       id={'mark-me'}
     />
 
-    {
+     {
       map(marks, (mark) => {
         const { classNames } = mark;
 

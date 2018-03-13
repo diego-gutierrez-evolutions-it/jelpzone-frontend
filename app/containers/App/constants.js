@@ -19,7 +19,7 @@ export const LOGOUT_USER = 'jelpzone/App/LOGOUT_USER';
 export const LOGOUT_USER_SUCCESS = 'jelpzone/App/LOGOUT_USER_SUCCESS';
 export const LOGOUT_USER_ERROR = 'jelpzone/App/LOGOUT_USER_ERROR';
 
-export const DEFAULT_LOCALE = 'en';
+export const DEFAULT_LOCALE = 'es';
 
 /*
  * Relative url configuration

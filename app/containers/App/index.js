@@ -40,24 +40,24 @@ const AppWrapper = styled.div`
 
 const theme = createMuiTheme({
   palette: {
-      primary: {
-        main: '#d80e0e',
-      },
-      secondary: {
-        main: '#0ea1d2',
-      },
-      action: {
-        main: '#ff3d00',
-      },
-      contrast: {
-        main: '#0ea1d2',
-      },
-      disabled: {
-        main: '#b0bec5',
-      },
-      error: {
-        main: '#0ea1d2',
-      },
+    primary: {
+      main: '#d80e0e',
+    },
+    secondary: {
+      main: '#0ea1d2',
+    },
+    action: {
+      main: '#ff3d00',
+    },
+    contrast: {
+      main: '#0ea1d2',
+    },
+    disabled: {
+      main: '#b0bec5',
+    },
+    error: {
+      main: '#0ea1d2',
+    },
   },
 });
 

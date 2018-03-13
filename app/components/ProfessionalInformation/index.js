@@ -11,13 +11,19 @@ import Grid from 'material-ui-next/Grid';
 import Paper from 'material-ui-next/Paper';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui-next/Table';
 import List, { ListItem, ListItemText } from 'material-ui-next/List';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Avatar from 'material-ui-next/Avatar';
+import Chip from 'material-ui-next/Chip';
+
 import { withStyles } from 'material-ui-next/styles';
 import Typography from 'material-ui-next/Typography';
 
 import Button from 'material-ui-next/Button';
 import IconButton from 'material-ui-next/IconButton';
-import FavoriteIcon from 'material-ui-icons/FavoriteBorder';
-import ContractCategoryIcon from 'material-ui-icons/DoNotDisturbOff';
+import FavoriteIcon from 'material-ui-icons/Favorite';
+import CallIcon from 'material-ui-icons/Phone';
+import MailIcon from 'material-ui-icons/MailOutline';
+import WorkIcon from 'material-ui-icons/Business';
 
 import Img from 'components/Img';
 import DescriptionList from 'components/DescriptionList';
@@ -27,17 +33,19 @@ import messages from './messages';
 
 const styles = theme => ({
   container: {
-    padding: 16,
+    padding: 8,
     textAlign: 'center',
     marginRight: '1%',
     marginLeft: '1%',
     flexGrow: 1,
   },
-  rightContainer: {
-    //textAlign: 'right',
+  chip: {
+    margin: theme.spacing.unit,
   },
-  leftContainer: {
-    //textAlign: 'left',
+  bigAvatar: {
+    flex: 1,
+    width: 100,
+    height: 100,
   },
   button: {
     margin: theme.spacing.unit,
@@ -47,71 +55,82 @@ const styles = theme => ({
 class ProfessionalInformation extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
 
-    const image = require('assets/images/jsa-128.jpg'),
-          { classes } = this.props;
+    const image = require('assets/images/jsa-128.jpg');
+    const { classes } = this.props;
 
     return (
-      <Grid 
-        container 
-        spacing={8} 
+      <Grid
+        container
+        spacing={0}
         justify="center"
         className={classes.container}
-      > {/* Container inside description container */}
-        <Grid item xs={12} sm={4} className={classes.rightContainer}> {/* Photo container */}
-          <Img src={image} alt="profile picture" />
-        </Grid>
-        <Grid item xs={12} sm={8}> {/* Relevant description container */}
-          <Grid  container>
-
+      >
+        <Grid item xs={12} sm={12}>
+          <Grid container >
+            <Grid item xs={4} sm={2} > {/* Photo container */}
+              <Avatar className={classes.bigAvatar}>
+                <Img src={image} alt="profile picture" />
+              </Avatar>
+            </Grid>
             {/* Interaction buttons */}
-            <Grid item xs={12}> 
-              <Grid  container>
-                <Grid item xs={6} sm={6}>
-                  <IconButton aria-label="Favorite" className={classes.button}> {/* Favorite button */}
-                    <FavoriteIcon />
-                  </IconButton>
-                  <IconButton aria-label="ContractCategory" className={classes.button}> {/* TODO button */}
-                    <ContractCategoryIcon color="red"/>
-                  </IconButton>
+            <Grid item xs={8} sm={10}> 
+              <Grid container>
+                <Grid item xs={12}>
+                  <Typography variant="title">Juan Carlos de los Palotes</Typography>
                 </Grid>
-                <Grid item xs={6} sm={6}> {/* Contact button */}
-                  <Button variant="raised" color="secondary">
-                    Contact Now!
-                  </Button>
+                <Grid item xs={12} sm={12}>
+                  <IconButton aria-label="Favorite" className={classes.button}> {/* Favorite button */}
+                    <FavoriteIcon color="red" />
+                  </IconButton>
+                  <IconButton aria-label="Call" className={classes.button}> {/* TODO button */}
+                    <CallIcon color="green"/>
+                  </IconButton>
+                  <IconButton aria-label="Contact" className={classes.button}> {/* TODO button */}
+                    <MailIcon color="blue"/>
+                  </IconButton>
                 </Grid>
               </Grid>
-            </Grid>
-
-            {/* Description services */}
-            <Grid item xs={12}> 
-              <DescriptionList 
-                direction={'row'}
-                itemXs={12} 
-                itemSm={12} 
-                fieldXs={6}
-              >
-                <Typography variant="title">Nombre</Typography>
-                <span>Alberto Perez</span>
-
-                <Typography variant="title">Servicios</Typography>
-                <span>
-                  <Grid item xs={12}>
-                    Plomeria
-                  </Grid>
-                  <Grid item xs={12}>
-                    Carpinteria
-                  </Grid>
-                  <Grid item xs={12}>
-                    Jardineria
-                  </Grid>
-                </span>
-
-                <Typography variant="title">Zona</Typography>
-                <span>Balvanera, Congreso, San Nicolás</span>
-              </DescriptionList>
-            </Grid>
-            
+            </Grid>            
           </Grid>
+        </Grid>
+        <Grid item xs={12} >
+          <Chip avatar={
+            <Avatar>
+              <WorkIcon />
+            </Avatar>
+                }
+            label="Oficio" className={classes.chip} />
+          <Chip avatar={
+            <Avatar>
+              <WorkIcon />
+            </Avatar>
+                }
+            label="Oficio" className={classes.chip} />
+          <Chip avatar={
+            <Avatar>
+              <WorkIcon />
+            </Avatar>
+                }
+            label="Oficio" className={classes.chip} />
+          <Chip avatar={
+            <Avatar>
+              <WorkIcon />
+            </Avatar>
+                }
+            label="Oficio" className={classes.chip} />
+          <Chip avatar={
+            <Avatar>
+              <WorkIcon />
+            </Avatar>
+                }
+            label="Oficio" className={classes.chip} />
+          <Chip avatar={
+            <Avatar>
+              <WorkIcon />
+            </Avatar>
+                }
+            label="Oficio" className={classes.chip} />
+
         </Grid>
       </Grid>
     );

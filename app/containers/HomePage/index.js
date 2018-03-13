@@ -16,7 +16,7 @@ import { FormattedMessage } from 'react-intl';
 
 import ServicesMap from 'components/ServicesMap';
 import PopupContent from 'components/ServicesMap/PopupContent';
-//import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
+// import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
 import ProfessionalInformation from 'components/ProfessionalInformation/Loadable';
 import ProfessionalInformationList from 'components/ProfessionalInformationList/Loadable';
 import ProfessionalInformationPanel from 'components/ProfessionalInformationPanel/Loadable';
@@ -42,7 +42,7 @@ import IconButton from 'material-ui-next/IconButton';
 import RemoveRedEye from 'material-ui-icons/RemoveRedEye';
 import PersonAdd from 'material-ui-icons/PersonAdd';
 import ThumbUpIcon from 'material-ui-icons/ThumbUp';
-//import ThumbDownIcon from 'material-ui-icons/ThumbDown';
+// import ThumbDownIcon from 'material-ui-icons/ThumbDown';
 import PersonIcon from 'material-ui-icons/Person';
 
 import green from 'material-ui-next/colors/green';
@@ -60,12 +60,12 @@ const styles = (theme) => ({
     flexGrow: 1,
   },
   personalInformation: theme.mixins.gutters({
-    paddingTop: 16,
-    paddingBottom: 16,
-    marginTop: theme.spacing.unit * 3,
+    paddingTop: 8,
+    paddingBottom: 8,
+    marginTop: theme.spacing.unit * 2,
   }),
   secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
+    fontSize: theme.typography.pxToRem(12),
     color: theme.palette.text.secondary,
   },
   flexContainer: {
@@ -179,31 +179,19 @@ export class HomePage extends React.Component {
    */
 
   render() {
-    const menuItems = [
-      {
-        id: 1,
-        icon: <RemoveRedEye />,
-        value: 1,
-      },
-      {
-        id: 2,
-        icon: <PersonAdd />,
-        value: 2,
-      },
-      ],
-      { classes } = this.props;
+    const { classes } = this.props;
 
     return (
       <div className={classes.root} >
         <Grid container justify={'center'}>
-          <Grid item xs={12} sm={7}> {/* Container map */}
+          <Grid item xs={12} sm={8}> {/* Container map */}
             <ServicesMap
               marks={this.state.professionals}
               onMarkerClick={this.props.toggleExtraInformation}
             >
             </ServicesMap>
           </Grid>
-          <Grid item xs={12} sm={5}> {/* Container professionals list */}
+          <Grid item xs={12} sm={4}> {/* Container professionals list */}
             <ProfessionalInformationList professionals={this.state.professionals} />
           </Grid>
 

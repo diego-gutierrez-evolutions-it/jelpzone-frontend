@@ -9,11 +9,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui-next/styles';
 import BottomNavigation, { BottomNavigationAction } from 'material-ui-next/BottomNavigation';
 
-// import RestoreIcon from 'material-ui-icons/Restore';
-// import FavoriteIcon from 'material-ui-icons/Favorite';
-// import LocationOnIcon from 'material-ui-icons/LocationOn';
-// import FolderIcon from 'material-ui-icons/Folder';
-
 import SearchIcon from 'material-ui-icons/Search';
 import AccountIcon from 'material-ui-icons/AccountCircle';
 import ChatIcon from 'material-ui-icons/Chat';
