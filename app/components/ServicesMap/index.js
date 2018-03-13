@@ -56,12 +56,12 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
       attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
     />
+    
     <Marker
       coordinate={[this.props.coords.latitude, this.props.coords.longitude]}
       icon={myPositionIcon}
       id={'mark-me'}
     />
-
      {
       map(marks, (mark) => {
         const { classNames } = mark;
@@ -77,7 +77,6 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
         );
       })
     }
-
   </Map>
 </div>
 : <div>

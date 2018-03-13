@@ -16,7 +16,6 @@ import { FormattedMessage } from 'react-intl';
 
 import ServicesMap from 'components/ServicesMap';
 import PopupContent from 'components/ServicesMap/PopupContent';
-// import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
 import ProfessionalInformation from 'components/ProfessionalInformation/Loadable';
 import ProfessionalInformationList from 'components/ProfessionalInformationList/Loadable';
 import ProfessionalInformationPanel from 'components/ProfessionalInformationPanel/Loadable';
@@ -39,10 +38,7 @@ import List, {
 import Avatar from 'material-ui-next/Avatar';
 import IconButton from 'material-ui-next/IconButton';
 
-import RemoveRedEye from 'material-ui-icons/RemoveRedEye';
-import PersonAdd from 'material-ui-icons/PersonAdd';
 import ThumbUpIcon from 'material-ui-icons/ThumbUp';
-// import ThumbDownIcon from 'material-ui-icons/ThumbDown';
 import PersonIcon from 'material-ui-icons/Person';
 
 import green from 'material-ui-next/colors/green';
@@ -194,7 +190,6 @@ export class HomePage extends React.Component {
           <Grid item xs={12} sm={4}> {/* Container professionals list */}
             <ProfessionalInformationList professionals={this.state.professionals} />
           </Grid>
-
           {
             (this.props.userExtraInformation.size > 0) ?
               <Grid item xs={12} sm={12} > {/* Extra information container */}
@@ -244,30 +239,6 @@ export class HomePage extends React.Component {
                           Tiempo promedio de respuesta
                         </Typography>
                       </DescriptionList>
-
-
-                      {/* <DescriptionList
-                        direction={'row'}
-                        itemXs={12}
-                        itemSm={12}
-                        fieldXs={6}
-                      >
-                        <span>Punctuallity </span>
-                        <RatingStars numberStars={5} rating={5} className={classes.ratingStar} />
-
-                        <span>Prolixity </span>
-                        <RatingStars numberStars={5} rating={4} className={classes.ratingStar} />
-
-                        <span>Knowledge </span>
-                        <RatingStars numberStars={5} rating={3} className={classes.ratingStar} />
-
-                        <span>Tools </span>
-                        <RatingStars numberStars={5} rating={2} className={classes.ratingStar} />
-
-                        <span>Reply </span>
-                        <RatingStars numberStars={5} rating={1} className={classes.ratingStar} />
-                      </DescriptionList>*/}
-
                       <List>
                         <ListItem>
                           <ListItemText
