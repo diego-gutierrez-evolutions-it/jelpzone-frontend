@@ -8,9 +8,9 @@ import Checkbox from 'material-ui/Checkbox';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import { required, email, confirmPassword } from 'utils/validateForm';
 
 import messages from './messages';
-import {required, email, confirmPassword} from 'utils/validateForm';
 
 const renderTextField = (
   { input, label, meta: { touched, error }, ...custom },
@@ -27,7 +27,7 @@ const renderTextField = (
 const renderCheckbox = ({ input, label }) => (
   <Checkbox
     label={label}
-    checked={input.value ? true : false}
+    checked={!!input.value}
     onCheck={input.onChange}
   />
 );
@@ -54,7 +54,7 @@ const renderSelectField = (
   />
 );
 
-const SignupForm = props => {
+const SignupForm = (props) => {
   const { handleSubmit, pristine, reset, isSubmitting } = props;
   return (
     <form onSubmit={handleSubmit}>
@@ -66,26 +66,26 @@ const SignupForm = props => {
         />
       </div>
       <div>
-        <Field 
-          name="lastName" 
-          component={renderTextField} 
-          label="Last Name" 
+        <Field
+          name="lastName"
+          component={renderTextField}
+          label="Last Name"
         />
       </div>
       <div>
-        <Field 
-          name="username" 
-          component={renderTextField} 
+        <Field
+          name="username"
+          component={renderTextField}
           label="Username"
-          validate={required} 
+          validate={required}
         />
       </div>
       <div>
-        <Field 
-          name="email" 
-          component={renderTextField} 
+        <Field
+          name="email"
+          component={renderTextField}
           label="Email"
-          validate={[required, email]}  />
+          validate={[required, email]} />
       </div>
       <div>
         <Field name="userType" component={renderRadioGroup} validate={required}>
@@ -94,36 +94,36 @@ const SignupForm = props => {
         </Field>
       </div>
       <div>
-        <Field 
-          name="password" 
-          component={renderTextField} 
+        <Field
+          name="password"
+          component={renderTextField}
           label="Password"
-          validate={required} 
+          validate={required}
           type="password"
         />
       </div>
       <div>
-        <Field 
-          name="confirmPassword" 
-          component={renderTextField} 
+        <Field
+          name="confirmPassword"
+          component={renderTextField}
           label="Confirm Password"
-          validate={[required,confirmPassword]} 
+          validate={[required, confirmPassword]}
           type="password"
         />
       </div>
       <div>
         <RaisedButton
-            type="submit"
-            disabled={isSubmitting}
-            label={<FormattedMessage {...messages.submitButtonText} />}
-            primary
-          />
+          type="submit"
+          disabled={isSubmitting}
+          label={<FormattedMessage {...messages.submitButtonText} />}
+          primary
+        />
         <RaisedButton
-            disabled={isSubmitting}
-            label={<FormattedMessage {...messages.resetButtonText} />}
-            onClick={reset}
-            secondary
-          />
+          disabled={isSubmitting}
+          label={<FormattedMessage {...messages.resetButtonText} />}
+          onClick={reset}
+          secondary
+        />
       </div>
     </form>
   );

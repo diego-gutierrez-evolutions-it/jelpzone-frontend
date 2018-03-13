@@ -7,7 +7,7 @@
 import {
   SIGN_UP,
   SIGN_UP_OK,
-  SIGN_UP_FAILED
+  SIGN_UP_FAILED,
 } from './constants';
 
 /**
@@ -29,7 +29,7 @@ export function submitSignupForm() {
 export function submitSignupFormOk() {
   return {
     type: SIGN_UP_OK,
-  }
+  };
 }
 
 /**
@@ -40,6 +40,6 @@ export function submitSignupFormOk() {
 export function submitSignupFormFailed(err) {
   return {
     type: SIGN_UP_FAILED,
-    payload: err
-  }
+    payload: err,
+  };
 }

@@ -1,16 +1,16 @@
 /**
  * Submitting the sign up form
  */
-
+import React from 'react';
 import { call, put, select, takeLatest } from 'redux-saga/effects';
-
 import { isNil, includes } from 'lodash';
+import request from 'utils/request';
+import { FormattedMessage } from 'react-intl';
 
 import { SIGN_UP, URL_SIGN_UP } from './constants';
 import { submitSignupFormOk, submitSignupFormFailed } from './actions';
-
-import request from 'utils/request';
 import { makeSelectSignupValues } from './selectors';
+import messages from './messages';
 
 /**
  * Sign up request/response handler
@@ -18,43 +18,37 @@ import { makeSelectSignupValues } from './selectors';
 export function* submitForm() {
   // Select username from store
   const values = yield select(makeSelectSignupValues());
-  
+
   // lift this from configuration file
-  const requestURL = process.env.config.jelpzoneApi.url+URL_SIGN_UP;
+  const requestURL = process.env.config.jelpzoneApi.url + URL_SIGN_UP;
 
   try {
-
     // Call our request helper (see 'utils/request')
     const options = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: values.firstName+' '+values.lastName,
+        name: `${values.firstName} ${ values.lastName}`,
         username: values.username,
-        professional: (values.userType == 0)? false:true,
+        professional: values.userType !== 0,
         email: values.email,
-        password: values.password
-      })
+        password: values.password,
+      }),
     };
 
     const user = yield call(request, requestURL, options);
 
-    if(!isNil(user.id)){
-
+    if (!isNil(user.id)) {
       yield put(submitSignupFormOk());
-
-    } else{
-
+    } else {
       const error = new Error(500);
       error.response = {
-        message: <FormattedMessage {...messages.noHandledErrorResponse} />
-      }
+        message: <FormattedMessage {...messages.noHandledErrorResponse} />,
+      };
       throw error;
-
     }
-
   } catch (err) {
     yield put(submitSignupFormFailed(err));
   }

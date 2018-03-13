@@ -13,51 +13,50 @@ import { withStyles } from 'material-ui-next/styles';
 
 import './RatingStars.css'; // Tell Webpack that HomePage.js uses these styles
 
-const amberA700 = amber.A700,
-      styles = {};
+const amberA700 = amber.A700;
+const styles = {};
 
 class RatingStars extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-
   	const { numberStars, rating, classes, className } = this.props;
 
-  	let content = [];
-  	for (var i=1; i <= numberStars; i++) {
-  		if(i <= rating){
+  	const content = [];
+  	for (let i = 1; i <= numberStars; i++) {
+  		if (i <= rating) {
   			content.push(
-  				<IconButton 
-            key={i} 
-            className="start-button-xs start-button-md"
-          >
-  					<ActionGrade color={amberA700} />
+    <IconButton
+    key={i}
+    className="start-button-xs start-button-md"
+  				>
+    <ActionGrade color={amberA700} />
   				</IconButton>
   			);
-  		} else{
+  		} else {
   			content.push(
-  				<IconButton 
-            key={i} 
-            disabled={true}
-            className="start-button-xs start-button-md"
-          >
-  					<ActionGrade />
+    <IconButton
+    key={i}
+    disabled
+    className="start-button-xs start-button-md"
+  				>
+    <ActionGrade />
   				</IconButton>
   			);
-  		}	    
-		}
+  		}
+  }
 
     return (
       <div className={className} >
-      	{ content }
+        { content }
       </div>
     );
   }
 }
 
 RatingStars.propTypes = {
-	numberStars: PropTypes.number.isRequired,
-	rating: PropTypes.number,
+  numberStars: PropTypes.number.isRequired,
+  rating: PropTypes.number,
   classes: PropTypes.object.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default withStyles(styles)(RatingStars);

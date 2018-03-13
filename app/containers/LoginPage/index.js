@@ -8,7 +8,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import injectSaga from 'utils/injectSaga';
@@ -17,18 +17,15 @@ import injectReducer from 'utils/injectReducer';
 import { makeSelectError } from 'containers/App/selectors';
 
 import { submitLoginForm } from 'containers/App/actions';
-
-//import reducer from './reducer';
-import saga from './saga';
-
-import Form from './Form';
-
 import { Card, CardText } from 'material-ui/Card';
 
 import SnackbarInformationMessage from 'components/SnackbarInformationMessage';
 
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
+// import reducer from './reducer';
+import saga from './saga';
+import Form from './Form';
 
 export class LoginPage extends React.Component {
 
@@ -36,7 +33,7 @@ export class LoginPage extends React.Component {
     super(props);
   }
 
-  componentDidUpdate(prevProps, prevState){
+  componentDidUpdate(prevProps, prevState) {
     /*
      * TODO: delete
      *
@@ -50,16 +47,17 @@ export class LoginPage extends React.Component {
   }
 
   render() {
-    const {error} = this.props;
+    const { error } = this.props;
     return (
       <Card>
         <Form onSubmit={this.props.onSubmitForm} />
 
-        <SnackbarInformationMessage 
+        <SnackbarInformationMessage
           message={<FormattedMessage {...messages.invalidCredentials} />}
-          open={error != false} />
+          open={error !== false}
+        />
 
-        <CardText><FormattedMessage {...messages.accountYet} /> <Link to='/signup'><FormattedMessage {...messages.signUp}/></Link></CardText>
+        <CardText><FormattedMessage {...messages.accountYet} /> <Link to="/signup"><FormattedMessage {...messages.signUp} /></Link></CardText>
       </Card>
     );
   }
@@ -71,7 +69,7 @@ LoginPage.propTypes = {
     PropTypes.bool,
   ]),
   onSubmitForm: PropTypes.func.isRequired,
-}
+};
 
 export function mapDispatchToProps(dispatch) {
   return {

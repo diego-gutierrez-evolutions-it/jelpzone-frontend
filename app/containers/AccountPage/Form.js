@@ -15,57 +15,51 @@ import { MenuItem } from 'material-ui-next/Menu';
 import Input, { InputLabel } from 'material-ui-next/Input';
 import Chip from 'material-ui-next/Chip';
 
-import {required, email, confirmPassword} from 'utils/validateForm';
+import { required, email, confirmPassword } from 'utils/validateForm';
 
 import messages from './messages';
 
-const renderTextField = ({ input: {value, ...rest}, label, meta: { touched, error }, ...custom  }) => {
-  return(
-    <TextField
-      label={label}
-      error={touched && error}
-      defaultValue={value}
-      {...rest}
-      {...custom}
-    />
+const renderTextField = ({ input: { value, ...rest }, label, meta: { touched, error }, ...custom }) => (
+  <TextField
+    label={label}
+    error={touched && error}
+    defaultValue={value}
+    {...rest}
+    {...custom}
+  />
   );
-}
 
 const renderCheckbox = ({ input, label }) => (
   <Checkbox
     label={label}
-    checked={input.value ? true : false}
+    checked={!!input.value}
     onCheck={input.onChange}
   />
 );
 
-const renderRadioGroup = ({ input, children, meta }) => {
-  return (
-    <RadioGroup
-      {...input}
-      children={children}
-      value={input.value}
-      {... meta}
-      onChange={(event, value) => input.onChange(value)}
-    />
+const renderRadioGroup = ({ input, children, meta }) => (
+  <RadioGroup
+    {...input}
+    children={children}
+    value={input.value}
+    {... meta}
+    onChange={(event, value) => input.onChange(value)}
+  />
   );
-}
 
-const renderSelectChipField = ({ input, label, meta: { touched, error }, children, defaultValue, inputField,...custom }) => {
-  return (
-    <SelectField
-      label={label}
-      error={touched && error}
-      {...input}
-      input={inputField}
-      value={defaultValue}
-      children={children}
-      {...custom}
-    />
+const renderSelectChipField = ({ input, label, meta: { touched, error }, children, defaultValue, inputField, ...custom }) => (
+  <SelectField
+    label={label}
+    error={touched && error}
+    {...input}
+    input={inputField}
+    value={defaultValue}
+    children={children}
+    {...custom}
+  />
   );
-}
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -109,11 +103,10 @@ export class AccountForm extends React.Component {
     this.setState({ professions: filter(this.props.professions, (v) => indexOf(event.target.value, v.id) >= 0) });
   };
 
-  render(){
-
-    const { 
-      handleSubmit, 
-      reset, 
+  render() {
+    const {
+      handleSubmit,
+      reset,
       isSubmitting,
       classes,
       theme,
@@ -132,53 +125,54 @@ export class AccountForm extends React.Component {
           />
         </div>
         <div>
-          <Field 
-            name="lastName" 
-            component={renderTextField} 
-            label="Last Name" 
+          <Field
+            name="lastName"
+            component={renderTextField}
+            label="Last Name"
             defaultValue={accountValues.lastName}
           />
         </div>
         <div>
-          <Field 
-            name="address" 
-            component={renderTextField} 
+          <Field
+            name="address"
+            component={renderTextField}
             label="Address"
             defaultValue={accountValues.address}
           />
         </div>
         <div>
-          <Field 
-            name="email" 
-            component={renderTextField} 
+          <Field
+            name="email"
+            component={renderTextField}
             label="Email"
             disabled
-            defaultValue={accountValues.email}  />
+            defaultValue={accountValues.email}
+          />
         </div>
         <div>
-          <Field 
+          <Field
             component={renderSelectChipField}
-            name="professions" 
+            name="professions"
             label="professions"
             multiple
-            defaultValue={map(this.state.professions,'id')}
+            defaultValue={map(this.state.professions, 'id')}
             onChange={this.handleChange.bind(this)}
             inputField={<Input id="select-multiple-chip" />}
             MenuProps={MenuProps}
-            renderValue={selected => (
+            renderValue={(selected) => (
               <div className={classes.chips}>
-                {selected.map(value => {
-                  if(this.props.professions.length){
+                {selected.map((value) => {
+                  if (this.props.professions.length) {
                     const filtered = first(filter(this.props.professions, (v) => (!isUndefined(v) && value == v.id)));
                     return (
                       <Chip key={value} label={filtered.name} className={classes.chip} />
-                    )
+                    );
                   }
                 })}
               </div>
-            )} 
+            )}
           >
-            {professions.map(profession => (
+            {professions.map((profession) => (
               <MenuItem
                 key={profession.id}
                 value={profession.id}
@@ -216,15 +210,15 @@ export class AccountForm extends React.Component {
           </Button>
         </div>
       </form>
-    ); 
+    );
   }
-};
+}
 
 AccountForm.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  handleSubmit: PropTypes.func, 
-  reset: PropTypes.func, 
+  handleSubmit: PropTypes.func,
+  reset: PropTypes.func,
   isSubmitting: PropTypes.bool,
   professions: PropTypes.any.isRequired,
   accountValues: PropTypes.shape(

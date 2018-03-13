@@ -19,36 +19,33 @@ import messages from './messages';
 import './style.css';
 
 const style = {
-	menu: {
-		backgroundColor: 'white',
-		display: 'inline-block',
-	},
-	menuItem: {
-		width: '70%',
-	}
-  
+  menu: {
+    backgroundColor: 'white',
+    display: 'inline-block',
+  },
+  menuItem: {
+    width: '70%',
+  },
+
 };
 
-//<FormattedMessage {...messages.header} />
+// <FormattedMessage {...messages.header} />
 class VerticalIconsMenu extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-	onItemClick(event, menuItem, index){
-		if(this.props.onItemClick){
-			this.props.onItemClick(menuItem.props.value);
-		}
-		
-	}
+  onItemClick(event, menuItem, index) {
+    if (this.props.onItemClick) {
+      this.props.onItemClick(menuItem.props.value);
+    }
+  }
 
   render() {
-
-  	const { items } = this.props;
-
-	  let content = (<div></div>);
+    const { items } = this.props;
+    let content = (<div></div>);
 
 	  // If we have items, render them
 	  if (items) {
 	    content = items.map((item) => (
-	      <MenuItem key={`item-${item.id}`} leftIcon={item.icon} value={item.value} />
+  <MenuItem key={`item-${item.id}`} leftIcon={item.icon} value={item.value} />
 	    ));
 	  } else {
 	    // Otherwise render a single component
@@ -57,23 +54,23 @@ class VerticalIconsMenu extends React.Component { // eslint-disable-line react/p
 
     return (
       <Menu style={style.menu} menuItemStyle={style.menuItem} onItemClick={this.onItemClick.bind(this)} >
-      	{content}
+        {content}
       </Menu>
     );
   }
 }
 
 VerticalIconsMenu.propTypes = {
-	items: PropTypes.arrayOf(
-	  PropTypes.shape(
-	    { 
-	    	id: PropTypes.number.isRequired,
-	    	icon: PropTypes.node,
-	    	value: PropTypes.node.isRequired,
-	    }
-	  ),
-	),
-	onItemClick: PropTypes.func,
+  items: PropTypes.arrayOf(
+    PropTypes.shape(
+      {
+        id: PropTypes.number.isRequired,
+        icon: PropTypes.node,
+        value: PropTypes.node.isRequired,
+      }
+    ),
+  ),
+  onItemClick: PropTypes.func,
 };
 
 export default VerticalIconsMenu;

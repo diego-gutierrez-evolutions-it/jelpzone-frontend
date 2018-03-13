@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Field, reduxForm, formValueSelector } from 'redux-form/immutable'
-import { FormattedMessage } from 'react-intl'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
+import { required, email } from 'utils/validateForm';
+import Button from 'material-ui-next/Button';
+import { TextField } from 'redux-form-material-ui';
+import { FormattedMessage } from 'react-intl';
 
-import RaisedButton from 'material-ui/RaisedButton'
-import { TextField } from 'redux-form-material-ui'
-
-import messages from './messages'
-
-import {required, email} from 'utils/validateForm'
+import messages from './messages';
 
 class LoginForm extends Component {
   componentDidMount() {
@@ -49,12 +47,14 @@ class LoginForm extends Component {
           />
         </div>
         <div className="button-line">
-          <RaisedButton
+          <Button
+            variant="raised"
             type="submit"
             disabled={isSubmitting}
-            label={<FormattedMessage {...messages.submitButtonText} />}
-            primary
-          />
+            color="primary"
+          >
+          <FormattedMessage {...messages.submitButtonText} />
+          </Button>
         </div>
       </form>
     )

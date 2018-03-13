@@ -7,9 +7,7 @@ import { formValueSelector } from 'redux-form/immutable';
 const selectAccountPageDomain = (state) => state.get('accountPage');
 
 const formSelector = formValueSelector('account');
-const valuesSelector = (state) => {
-	return formSelector(state, 'firstName', 'lastName', 'address','professions');
-}
+const valuesSelector = (state) => formSelector(state, 'firstName', 'lastName', 'address', 'professions');
 
 /**
  * Other specific selectors
@@ -30,10 +28,8 @@ export const makeSelectFailedUpdate = () => createSelector(
 );
 
 export const makeSelectAccountValues = () => createSelector(
-	valuesSelector,
-	(values) => {
-		return values;
-	}
+  valuesSelector,
+  (values) => values
 );
 
 export const makeSelectUploadFiles = () => createSelector(

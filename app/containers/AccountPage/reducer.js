@@ -16,10 +16,10 @@ import {
 } from './constants';
 
 const initialState = fromJS({
-	professions: [],
+  professions: [],
   uploadFiles: [],
-	updatedAccountOk: false,
-	updatedAccountError: false,
+  updatedAccountOk: false,
+  updatedAccountError: false,
 });
 
 function accountPageReducer(state = initialState, action) {
@@ -33,11 +33,11 @@ function accountPageReducer(state = initialState, action) {
       return state
           .set('professions', values(action.payload));
     case ACCOUNT_UPDATE_OK:
-    	return state
+      return state
           .set('updatedAccountOk', true)
           .set('updatedAccountError', false);
     case ACCOUNT_UPDATE_FAILED:
-    	return state
+      return state
           .set('updatedAccountOk', false)
           .set('updatedAccountError', true);
     case LOAD_DROPPED_FILES:

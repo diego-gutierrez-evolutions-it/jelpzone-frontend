@@ -44,6 +44,11 @@
   "app.components.BottomNavigation.accountIconText": "Mi Cuenta",
   "app.components.BottomNavigation.notificationIconText": "Notificaciones",
   "app.components.BottomNavigation.promotionIconText":"Promociones",
-  "app.components.BottomNavigation.chatIconText": "Chats"
+  "app.components.BottomNavigation.chatIconText": "Chats",
+
+  "app.components.Headers.profileText": "Mi Perfil",
+  "app.components.Headers.accountText": "Mi Cuenta",
+  "app.components.Headers.JelpPay": "Mi JelpPay",
+  "app.components.Headers.Language": "Idioma"
 
 }

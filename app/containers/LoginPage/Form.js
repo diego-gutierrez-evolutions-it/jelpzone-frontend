@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { formValueSelector, reduxForm } from 'redux-form/immutable'
-import { bindActionCreators } from 'redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { formValueSelector, reduxForm } from 'redux-form/immutable';
+import { bindActionCreators } from 'redux';
 
-import LoginForm from 'components/LoginForm'
+import LoginForm from 'components/LoginForm';
 
 import { createStructuredSelector } from 'reselect';
 import { makeSelectLoading } from 'containers/App/selectors';
 
 let Form = reduxForm({
   form: 'loginForm',
-})(LoginForm)
+})(LoginForm);
 
 const mapStateToProps = createStructuredSelector({
-  isSubmitting: makeSelectLoading()
-})
+  isSubmitting: makeSelectLoading(),
+});
 
-Form = connect(mapStateToProps)(Form)
+Form = connect(mapStateToProps)(Form);
 
-export default Form
+export default Form;

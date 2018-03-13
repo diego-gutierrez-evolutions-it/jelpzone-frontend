@@ -12,12 +12,13 @@ import request from 'utils/request';
 import { setUser, getUser } from 'utils/navigatorStore';
 
 import { loadingUserOk, loadingUserFailed } from 'containers/App/actions';
-import { 
-  LOAD_CURRENT_USER, 
-  LOAD_CURRENT_USER_SUCCESS, 
+import {
+  LOAD_CURRENT_USER,
+  LOAD_CURRENT_USER_SUCCESS,
   LOAD_CURRENT_USER_ERROR,
   LOGOUT_USER,
-  URL_USER_FROM_TOKEN 
+//  URL_USER_LOGIN,
+  URL_USER_FROM_TOKEN,
 } from 'containers/App/constants';
 
 import { URL_USER_LOGIN } from './constants';

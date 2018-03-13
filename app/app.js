@@ -70,7 +70,7 @@ const render = (messages) => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <div>
-          <App history={history}/> {/* Fix - We pass history for redirection works */}
+          <App history={history} /> {/* Fix - We pass history for redirection works */}
         </div>
       </LanguageProvider>
     </Provider>,
@@ -95,7 +95,7 @@ if (!window.Intl) {
   }))
     .then(() => Promise.all([
       import('intl/locale-data/jsonp/en.js'),
-      import('intl/locale-data/jsonp/de.js'),
+      import('intl/locale-data/jsonp/es.js'),
     ]))
     .then(() => render(translationMessages))
     .catch((err) => {

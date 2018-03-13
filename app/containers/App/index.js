@@ -26,7 +26,7 @@ import BottomNav from 'components/BottomNav/Loadable';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { MuiThemeProvider as NewMuiThemeProvider, createMuiTheme } from 'material-ui-next/styles';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+// import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import { userIsAuthenticated, userIsNotAuthenticated } from 'utils/authWrapper';
 import injectSaga from 'utils/injectSaga';
@@ -39,16 +39,30 @@ const AppWrapper = styled.div`
 `;
 
 const theme = createMuiTheme({
-  palette: {},
+  palette: {
+      primary: {
+        main: '#d80e0e',
+      },
+      secondary: {
+        main: '#0ea1d2',
+      },
+      action: {
+        main: '#ff3d00',
+      },
+      contrast: {
+        main: '#0ea1d2',
+      },
+      disabled: {
+        main: '#b0bec5',
+      },
+      error: {
+        main: '#0ea1d2',
+      },
+  },
 });
 
 
 export class App extends React.Component {
-
-  constructor(props){
-    super(props);
-  }
-
   componentWillMount() {
     this.props.loadCurrentUser();
   }
@@ -65,21 +79,19 @@ export class App extends React.Component {
         <MuiThemeProvider>
           <NewMuiThemeProvider theme={theme}>
             <div className="container">
-
               <Header title={'Jelpzone'} />
-
               {/* Fix - We put ConnectedRouter inside App for redirection works */}
               <ConnectedRouter history={this.props.history}>
                 <Switch>
-                  <Route exact path="/" component={ userIsAuthenticated(HomePage) } />
-                  <Route exact path="/account" component={ userIsAuthenticated(AccountPage) } />
-                  <Route exact path="/signup" component={ userIsNotAuthenticated(SignupPage) } />
-                  <Route path="/login" component={ userIsNotAuthenticated(LoginPage) } />
+                  <Route exact path="/" component={userIsAuthenticated(HomePage)} />
+                  <Route exact path="/account" component={userIsAuthenticated(AccountPage)} />
+                  <Route exact path="/signup" component={userIsNotAuthenticated(SignupPage)} />
+                  <Route path="/login" component={userIsNotAuthenticated(LoginPage)} />
                   <Route path="" component={NotFoundPage} />
                 </Switch>
               </ConnectedRouter>
 
-              <BottomNav history={this.props.history}/>
+              <BottomNav history={this.props.history} />
 
             </div>
           </NewMuiThemeProvider>
@@ -92,7 +104,7 @@ export class App extends React.Component {
 HomePage.propTypes = {
   history: PropTypes.object.isRequired,
   loadCurrentUser: PropTypes.func,
-}
+};
 
 const mapDispatchToProps = {
   loadCurrentUser: loadingUser,

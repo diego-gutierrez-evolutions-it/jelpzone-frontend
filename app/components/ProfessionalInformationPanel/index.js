@@ -3,7 +3,6 @@
 * ProfessionalInformationPanel
 *
 */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui-next/styles';
@@ -19,10 +18,10 @@ import Chip from 'material-ui-next/Chip';
 import Button from 'material-ui-next/Button';
 import Divider from 'material-ui-next/Divider';
 
-const styles = theme => ({
-	root: {
-    //width: '100%',
-    paddingTop: '20px'
+const styles = (theme) => ({
+  root: {
+    // width: '100%',
+    paddingTop: '20px',
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -53,37 +52,36 @@ const styles = theme => ({
 
 class ProfessionalInformationPanel extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
-
-  	const { classes, heading, secondaryHeading, children} = this.props;
+    const { classes, heading, secondaryHeading, children } = this.props;
 
     return (
-    	<div className={classes.root}>
-	      <ExpansionPanel defaultExpanded>
-	        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-	          <div className={classes.column}>
-	            <Typography className={classes.heading}>{ heading }</Typography>
-	          </div>
-	          <div className={classes.column}>
-	            { secondaryHeading }
-	          </div>
-	        </ExpansionPanelSummary>
-	        <ExpansionPanelDetails className={classes.details}>
-	          <div className={classes.column} />
-	          <div className={classNames(classes.columnRight, classes.helper)}>
-	            { children }
-	          </div>
-	        </ExpansionPanelDetails>
-	      </ExpansionPanel>
+      <div className={classes.root}>
+        <ExpansionPanel defaultExpanded>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <div className={classes.column}>
+              <Typography className={classes.heading}>{ heading }</Typography>
+            </div>
+            <div className={classes.column}>
+              { secondaryHeading }
+            </div>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails className={classes.details}>
+            <div className={classes.column} />
+            <div className={classNames(classes.columnRight, classes.helper)}>
+              { children }
+            </div>
+          </ExpansionPanelDetails>
+        </ExpansionPanel>
       </div>
     );
   }
 }
 
 ProfessionalInformationPanel.propTypes = {
-	classes: PropTypes.object.isRequired,
-	heading: PropTypes.object.isRequired,
-	secondaryHeading: PropTypes.any.isRequired,
-	children: PropTypes.any,
+  classes: PropTypes.object.isRequired,
+  heading: PropTypes.object.isRequired,
+  secondaryHeading: PropTypes.any.isRequired,
+  children: PropTypes.any,
 };
 
 export default withStyles(styles)(ProfessionalInformationPanel);

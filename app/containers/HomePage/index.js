@@ -8,14 +8,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
 import { isEmpty } from 'lodash';
+import { FormattedMessage } from 'react-intl';
 
 import ServicesMap from 'components/ServicesMap';
 import PopupContent from 'components/ServicesMap/PopupContent';
-import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
+//import VerticalIconsMenu from 'components/VerticalIconsMenu/Loadable';
 import ProfessionalInformation from 'components/ProfessionalInformation/Loadable';
 import ProfessionalInformationList from 'components/ProfessionalInformationList/Loadable';
 import ProfessionalInformationPanel from 'components/ProfessionalInformationPanel/Loadable';
@@ -41,7 +42,7 @@ import IconButton from 'material-ui-next/IconButton';
 import RemoveRedEye from 'material-ui-icons/RemoveRedEye';
 import PersonAdd from 'material-ui-icons/PersonAdd';
 import ThumbUpIcon from 'material-ui-icons/ThumbUp';
-import ThumbDownIcon from 'material-ui-icons/ThumbDown';
+//import ThumbDownIcon from 'material-ui-icons/ThumbDown';
 import PersonIcon from 'material-ui-icons/Person';
 
 import green from 'material-ui-next/colors/green';
@@ -50,13 +51,11 @@ import { toggleProfessionalExtraInformation } from './actions';
 import { makeSelectUserExtraInformation } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-
-import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
 import './HomePage.css'; // Tell Webpack that HomePage.js uses these styles
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -91,7 +90,7 @@ export class HomePage extends React.Component {
    * Example of movement
    * Only to show how map updates
    */
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       professionals: [
@@ -120,61 +119,59 @@ export class HomePage extends React.Component {
           latitude: -34.61,
           longitude: -58.40,
         },
-      ]
+      ],
     };
   }
 
   updateProfessionals() {
-
-    var plusOrMinus1 = Math.random() < 0.5 ? -1 : 1;
-    var plusOrMinus2 = Math.random() < 0.5 ? -1 : 1;
-    var binary1 = Math.random() < 0.5 ? 0 : 1;
-    var binary2 = Math.random() < 0.5 ? 0 : 1;
+    let plusOrMinus1 = Math.random() < 0.5 ? -1 : 1;
+    let plusOrMinus2 = Math.random() < 0.5 ? -1 : 1;
+    let binary1 = Math.random() < 0.5 ? 0 : 1;
+    let binary2 = Math.random() < 0.5 ? 0 : 1;
 
     this.setState({
       professionals: [
         {
           id: 1,
-          latitude: this.state.professionals[0].latitude + 0.0001*binary1*plusOrMinus1,
-          longitude: this.state.professionals[0].longitude + 0.0001*binary1*plusOrMinus2,
-          popupBody: <PopupContent />
+          latitude: this.state.professionals[0].latitude + 0.0001 * binary1 * plusOrMinus1,
+          longitude: this.state.professionals[0].longitude + 0.0001 * binary1 * plusOrMinus2,
+          popupBody: <PopupContent />,
         },
         {
           id: 2,
-          latitude: this.state.professionals[1].latitude + 0.0001*binary2*plusOrMinus2,
-          longitude: this.state.professionals[1].longitude + 0.0001*binary2*plusOrMinus1,
+          latitude: this.state.professionals[1].latitude + 0.0001 * binary2 * plusOrMinus2,
+          longitude: this.state.professionals[1].longitude + 0.0001 * binary2 * plusOrMinus1,
         },
         {
           id: 3,
-          latitude: this.state.professionals[2].latitude + 0.0001*binary2*plusOrMinus2,
-          longitude: this.state.professionals[2].longitude + 0.0001*plusOrMinus1*plusOrMinus1,
+          latitude: this.state.professionals[2].latitude + 0.0001 * binary2 * plusOrMinus2,
+          longitude: this.state.professionals[2].longitude + 0.0001 * plusOrMinus1 * plusOrMinus1,
         },
         {
           id: 4,
-          latitude: this.state.professionals[3].latitude + 0.0001*binary2*plusOrMinus2,
-          longitude: this.state.professionals[3].longitude + 0.0001*plusOrMinus1*plusOrMinus1,
+          latitude: this.state.professionals[3].latitude + 0.0001 * binary2 * plusOrMinus2,
+          longitude: this.state.professionals[3].longitude + 0.0001 * plusOrMinus1 * plusOrMinus1,
         },
         {
           id: 5,
-          latitude: this.state.professionals[4].latitude + 0.0001*binary2*plusOrMinus2,
-          longitude: this.state.professionals[4].longitude + 0.0001*plusOrMinus1*plusOrMinus1,
+          latitude: this.state.professionals[4].latitude + 0.0001 * binary2 * plusOrMinus2,
+          longitude: this.state.professionals[4].longitude + 0.0001 * plusOrMinus1 * plusOrMinus1,
         },
-      ]
+      ],
     });
-
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.updateProfessionals();
   }
 
-  componentDidMount(){
-    /*this.loadInterval = window.setInterval(function () {
+  componentDidMount() {
+    /* this.loadInterval = window.setInterval(function () {
       this.updateProfessionals();
     }.bind(this), 3000);*/
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     window.clearInterval(this.loadInterval);
   }
   /*
@@ -182,7 +179,6 @@ export class HomePage extends React.Component {
    */
 
   render() {
-
     const menuItems = [
       {
         id: 1,
@@ -194,14 +190,15 @@ export class HomePage extends React.Component {
         icon: <PersonAdd />,
         value: 2,
       },
-    ],
-    { classes } = this.props;
+      ],
+      { classes } = this.props;
 
     return (
       <div className={classes.root} >
         <Grid container justify={'center'}>
           <Grid item xs={12} sm={7}> {/* Container map */}
-            <ServicesMap marks={this.state.professionals}
+            <ServicesMap
+              marks={this.state.professionals}
               onMarkerClick={this.props.toggleExtraInformation}
             >
             </ServicesMap>
@@ -211,7 +208,7 @@ export class HomePage extends React.Component {
           </Grid>
 
           {
-            (this.props.userExtraInformation.size>0) ?
+            (this.props.userExtraInformation.size > 0) ?
               <Grid item xs={12} sm={12} > {/* Extra information container */}
                 <Grid container justify={'center'} direction={'column'} >
                   <Grid item > {/* Personal information */}
@@ -222,7 +219,7 @@ export class HomePage extends React.Component {
                   <Grid item > {/* Reputation Panel */}
                     <ProfessionalInformationPanel
                       heading={<FormattedMessage {...messages.reputationHeader} />}
-                      secondaryHeading={<RatingStars numberStars={5} rating={1}/>}
+                      secondaryHeading={<RatingStars numberStars={5} rating={1} />}
                     >
                       {/* Reputation Content */}
                       <DescriptionList
@@ -261,7 +258,7 @@ export class HomePage extends React.Component {
                       </DescriptionList>
 
 
-                      {/*<DescriptionList
+                      {/* <DescriptionList
                         direction={'row'}
                         itemXs={12}
                         itemSm={12}
@@ -355,12 +352,12 @@ export class HomePage extends React.Component {
 
         </Grid>
       </div>
-    )
+    );
   }
 }
 
 function generate(element) {
-  return [0, 1, 2].map(value =>
+  return [0, 1, 2].map((value) =>
     React.cloneElement(element, {
       key: value,
     }),
@@ -370,7 +367,7 @@ function generate(element) {
 
 HomePage.propTypes = {
   userExtraInformation: PropTypes.object,
-}
+};
 
 HomePage = withStyles(styles)(HomePage);
 
@@ -384,13 +381,13 @@ export function mapDispatchToProps(dispatch) {
     },
     toggleExtraInformation: (evt) => {
       dispatch(toggleProfessionalExtraInformation(evt.cunstomId));
-    }
+    },
   };
 }
 
 const mapStateToProps = createStructuredSelector({
   userExtraInformation: makeSelectUserExtraInformation(),
-  //error: makeSelectError(),
+  // error: makeSelectError(),
 });
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

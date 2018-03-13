@@ -2,17 +2,17 @@ import { takeLatest, call, put, select } from 'redux-saga/effects';
 
 import { isNil, isUndefined } from 'lodash';
 
-import { 
-  LOAD_ALL_PROFESSIONS, 
-  URL_GET_PROFESSIONS, 
-  ACCOUNT_UPDATE, 
-  URL_PUT_ACCOUNT_UPDATE 
+import {
+  LOAD_ALL_PROFESSIONS,
+  URL_GET_PROFESSIONS,
+  ACCOUNT_UPDATE,
+  URL_PUT_ACCOUNT_UPDATE,
 } from 'containers/AccountPage/constants';
-import { 
-  professionalsLoaded, 
+import {
+  professionalsLoaded,
   professionalsLoadingError,
   submitUpdateAccountFormOk,
-  submitUpdateAccountFormFailed 
+  submitUpdateAccountFormFailed,
 } from 'containers/AccountPage/actions';
 
 import request from 'utils/request';
@@ -25,7 +25,7 @@ import { makeSelectAccountValues, makeSelectUploadFiles } from './selectors';
  */
 export function* getProfessionalsList() {
   // Select username from store
-  //const username = yield select(makeSelectUsername());
+  // const username = yield select(makeSelectUsername());
   const requestURL = process.env.config.jelpzoneApi.url + URL_GET_PROFESSIONS;
 
   try {
@@ -42,20 +42,19 @@ export function* getProfessionalsList() {
  */
 export function* submitForm() {
   // Select username from store
-  const values = yield select(makeSelectAccountValues()),
-        files = yield select(makeSelectUploadFiles());
+  const values = yield select(makeSelectAccountValues());
+  const files = yield select(makeSelectUploadFiles());
 
   // lift this from configuration file
-  const requestURL = process.env.config.jelpzoneApi.url + URL_PUT_ACCOUNT_UPDATE + '/' + getUser().userId;
+  const requestURL = `${process.env.config.jelpzoneApi.url + URL_PUT_ACCOUNT_UPDATE} / ${getUser().userId}`;
 
   try {
-
     // TODO**: handle errors of a better way
-    if(files.size >= 4){
+    if (files.size >= 4) {
       const error = new Error(400);
       error.response = {
-        message: "You can\'t load more than 4 pictures"
-      }
+        message: "You can't load more than 4 pictures",
+      };
       throw error;
     }
 
@@ -63,47 +62,41 @@ export function* submitForm() {
     const options = {
       method: 'PATCH',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         firstName: values.firstName,
         lastName: values.lastName,
         address: values.address,
-        professions: values.professions
-      })
+        professions: values.professions,
+      }),
     };
 
     const user = yield call(request, requestURL, options);
 
-    if(!isNil(user.id)){
-
-      let data = new FormData();
-      files.forEach(file => {
+    if (!isNil(user.id)) {
+      const data = new FormData();
+      files.forEach((file) => {
         data.append('file', file);
-      })
+      });
 
       const options = {
         method: 'POST',
-        body: data
+        body: data,
       };
 
-      let filesResponse = yield call(request, process.env.config.jelpzoneApi.url + 'Users/upload', options);
+      const filesResponse = yield call(request, `${process.env.config.jelpzoneApi.url} Users/upload`, options);
 
       yield put(submitUpdateAccountFormOk());
-
-    } else{
-
+    } else {
       // TODO**: handle errors of a better way
       const error = new Error(500);
       error.response = {
-        message: "Esto es un error no personalizado"
-      }
+        message: 'Esto es un error no personalizado',
+      };
       throw error;
-
     }
-
   } catch (err) {
-    console.log(err)
     yield put(submitUpdateAccountFormFailed(err));
   }
 }
@@ -118,6 +111,6 @@ export default function* rootWatcher() {
   // It will be cancelled automatically on component unmount
   yield [
     takeLatest(LOAD_ALL_PROFESSIONS, getProfessionalsList),
-    takeLatest(ACCOUNT_UPDATE, submitForm)
-  ]
+    takeLatest(ACCOUNT_UPDATE, submitForm),
+  ];
 }

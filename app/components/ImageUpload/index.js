@@ -3,7 +3,6 @@
 * ImageUpload
 *
 */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone';
@@ -14,7 +13,7 @@ import Card, { CardActions, CardContent } from 'material-ui-next/Card';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-const styles = theme => ({
+const styles = (theme) => ({
   card: {
     maxWidth: 275,
   },
@@ -22,27 +21,27 @@ const styles = theme => ({
 
 class ImageUpload extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-	onDrop(files) {
+  onDrop(files) {
     this.props.onDrop(files);
   }
 
   render() {
-  	const { classes } = this.props;
+    const { classes } = this.props;
     return (
-      <Card className={classes.card}>
+      <Card className={classes.card} elevation="0">
         <CardContent>
-          <Dropzone 
+          <Dropzone
             accept="image/jpeg, image/png"
-            onDrop={this.onDrop.bind(this)} 
-            disabled={this.props.disabled? this.props.disabled:false}
+            onDrop={this.onDrop.bind(this)}
+            disabled={this.props.disabled ? this.props.disabled : false}
           >
-            <p>Try dropping some files here, or click to select files to upload.</p>
+            <p><FormattedMessage {...messages.filesMessage} /></p>
           </Dropzone>
           {this.props.warningMessage}
           {this.props.errorMessage}
         </CardContent>
         {
-          (this.props.errorMessage != undefined)?
+          (this.props.errorMessage !== undefined) ?
             null
             :
             (
@@ -51,18 +50,17 @@ class ImageUpload extends React.Component { // eslint-disable-line react/prefer-
               </CardContent>
             )
         }
-        
       </Card>
     );
   }
 }
 
 ImageUpload.propTypes = {
-	classes: PropTypes.object.isRequired,
-	onDrop: PropTypes.func.isRequired,
-	disabled: PropTypes.bool,
-	warningMessage: PropTypes.string,
-	errorMessage: PropTypes.string,
+  classes: PropTypes.object.isRequired,
+  onDrop: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  warningMessage: PropTypes.string,
+  errorMessage: PropTypes.string,
 };
 
 export default withStyles(styles)(ImageUpload);

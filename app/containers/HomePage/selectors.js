@@ -19,5 +19,5 @@ const makeSelectUserExtraInformation = () => createSelector(
 export {
   selectHome,
   makeSelectUsername,
-  makeSelectUserExtraInformation
+  makeSelectUserExtraInformation,
 };

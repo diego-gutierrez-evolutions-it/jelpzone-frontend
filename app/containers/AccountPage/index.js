@@ -46,33 +46,33 @@ const styles = {
 
 export class AccountPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-  componentWillMount(){
+  componentWillMount() {
     this.props.beforeInit();
   }
 
-  onDrop(files){
+  onDrop(files) {
     this.props.onDropFiles(files);
   }
 
   render() {
-    const { 
+    const {
       onSubmitForm,
       values,
       professions,
       updatedOk,
       previewUploadedFiles,
-      classes
+      classes,
     } = this.props;
     return (
       <Card>
-        <Form 
-          handleSubmit={onSubmitForm} 
+        <Form
+          handleSubmit={onSubmitForm}
           accountValues={values}
           professions={professions}
         >
-          <ImageUpload 
+          <ImageUpload
             onDrop={this.onDrop.bind(this)}
-            errorMessage={(previewUploadedFiles.size > 4)? 'You can\'t load more than 4 pictures':null}
+            errorMessage={(previewUploadedFiles.size > 4) ? 'You can\'t load more than 4 pictures':null}
           >
             <div className={classes.row}>
               {previewUploadedFiles.map((previewUploadedFile, index) => (
@@ -128,7 +128,7 @@ function mapDispatchToProps(dispatch) {
     },
     onDropFiles: (files) => {
       dispatch(loadDroppedFiles(files));
-    }
+    },
   };
 }
 

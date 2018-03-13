@@ -11,10 +11,9 @@ import { Marker as MarkerLeaflet, Tooltip } from 'react-leaflet';
 import L from 'leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-
-import PopupContent from './PopupContent';
-
 import { FormattedMessage } from 'react-intl';
+import PopupContent from './PopupContent';
+import messages from './messages';
 
 class Marker extends React.Component { // eslint-disable-line react/prefer-stateless-function
 

@@ -16,19 +16,19 @@
  */
 
 import {
-  TOGGLE_EXTRA_INFORMATION
+  TOGGLE_EXTRA_INFORMATION,
 } from './constants';
 
 /**
- * Changes the professional extra information 
+ * Changes the professional extra information
  *
  * @param  {id} The professional id
  *
  * @return {object}  An action object with a type of TOGGLE_EXTRA_INFORMATION
  */
 export function toggleProfessionalExtraInformation(id) {
-	return {
+  return {
     type: TOGGLE_EXTRA_INFORMATION,
-    payload: {id: id},
+    payload: { id },
   };
 }

@@ -7,11 +7,11 @@ import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   submitButtonText: {
-  	id: 'app.containers.AccountPage.submit_button',
+    id: 'app.containers.AccountPage.submit_button',
     defaultMessage: 'Save',
   },
   resetButtonText: {
-  	id: 'app.containers.AccountPage.reset_button',
+    id: 'app.containers.AccountPage.reset_button',
     defaultMessage: 'Undo',
   },
   successUpdate: {

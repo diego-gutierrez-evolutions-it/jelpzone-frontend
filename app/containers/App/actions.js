@@ -43,11 +43,11 @@ export function submitLoginForm() {
  *
  * @return {object} An action object with a type of AUTH_USER_SUCCESS
  */
-export function submitLoginFormOk(user) {
+export function submitLoginFormOk(userData) {
   return {
     type: AUTH_USER_SUCCESS,
     payload: {
-      user: user
+      user: userData,
     },
   };
 }
@@ -115,11 +115,11 @@ export function loadingUser() {
  *
  * @return {object} An action object with a type of LOAD_CURRENT_USER_SUCCESS
  */
-export function loadingUserOk(user) {
+export function loadingUserOk(userData) {
   return {
     type: LOAD_CURRENT_USER_SUCCESS,
     payload: {
-      user: user,
+      user: userData,
     },
   };
 }

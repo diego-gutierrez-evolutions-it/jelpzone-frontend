@@ -44,8 +44,8 @@ export function loadProfessionalsList() {
 export function professionalsLoaded(data) {
   return {
     type: LOAD_ALL_PROFESSIONS_SUCCESS,
-    payload: data
-  }
+    payload: data,
+  };
 }
 
 /**
@@ -56,8 +56,8 @@ export function professionalsLoaded(data) {
 export function professionalsLoadingError(err) {
   return {
     type: LOAD_ALL_PROFESSIONS_ERROR,
-    payload: err
-  }
+    payload: err,
+  };
 }
 
 /**
@@ -79,7 +79,7 @@ export function submitUpdateAccountForm() {
 export function submitUpdateAccountFormOk() {
   return {
     type: ACCOUNT_UPDATE_OK,
-  }
+  };
 }
 
 /**
@@ -90,8 +90,8 @@ export function submitUpdateAccountFormOk() {
 export function submitUpdateAccountFormFailed(err) {
   return {
     type: ACCOUNT_UPDATE_FAILED,
-    payload: err
-  }
+    payload: err,
+  };
 }
 
 /**
@@ -102,6 +102,6 @@ export function submitUpdateAccountFormFailed(err) {
 export function loadDroppedFiles(files) {
   return {
     type: LOAD_DROPPED_FILES,
-    payload: files
-  }
+    payload: files,
+  };
 }

@@ -8,6 +8,10 @@ import { defineMessages } from 'react-intl';
 export default defineMessages({
   header: {
     id: 'app.components.ImageUpload.header',
-    defaultMessage: 'This is the ImageUpload component !',
+    defaultMessage: 'Upload Files',
+  },
+  filesMessage: {
+    id: 'app.components.ImageUpload.filesMessage',
+    defaultMessage: 'Drop pictures here!',
   },
 });
