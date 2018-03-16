@@ -6,8 +6,8 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  header: {
-    id: 'app.components.ProfessionalInformation.header',
-    defaultMessage: 'This is the ProfessionalInformation component !',
-  },
+  noProfessionMessage: {
+  	id: 'app.components.ProfessionalInformation.noProfessionsMessage',
+    defaultMessage: 'This user hasn\'t loaded professions yet!',
+},
 });

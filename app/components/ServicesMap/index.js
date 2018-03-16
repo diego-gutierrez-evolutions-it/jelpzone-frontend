@@ -12,6 +12,7 @@ import { geolocated } from 'react-geolocated';
 import { divIcon } from 'leaflet';
 
 import map from 'lodash/map';
+import { List } from 'immutable';
 
 import blue from 'material-ui-next/colors/blue';
 import red from 'material-ui-next/colors/red';
@@ -63,17 +64,18 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
       id={'mark-me'}
     />
      {
-      map(marks, (mark) => {
-        const { classNames } = mark;
-
+      marks.map((mark, index) => {
         return (
-          <Marker
-            id={mark.id}
-            key={`jelpzone-marker-${mark.id}`}
-            coordinate={[mark.latitude, mark.longitude]}
-            popupBody={mark.popupBody}
-            onClick={this.props.onMarkerClick}
-          />
+          (mark.get('location') !== undefined)?
+            <Marker
+              id={mark.get('id')}
+              key={`jelpzone-marker-${mark.get('id')}`}
+              coordinate={[mark.get('location').get('lat'), mark.get('location').get('lng')]}
+              popupBody={mark.popupBody}
+              onClick={this.props.onMarkerClick}
+            />
+            :
+            null
         );
       })
     }
@@ -88,15 +90,19 @@ class ServicesMap extends React.Component { // eslint-disable-line react/prefer-
 }
 
 ServicesMap.propTypes = {
-  marks: PropTypes.arrayOf(
-  PropTypes.shape({
-    id: PropTypes.number,
-    latitude: PropTypes.number,
-    longitude: PropTypes.number,
-    classNames: PropTypes.object,
-    popupBody: PropTypes.object,
-  }),
-),
+  marks: PropTypes.any,/*PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      location: PropTypes.shape({
+        lat: PropTypes.number,
+        lng: PropTypes.number,
+      }),
+      latitude: PropTypes.number,
+      longitude: PropTypes.number,
+      classNames: PropTypes.object,
+      popupBody: PropTypes.object,
+    }),
+  ),*/
   onMarkerClick: PropTypes.func.isRequired,
 };
 

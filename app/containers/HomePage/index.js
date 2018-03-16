@@ -43,8 +43,8 @@ import PersonIcon from 'material-ui-icons/Person';
 
 import green from 'material-ui-next/colors/green';
 
-import { toggleProfessionalExtraInformation } from './actions';
-import { makeSelectUserExtraInformation } from './selectors';
+import { toggleProfessionalExtraInformation, loadProfessionalsList } from './actions';
+import { makeSelectUserExtraInformation, makeSelectProfessionals } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import messages from './messages';
@@ -88,7 +88,7 @@ export class HomePage extends React.Component {
    */
   constructor(props) {
     super(props);
-    this.state = {
+    /*this.state = {
       professionals: [
         {
           id: 1,
@@ -116,10 +116,10 @@ export class HomePage extends React.Component {
           longitude: -58.40,
         },
       ],
-    };
+    };*/
   }
 
-  updateProfessionals() {
+  /*updateProfessionals() {
     let plusOrMinus1 = Math.random() < 0.5 ? -1 : 1;
     let plusOrMinus2 = Math.random() < 0.5 ? -1 : 1;
     let binary1 = Math.random() < 0.5 ? 0 : 1;
@@ -155,10 +155,10 @@ export class HomePage extends React.Component {
         },
       ],
     });
-  }
+  }*/
 
   componentWillMount() {
-    this.updateProfessionals();
+    this.props.onInit();
   }
 
   componentDidMount() {
@@ -175,20 +175,20 @@ export class HomePage extends React.Component {
    */
 
   render() {
-    const { classes } = this.props;
+    const { classes, professionals } = this.props;
 
     return (
       <div className={classes.root} >
         <Grid container justify={'center'}>
           <Grid item xs={12} sm={8}> {/* Container map */}
             <ServicesMap
-              marks={this.state.professionals}
+              marks={professionals}
               onMarkerClick={this.props.toggleExtraInformation}
             >
             </ServicesMap>
           </Grid>
           <Grid item xs={12} sm={4}> {/* Container professionals list */}
-            <ProfessionalInformationList professionals={this.state.professionals} />
+            <ProfessionalInformationList professionals={professionals} />
           </Grid>
           {
             (this.props.userExtraInformation.size > 0) ?
@@ -326,6 +326,9 @@ function generate(element) {
 
 HomePage.propTypes = {
   userExtraInformation: PropTypes.object,
+  onSubmitForm: PropTypes.func.isRequired,
+  toggleExtraInformation: PropTypes.func.isRequired,
+  onInit: PropTypes.func.isRequired,
 };
 
 HomePage = withStyles(styles)(HomePage);
@@ -341,11 +344,15 @@ export function mapDispatchToProps(dispatch) {
     toggleExtraInformation: (evt) => {
       dispatch(toggleProfessionalExtraInformation(evt.cunstomId));
     },
+    onInit: () => {
+      dispatch(loadProfessionalsList());
+    }
   };
 }
 
 const mapStateToProps = createStructuredSelector({
   userExtraInformation: makeSelectUserExtraInformation(),
+  professionals: makeSelectProfessionals(),
   // error: makeSelectError(),
 });
 

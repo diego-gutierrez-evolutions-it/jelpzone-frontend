@@ -24,6 +24,7 @@ import FavoriteIcon from 'material-ui-icons/Favorite';
 import CallIcon from 'material-ui-icons/Phone';
 import MailIcon from 'material-ui-icons/MailOutline';
 import WorkIcon from 'material-ui-icons/Business';
+import NoWorkIcon from 'material-ui-icons/Warning';
 
 import Img from 'components/Img';
 import DescriptionList from 'components/DescriptionList';
@@ -56,7 +57,7 @@ class ProfessionalInformation extends React.Component { // eslint-disable-line r
   render() {
 
     const image = require('assets/images/jsa-128.jpg');
-    const { classes } = this.props;
+    const { classes, professional } = this.props;
 
     return (
       <Grid
@@ -76,7 +77,7 @@ class ProfessionalInformation extends React.Component { // eslint-disable-line r
             <Grid item xs={8} sm={10}> 
               <Grid container>
                 <Grid item xs={12}>
-                  <Typography variant="title">Juan Carlos de los Palotes</Typography>
+                  <Typography variant="title">{professional.get('firstName') +' '+ professional.get('lastName')}</Typography>
                 </Grid>
                 <Grid item xs={12} sm={12}>
                   <IconButton aria-label="Favorite" className={classes.button}> {/* Favorite button */}
@@ -94,43 +95,28 @@ class ProfessionalInformation extends React.Component { // eslint-disable-line r
           </Grid>
         </Grid>
         <Grid item xs={12} >
-          <Chip avatar={
-            <Avatar>
-              <WorkIcon />
-            </Avatar>
+          {professional.get('professions').map((profession, index) => (
+            <Chip 
+              key={index}
+              avatar={
+                <Avatar>
+                  <WorkIcon />
+                </Avatar>
+              }
+              label={profession.get('name')} className={classes.chip} />
+          ))}
+          {
+            (professional.get('professions').size <= 0)? 
+              <Chip 
+                avatar={
+                  <Avatar>
+                    <NoWorkIcon />
+                  </Avatar>
                 }
-            label="Oficio" className={classes.chip} />
-          <Chip avatar={
-            <Avatar>
-              <WorkIcon />
-            </Avatar>
-                }
-            label="Oficio" className={classes.chip} />
-          <Chip avatar={
-            <Avatar>
-              <WorkIcon />
-            </Avatar>
-                }
-            label="Oficio" className={classes.chip} />
-          <Chip avatar={
-            <Avatar>
-              <WorkIcon />
-            </Avatar>
-                }
-            label="Oficio" className={classes.chip} />
-          <Chip avatar={
-            <Avatar>
-              <WorkIcon />
-            </Avatar>
-                }
-            label="Oficio" className={classes.chip} />
-          <Chip avatar={
-            <Avatar>
-              <WorkIcon />
-            </Avatar>
-                }
-            label="Oficio" className={classes.chip} />
-
+                label={<FormattedMessage {...messages.noProfessionMessage} />} className={classes.chip} />
+              :
+              null
+          }
         </Grid>
       </Grid>
     );

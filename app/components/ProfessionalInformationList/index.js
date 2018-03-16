@@ -28,9 +28,9 @@ class ProfessionalInformationList extends React.Component { // eslint-disable-li
           padding={0}
           style={cover}
         >
-          {this.props.professionals.map((professional) => (
+          {this.props.professionals.map((professional, index) => (
             <GridTile
-              key={professional.id}
+              key={index}
               rows={2}
             >
               <ProfessionalInformation professional={professional} />

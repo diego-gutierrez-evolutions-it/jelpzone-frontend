@@ -13,43 +13,37 @@ import { fromJS, List, Map } from 'immutable';
 import { isEmpty } from 'lodash';
 
 import {
-  TOGGLE_EXTRA_INFORMATION
+  TOGGLE_EXTRA_INFORMATION,
+  LOAD_ALL_PROFESSIONALS,
+  LOAD_ALL_PROFESSIONALS_SUCCESS,
+  LOAD_ALL_PROFESSIONALS_ERROR,
 } from './constants';
 
 // The initial state of the App
 const initialState = fromJS({
-  professionals: [
-    {
-      id: 1,
-      latitude: -34.62,
-      longitude: -58.42,
-    },
-    {
-      id: 2,
-      latitude: -34.63,
-      longitude: -58.44,
-    },
-    {
-      id: 3,
-      latitude: -34.61,
-      longitude: -58.45,
-    },
-    {
-      id: 4,
-      latitude: -34.62,
-      longitude: -58.41,
-    },
-    {
-      id: 5,
-      latitude: -34.61,
-      longitude: -58.40,
-    },
-  ],
+  professionals: [],
+  loadingProfessionals: false,
+  errorLoadingProfessionals: false,
   userExtraInformation: {}
 });
 
 function homeReducer(state = initialState, action) {
   switch (action.type) {
+
+    case LOAD_ALL_PROFESSIONALS:
+      return state
+        .set('loadingProfessionals', true)
+        .set('errorLoadingProfessionals', false);
+    case LOAD_ALL_PROFESSIONALS_SUCCESS:
+      return state
+        .set('professionals', fromJS(action.payload))
+        .set('loadingProfessionals', false)
+        .set('errorLoadingProfessionals', false);
+    case LOAD_ALL_PROFESSIONALS_ERROR:
+      return state
+        .set('loadingProfessionals', false)
+        .set('errorLoadingProfessionals', true);
+
     case TOGGLE_EXTRA_INFORMATION:
 
       // filter professionals by action id (clicked mark)
@@ -62,11 +56,11 @@ function homeReducer(state = initialState, action) {
         && (selectedProfesional.get('id') == state.get('userExtraInformation').get('id'))
       ){
         return state
-          .set('userExtraInformation',{});
+          .set('userExtraInformation',fromJS({}));
       } else{
         // else i will select it
         return state
-          .set('userExtraInformation', selectedProfesional);
+          .set('userExtraInformation', fromJS(selectedProfesional));
       }      
       
     default:

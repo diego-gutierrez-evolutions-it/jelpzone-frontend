@@ -17,6 +17,9 @@
 
 import {
   TOGGLE_EXTRA_INFORMATION,
+  LOAD_ALL_PROFESSIONALS,
+  LOAD_ALL_PROFESSIONALS_SUCCESS,
+  LOAD_ALL_PROFESSIONALS_ERROR,
 } from './constants';
 
 /**
@@ -30,5 +33,40 @@ export function toggleProfessionalExtraInformation(id) {
   return {
     type: TOGGLE_EXTRA_INFORMATION,
     payload: { id },
+  };
+}
+
+/**
+ * Load the professionals, this action starts the request saga
+ *
+ * @return {object} An action object with a type of LOAD_ALL_PROFESSIONALS
+ */
+export function loadProfessionalsList() {
+  return {
+    type: LOAD_ALL_PROFESSIONALS,
+  };
+}
+
+/**
+ * Load the professionals ok
+ *
+ * @return {object} An action object with a type of LOAD_ALL_PROFESSIONALS_SUCCESS
+ */
+export function professionalsLoaded(data) {
+  return {
+    type: LOAD_ALL_PROFESSIONALS_SUCCESS,
+    payload: data,
+  };
+}
+
+/**
+ * Load the professionals failed
+ *
+ * @return {object} An action object with a type of LOAD_ALL_PROFESSIONALS_ERROR
+ */
+export function professionalsLoadingError(err) {
+  return {
+    type: LOAD_ALL_PROFESSIONALS_ERROR,
+    payload: err,
   };
 }
